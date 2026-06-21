@@ -1,0 +1,332 @@
+<div class="page-wrapper">
+
+  <!-- SHARED SIDEBAR -->
+  <app-sidebar></app-sidebar>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">Events</h1>
+        <span class="page-subtitle">Track and organize story events across timelines</span>
+      </div>
+      <div class="topbar-right">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search events..." />
+        </div>
+        <button class="btn-primary-sm">+ New Event</button>
+      </div>
+    </header>
+
+    <!-- ========== STATS ROW ========== -->
+    <section class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon blue">📅</div>
+        <div class="stat-info">
+          <span class="stat-number">42</span>
+          <span class="stat-label">Total Events</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green">⚔️</div>
+        <div class="stat-info">
+          <span class="stat-number">8</span>
+          <span class="stat-label">Major Events</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon orange">🔀</div>
+        <div class="stat-info">
+          <span class="stat-number">15</span>
+          <span class="stat-label">Plot Twists</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon purple">📖</div>
+        <div class="stat-info">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Story Arcs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FILTER BAR ========== -->
+    <div class="filter-bar">
+      <div class="filter-tabs">
+        <button class="filter-tab active">All Events</button>
+        <button class="filter-tab">Major</button>
+        <button class="filter-tab">Minor</button>
+        <button class="filter-tab">Plot Twist</button>
+        <button class="filter-tab">Flashback</button>
+      </div>
+      <div class="filter-actions">
+        <select class="filter-select">
+          <option value="">Story</option>
+          <option value="lost-kingdom">The Lost Kingdom</option>
+          <option value="beyond-stars">Beyond the Stars</option>
+          <option value="mystic">Mystic Academy</option>
+        </select>
+        <select class="filter-select">
+          <option value="">Sort by</option>
+          <option value="timeline">Timeline Order</option>
+          <option value="recent">Recently Added</option>
+          <option value="type">By Type</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ========== TIMELINE VIEW ========== -->
+    <section class="timeline-section">
+      <h2 class="timeline-title">Story Timeline</h2>
+
+      <div class="timeline">
+
+        <!-- ARC LABEL -->
+        <div class="arc-label">
+          <span class="arc-badge">Act I — The Beginning</span>
+        </div>
+
+        <!-- EVENT 1 -->
+        <div class="timeline-item">
+          <div class="timeline-marker major"></div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <div class="event-type-badge major">Major Event</div>
+              <div class="event-actions">
+                <button class="event-btn">✏️</button>
+                <button class="event-btn">🗑️</button>
+              </div>
+            </div>
+            <h3 class="event-title">The Fall of Blackwood Keep</h3>
+            <p class="event-desc">The ancestral fortress of House Blackwood is destroyed in a surprise attack led by Lady Vespera's shadow army. Arin barely escapes with his life.</p>
+            <div class="event-details">
+              <div class="event-detail">
+                <span class="detail-icon">📍</span>
+                <span class="detail-text">Blackwood Keep, Northern Province</span>
+              </div>
+              <div class="event-detail">
+                <span class="detail-icon">⏰</span>
+                <span class="detail-text">Chapter 1 — Day 1</span>
+              </div>
+            </div>
+            <div class="event-characters">
+              <span class="event-char-label">Characters Involved</span>
+              <div class="event-char-list">
+                <div class="event-char" title="Arin Blackwood">AB</div>
+                <div class="event-char purple" title="Lady Vespera">LV</div>
+                <div class="event-char teal" title="Kael Ren">KR</div>
+              </div>
+            </div>
+            <div class="event-tags">
+              <span class="event-tag">Battle</span>
+              <span class="event-tag">Destruction</span>
+              <span class="event-tag">Exile</span>
+            </div>
+            <div class="event-footer">
+              <span class="event-impact high">High Impact</span>
+              <span class="event-date">Created 3 days ago</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- EVENT 2 -->
+        <div class="timeline-item">
+          <div class="timeline-marker minor"></div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <div class="event-type-badge minor">Minor Event</div>
+              <div class="event-actions">
+                <button class="event-btn">✏️</button>
+                <button class="event-btn">🗑️</button>
+              </div>
+            </div>
+            <h3 class="event-title">Arin Meets Sera in the Wildlands</h3>
+            <p class="event-desc">While wandering through the Ashwood Forest, Arin encounters Sera Ravencroft, a rogue healer who saves him from poisoned wounds.</p>
+            <div class="event-details">
+              <div class="event-detail">
+                <span class="detail-icon">📍</span>
+                <span class="detail-text">Ashwood Forest, Eastern Border</span>
+              </div>
+              <div class="event-detail">
+                <span class="detail-icon">⏰</span>
+                <span class="detail-text">Chapter 3 — Day 12</span>
+              </div>
+            </div>
+            <div class="event-characters">
+              <span class="event-char-label">Characters Involved</span>
+              <div class="event-char-list">
+                <div class="event-char" title="Arin Blackwood">AB</div>
+                <div class="event-char pink" title="Sera Ravencroft">SR</div>
+              </div>
+            </div>
+            <div class="event-tags">
+              <span class="event-tag">Encounter</span>
+              <span class="event-tag">Alliance</span>
+            </div>
+            <div class="event-footer">
+              <span class="event-impact medium">Medium Impact</span>
+              <span class="event-date">Created 2 days ago</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ARC LABEL -->
+        <div class="arc-label">
+          <span class="arc-badge">Act II — The Journey</span>
+        </div>
+
+        <!-- EVENT 3 -->
+        <div class="timeline-item">
+          <div class="timeline-marker twist"></div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <div class="event-type-badge twist">Plot Twist</div>
+              <div class="event-actions">
+                <button class="event-btn">✏️</button>
+                <button class="event-btn">🗑️</button>
+              </div>
+            </div>
+            <h3 class="event-title">Kael's Betrayal Revealed</h3>
+            <p class="event-desc">Arin discovers that Kael has been secretly feeding information to Vespera in exchange for his village's safety. The brotherhood is shattered.</p>
+            <div class="event-details">
+              <div class="event-detail">
+                <span class="detail-icon">📍</span>
+                <span class="detail-text">Rebel Camp, Stoneridge Valley</span>
+              </div>
+              <div class="event-detail">
+                <span class="detail-icon">⏰</span>
+                <span class="detail-text">Chapter 8 — Day 45</span>
+              </div>
+            </div>
+            <div class="event-characters">
+              <span class="event-char-label">Characters Involved</span>
+              <div class="event-char-list">
+                <div class="event-char" title="Arin Blackwood">AB</div>
+                <div class="event-char teal" title="Kael Ren">KR</div>
+                <div class="event-char purple" title="Lady Vespera">LV</div>
+              </div>
+            </div>
+            <div class="event-tags">
+              <span class="event-tag">Betrayal</span>
+              <span class="event-tag">Conflict</span>
+              <span class="event-tag">Revelation</span>
+            </div>
+            <div class="event-footer">
+              <span class="event-impact high">High Impact</span>
+              <span class="event-date">Created 1 day ago</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- EVENT 4 -->
+        <div class="timeline-item">
+          <div class="timeline-marker flashback"></div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <div class="event-type-badge flashback">Flashback</div>
+              <div class="event-actions">
+                <button class="event-btn">✏️</button>
+                <button class="event-btn">🗑️</button>
+              </div>
+            </div>
+            <h3 class="event-title">The Oath of the Silver Dawn</h3>
+            <p class="event-desc">A flashback to Arin's knighting ceremony where he swore an oath to protect the realm. This oath now drives his quest for redemption.</p>
+            <div class="event-details">
+              <div class="event-detail">
+                <span class="detail-icon">📍</span>
+                <span class="detail-text">Silver Dawn Citadel</span>
+              </div>
+              <div class="event-detail">
+                <span class="detail-icon">⏰</span>
+                <span class="detail-text">Chapter 9 — 10 Years Ago</span>
+              </div>
+            </div>
+            <div class="event-characters">
+              <span class="event-char-label">Characters Involved</span>
+              <div class="event-char-list">
+                <div class="event-char" title="Arin Blackwood">AB</div>
+                <div class="event-char orange" title="Elder Nyx">EN</div>
+              </div>
+            </div>
+            <div class="event-tags">
+              <span class="event-tag">Oath</span>
+              <span class="event-tag">Memory</span>
+              <span class="event-tag">Motivation</span>
+            </div>
+            <div class="event-footer">
+              <span class="event-impact low">Low Impact</span>
+              <span class="event-date">Created 5 hours ago</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ARC LABEL -->
+        <div class="arc-label">
+          <span class="arc-badge">Act III — The Reckoning</span>
+        </div>
+
+        <!-- EVENT 5 -->
+        <div class="timeline-item">
+          <div class="timeline-marker major"></div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <div class="event-type-badge major">Major Event</div>
+              <div class="event-actions">
+                <button class="event-btn">✏️</button>
+                <button class="event-btn">🗑️</button>
+              </div>
+            </div>
+            <h3 class="event-title">The Final Siege of Eldarion</h3>
+            <p class="event-desc">Arin leads a united army against Lady Vespera's forces in the climactic battle at the gates of Eldarion. The fate of the realm hangs in the balance.</p>
+            <div class="event-details">
+              <div class="event-detail">
+                <span class="detail-icon">📍</span>
+                <span class="detail-text">Gates of Eldarion, Capital City</span>
+              </div>
+              <div class="event-detail">
+                <span class="detail-icon">⏰</span>
+                <span class="detail-text">Chapter 20 — Day 120</span>
+              </div>
+            </div>
+            <div class="event-characters">
+              <span class="event-char-label">Characters Involved</span>
+              <div class="event-char-list">
+                <div class="event-char" title="Arin Blackwood">AB</div>
+                <div class="event-char purple" title="Lady Vespera">LV</div>
+                <div class="event-char teal" title="Kael Ren">KR</div>
+                <div class="event-char pink" title="Sera Ravencroft">SR</div>
+                <div class="event-char orange" title="Elder Nyx">EN</div>
+              </div>
+            </div>
+            <div class="event-tags">
+              <span class="event-tag">Battle</span>
+              <span class="event-tag">Climax</span>
+              <span class="event-tag">War</span>
+              <span class="event-tag">Resolution</span>
+            </div>
+            <div class="event-footer">
+              <span class="event-impact high">High Impact</span>
+              <span class="event-date">Created just now</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADD EVENT -->
+        <div class="timeline-item">
+          <div class="timeline-marker add"></div>
+          <div class="timeline-card add-event-card">
+            <div class="add-icon">+</div>
+            <span class="add-text">Add New Event</span>
+            <span class="add-sub">Add a new event to your story timeline</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+</div>

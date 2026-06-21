@@ -1,0 +1,154 @@
+<div class="page-wrapper">
+
+  <!-- SHARED SIDEBAR -->
+  <app-sidebar></app-sidebar>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">Dashboard</h1>
+        <span class="page-subtitle">Welcome back, John!</span>
+      </div>
+      <div class="topbar-right">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search stories, characters..." />
+        </div>
+        <button class="btn-icon">🔔</button>
+        <button class="btn-primary-sm">+ New Story</button>
+      </div>
+    </header>
+
+    <!-- ========== STATS CARDS ========== -->
+    <section class="stats-section">
+      <div class="stat-card">
+        <div class="stat-icon blue">📚</div>
+        <div class="stat-info">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Total Stories</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon purple">👥</div>
+        <div class="stat-info">
+          <span class="stat-number">48</span>
+          <span class="stat-label">Characters</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green">📅</div>
+        <div class="stat-info">
+          <span class="stat-number">156</span>
+          <span class="stat-label">Events</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon orange">🌍</div>
+        <div class="stat-info">
+          <span class="stat-number">8</span>
+          <span class="stat-label">Worlds</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== RECENT STORIES ========== -->
+    <section class="recent-section">
+      <div class="section-header">
+        <h2 class="section-title">Recent Stories</h2>
+        <a href="/stories" class="section-link">View All →</a>
+      </div>
+
+      <div class="stories-grid">
+        <div class="story-card">
+          <div class="story-cover">
+            <span class="story-emoji">🏰</span>
+          </div>
+          <div class="story-content">
+            <h3 class="story-title">The Lost Kingdom</h3>
+            <p class="story-desc">A tale of forgotten realms and ancient magic.</p>
+            <div class="story-meta">
+              <span class="meta-item">👤 12 Characters</span>
+              <span class="meta-item">📅 24 Events</span>
+            </div>
+            <div class="story-footer">
+              <span class="story-status active">In Progress</span>
+              <span class="story-date">Updated 2h ago</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-card">
+          <div class="story-cover">
+            <span class="story-emoji">🚀</span>
+          </div>
+          <div class="story-content">
+            <h3 class="story-title">Beyond the Stars</h3>
+            <p class="story-desc">Space exploration meets human drama.</p>
+            <div class="story-meta">
+              <span class="meta-item">👤 8 Characters</span>
+              <span class="meta-item">📅 18 Events</span>
+            </div>
+            <div class="story-footer">
+              <span class="story-status draft">Draft</span>
+              <span class="story-date">Updated 1d ago</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-card">
+          <div class="story-cover">
+            <span class="story-emoji">🔮</span>
+          </div>
+          <div class="story-content">
+            <h3 class="story-title">Mystic Academy</h3>
+            <p class="story-desc">Young wizards discovering their powers.</p>
+            <div class="story-meta">
+              <span class="meta-item">👤 15 Characters</span>
+              <span class="meta-item">📅 32 Events</span>
+            </div>
+            <div class="story-footer">
+              <span class="story-status completed">Completed</span>
+              <span class="story-date">Updated 5d ago</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-card add-card">
+          <div class="add-icon">+</div>
+          <span class="add-text">Create New Story</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== QUICK ACTIONS ========== -->
+    <section class="quick-section">
+      <div class="section-header">
+        <h2 class="section-title">Quick Actions</h2>
+      </div>
+
+      <div class="quick-grid">
+        <a href="/characters" class="quick-card">
+          <span class="quick-icon">👤</span>
+          <span class="quick-text">Add Character</span>
+        </a>
+        <a href="/events" class="quick-card">
+          <span class="quick-icon">📅</span>
+          <span class="quick-text">Add Event</span>
+        </a>
+        <a href="/relations" class="quick-card">
+          <span class="quick-icon">🔗</span>
+          <span class="quick-text">Map Relations</span>
+        </a>
+        <a href="/world-library" class="quick-card">
+          <span class="quick-icon">🌍</span>
+          <span class="quick-text">Build World</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+</div>

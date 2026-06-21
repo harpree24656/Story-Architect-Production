@@ -1,0 +1,142 @@
+<div class="page-wrapper">
+
+  <app-sidebar></app-sidebar>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">Settings</h1>
+        <span class="page-subtitle">Manage your account</span>
+      </div>
+    </header>
+
+    <div class="settings-body">
+
+      <!-- USER PROFILE -->
+      <div class="profile-card">
+        <div class="profile-left">
+          <div class="profile-avatar">JD</div>
+          <div class="profile-info">
+            <h2 class="profile-name">John Doe</h2>
+            <span class="profile-email">john.doe&#64;example.com</span>
+            <span class="profile-plan-badge">Pro Plan</span>
+          </div>
+        </div>
+        <div class="profile-right">
+          <span class="member-since">Member since Jan 2025</span>
+        </div>
+      </div>
+
+      <!-- OPTIONS -->
+      <div class="settings-options">
+
+        <div class="settings-option" (click)="openFeedback()">
+          <div class="option-left">
+            <div class="option-icon feedback-icon">💬</div>
+            <div class="option-info">
+              <span class="option-title">Send Feedback</span>
+              <span class="option-desc">Help us improve Story Architect with your suggestions</span>
+            </div>
+          </div>
+          <div class="option-right">
+            <span class="option-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="settings-option logout-option">
+          <div class="option-left">
+            <div class="option-icon logout-icon">🚪</div>
+            <div class="option-info">
+              <span class="option-title logout-text">Logout</span>
+              <span class="option-desc">Sign out from your account</span>
+            </div>
+          </div>
+          <div class="option-right">
+            <span class="option-arrow">→</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FEEDBACK MODAL -->
+  <div class="feedback-overlay" [class.open]="feedbackOpen">
+    <div class="feedback-modal">
+
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="modal-icon">💬</span>
+          <h2 class="modal-title">Send Feedback</h2>
+        </div>
+        <button class="modal-close" (click)="closeFeedback()">✕</button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label class="form-label">Feedback Type</label>
+          <div class="feedback-type-options">
+            <label class="type-option active">
+              <input type="radio" name="feedback-type" value="suggestion" checked />
+              <span class="type-icon">💡</span>
+              <span class="type-text">Suggestion</span>
+            </label>
+            <label class="type-option">
+              <input type="radio" name="feedback-type" value="bug" />
+              <span class="type-icon">🐛</span>
+              <span class="type-text">Bug Report</span>
+            </label>
+            <label class="type-option">
+              <input type="radio" name="feedback-type" value="compliment" />
+              <span class="type-icon">❤️</span>
+              <span class="type-text">Compliment</span>
+            </label>
+            <label class="type-option">
+              <input type="radio" name="feedback-type" value="other" />
+              <span class="type-icon">📝</span>
+              <span class="type-text">Other</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input type="text" class="form-input" placeholder="Brief summary of your feedback" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" rows="5" placeholder="Describe your feedback in detail..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">How would you rate your experience?</label>
+          <div class="rating-options">
+            <button class="rating-btn" title="Terrible">😡</button>
+            <button class="rating-btn" title="Bad">😕</button>
+            <button class="rating-btn" title="Okay">😐</button>
+            <button class="rating-btn active" title="Good">😊</button>
+            <button class="rating-btn" title="Amazing">🤩</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email <span class="optional-tag">(optional)</span></label>
+          <input type="email" class="form-input" placeholder="Your email for follow-up" value="john.doe@example.com" />
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="closeFeedback()">Cancel</button>
+        <button class="btn-submit">Submit Feedback</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

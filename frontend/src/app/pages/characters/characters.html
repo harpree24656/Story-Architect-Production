@@ -1,0 +1,370 @@
+<div class="page-wrapper">
+
+  <!-- SHARED SIDEBAR -->
+  <app-sidebar></app-sidebar>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">Characters</h1>
+        <span class="page-subtitle">Manage all characters across your stories</span>
+      </div>
+      <div class="topbar-right">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search characters..." />
+        </div>
+        <button class="btn-primary-sm">+ New Character</button>
+      </div>
+    </header>
+
+    <!-- ========== FILTER BAR ========== -->
+    <div class="filter-bar">
+      <div class="filter-tabs">
+        <button class="filter-tab active">All Characters</button>
+        <button class="filter-tab">Main</button>
+        <button class="filter-tab">Supporting</button>
+        <button class="filter-tab">Antagonist</button>
+        <button class="filter-tab">Minor</button>
+      </div>
+      <div class="filter-actions">
+        <select class="filter-select">
+          <option value="">Sort by</option>
+          <option value="name">Name A-Z</option>
+          <option value="recent">Recently Added</option>
+          <option value="story">By Story</option>
+        </select>
+        <button class="view-btn active" title="Grid View">▦</button>
+        <button class="view-btn" title="List View">☰</button>
+      </div>
+    </div>
+
+    <!-- ========== CHARACTER GRID ========== -->
+    <div class="characters-grid">
+
+      <!-- CHARACTER 1 -->
+      <div class="character-card">
+        <div class="card-top">
+          <div class="avatar-lg">
+            <span class="avatar-text">AB</span>
+          </div>
+          <div class="card-actions">
+            <button class="card-btn">✏️</button>
+            <button class="card-btn">🗑️</button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="char-name">Arin Blackwood</h3>
+          <span class="char-role main">Main Character</span>
+        </div>
+        <p class="char-desc">A young warrior seeking redemption after the fall of his kingdom. Brave, loyal, but haunted by past failures.</p>
+        <div class="char-tags">
+          <span class="char-tag">Brave</span>
+          <span class="char-tag">Loyal</span>
+          <span class="char-tag">Haunted</span>
+        </div>
+        <div class="card-meta">
+          <div class="meta-item">
+            <span class="meta-label">Story</span>
+            <span class="meta-value">The Lost Kingdom</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Age</span>
+            <span class="meta-value">27</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="relation-count">
+            <span class="relation-icon">🔗</span>
+            <span>5 Relations</span>
+          </div>
+          <span class="card-date">2 days ago</span>
+        </div>
+      </div>
+
+      <!-- CHARACTER 2 -->
+      <div class="character-card">
+        <div class="card-top">
+          <div class="avatar-lg purple">
+            <span class="avatar-text">LV</span>
+          </div>
+          <div class="card-actions">
+            <button class="card-btn">✏️</button>
+            <button class="card-btn">🗑️</button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="char-name">Lady Vespera</h3>
+          <span class="char-role antagonist">Antagonist</span>
+        </div>
+        <p class="char-desc">The cunning queen of shadows who manipulates kingdoms from behind the throne. Cold, calculating, brilliant.</p>
+        <div class="char-tags">
+          <span class="char-tag">Cunning</span>
+          <span class="char-tag">Ruthless</span>
+          <span class="char-tag">Brilliant</span>
+        </div>
+        <div class="card-meta">
+          <div class="meta-item">
+            <span class="meta-label">Story</span>
+            <span class="meta-value">The Lost Kingdom</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Age</span>
+            <span class="meta-value">34</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="relation-count">
+            <span class="relation-icon">🔗</span>
+            <span>8 Relations</span>
+          </div>
+          <span class="card-date">4 days ago</span>
+        </div>
+      </div>
+
+      <!-- CHARACTER 3 -->
+      <div class="character-card">
+        <div class="card-top">
+          <div class="avatar-lg teal">
+            <span class="avatar-text">KR</span>
+          </div>
+          <div class="card-actions">
+            <button class="card-btn">✏️</button>
+            <button class="card-btn">🗑️</button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="char-name">Kael Ren</h3>
+          <span class="char-role supporting">Supporting</span>
+        </div>
+        <p class="char-desc">Arin's childhood friend turned rebel leader. Passionate about freedom, sometimes reckless in his methods.</p>
+        <div class="char-tags">
+          <span class="char-tag">Rebel</span>
+          <span class="char-tag">Passionate</span>
+          <span class="char-tag">Reckless</span>
+        </div>
+        <div class="card-meta">
+          <div class="meta-item">
+            <span class="meta-label">Story</span>
+            <span class="meta-value">The Lost Kingdom</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Age</span>
+            <span class="meta-value">26</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="relation-count">
+            <span class="relation-icon">🔗</span>
+            <span>3 Relations</span>
+          </div>
+          <span class="card-date">1 week ago</span>
+        </div>
+      </div>
+
+      <!-- CHARACTER 4 -->
+      <div class="character-card">
+        <div class="card-top">
+          <div class="avatar-lg orange">
+            <span class="avatar-text">EN</span>
+          </div>
+          <div class="card-actions">
+            <button class="card-btn">✏️</button>
+            <button class="card-btn">🗑️</button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="char-name">Elder Nyx</h3>
+          <span class="char-role minor">Minor</span>
+        </div>
+        <p class="char-desc">The ancient keeper of forbidden knowledge. Guides Arin with cryptic wisdom and riddles from another age.</p>
+        <div class="char-tags">
+          <span class="char-tag">Wise</span>
+          <span class="char-tag">Cryptic</span>
+          <span class="char-tag">Ancient</span>
+        </div>
+        <div class="card-meta">
+          <div class="meta-item">
+            <span class="meta-label">Story</span>
+            <span class="meta-value">The Lost Kingdom</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Age</span>
+            <span class="meta-value">300+</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="relation-count">
+            <span class="relation-icon">🔗</span>
+            <span>2 Relations</span>
+          </div>
+          <span class="card-date">1 week ago</span>
+        </div>
+      </div>
+
+      <!-- CHARACTER 5 -->
+      <div class="character-card">
+        <div class="card-top">
+          <div class="avatar-lg pink">
+            <span class="avatar-text">SR</span>
+          </div>
+          <div class="card-actions">
+            <button class="card-btn">✏️</button>
+            <button class="card-btn">🗑️</button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="char-name">Sera Ravencroft</h3>
+          <span class="char-role supporting">Supporting</span>
+        </div>
+        <p class="char-desc">A rogue healer with a mysterious past. She walks the line between light and darkness with every choice.</p>
+        <div class="char-tags">
+          <span class="char-tag">Mysterious</span>
+          <span class="char-tag">Healer</span>
+          <span class="char-tag">Complex</span>
+        </div>
+        <div class="card-meta">
+          <div class="meta-item">
+            <span class="meta-label">Story</span>
+            <span class="meta-value">The Lost Kingdom</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Age</span>
+            <span class="meta-value">29</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="relation-count">
+            <span class="relation-icon">🔗</span>
+            <span>4 Relations</span>
+          </div>
+          <span class="card-date">3 days ago</span>
+        </div>
+      </div>
+
+      <!-- ADD CHARACTER -->
+      <div class="character-card add-card">
+        <div class="add-icon">+</div>
+        <span class="add-text">Add New Character</span>
+        <span class="add-sub">Create a new character for your story</span>
+      </div>
+
+    </div>
+
+    <!-- ========== CHARACTER DETAIL PANEL ========== -->
+    <div class="detail-section">
+      <div class="detail-header">
+        <h2 class="detail-section-title">Character Profile</h2>
+        <span class="detail-section-sub">Select a character to view full details</span>
+      </div>
+
+      <div class="detail-panel">
+
+        <div class="detail-left">
+          <div class="detail-avatar">
+            <span class="detail-avatar-text">AB</span>
+          </div>
+          <h3 class="detail-name">Arin Blackwood</h3>
+          <span class="detail-role main">Main Character</span>
+          <div class="detail-quick-stats">
+            <div class="quick-stat">
+              <span class="quick-stat-num">5</span>
+              <span class="quick-stat-label">Relations</span>
+            </div>
+            <div class="quick-stat">
+              <span class="quick-stat-num">12</span>
+              <span class="quick-stat-label">Events</span>
+            </div>
+            <div class="quick-stat">
+              <span class="quick-stat-num">3</span>
+              <span class="quick-stat-label">Arcs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-right">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <span class="detail-label">Full Name</span>
+              <span class="detail-value">Arin Ezra Blackwood</span>
+            </div>
+            <div class="detail-block">
+              <span class="detail-label">Age</span>
+              <span class="detail-value">27</span>
+            </div>
+            <div class="detail-block">
+              <span class="detail-label">Gender</span>
+              <span class="detail-value">Male</span>
+            </div>
+            <div class="detail-block">
+              <span class="detail-label">Race / Species</span>
+              <span class="detail-value">Human</span>
+            </div>
+            <div class="detail-block">
+              <span class="detail-label">Occupation</span>
+              <span class="detail-value">Exiled Knight</span>
+            </div>
+            <div class="detail-block">
+              <span class="detail-label">Affiliation</span>
+              <span class="detail-value">Order of the Silver Dawn</span>
+            </div>
+          </div>
+
+          <div class="detail-block full">
+            <span class="detail-label">Backstory</span>
+            <p class="detail-text">Born into the noble Blackwood family, Arin was trained as a knight from childhood. After the kingdom fell to betrayal from within, he was exiled and branded a traitor. Now he wanders the lands seeking allies and redemption.</p>
+          </div>
+
+          <div class="detail-block full">
+            <span class="detail-label">Personality Traits</span>
+            <div class="detail-tags">
+              <span class="detail-tag">Brave</span>
+              <span class="detail-tag">Loyal</span>
+              <span class="detail-tag">Haunted</span>
+              <span class="detail-tag">Strategic</span>
+              <span class="detail-tag">Compassionate</span>
+            </div>
+          </div>
+
+          <div class="detail-block full">
+            <span class="detail-label">Motivations</span>
+            <p class="detail-text">Restore honor to the Blackwood name. Reclaim the kingdom. Protect the innocent from the shadow queen's reign.</p>
+          </div>
+
+          <div class="detail-block full">
+            <span class="detail-label">Key Relationships</span>
+            <div class="relation-list">
+              <div class="relation-item">
+                <div class="relation-avatar teal">KR</div>
+                <div class="relation-info">
+                  <span class="relation-name">Kael Ren</span>
+                  <span class="relation-type">Best Friend / Ally</span>
+                </div>
+              </div>
+              <div class="relation-item">
+                <div class="relation-avatar purple">LV</div>
+                <div class="relation-info">
+                  <span class="relation-name">Lady Vespera</span>
+                  <span class="relation-type">Rival / Nemesis</span>
+                </div>
+              </div>
+              <div class="relation-item">
+                <div class="relation-avatar pink">SR</div>
+                <div class="relation-info">
+                  <span class="relation-name">Sera Ravencroft</span>
+                  <span class="relation-type">Love Interest</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+</div>

@@ -1,0 +1,378 @@
+<div class="page-wrapper">
+
+  <!-- SHARED SIDEBAR -->
+  <app-sidebar></app-sidebar>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">Relations</h1>
+        <span class="page-subtitle">Map and manage character relationships</span>
+      </div>
+      <div class="topbar-right">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search relations..." />
+        </div>
+        <button class="btn-primary-sm">+ New Relation</button>
+      </div>
+    </header>
+
+    <!-- ========== STATS ROW ========== -->
+    <section class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon blue">🔗</div>
+        <div class="stat-info">
+          <span class="stat-number">24</span>
+          <span class="stat-label">Total Relations</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon pink">❤️</div>
+        <div class="stat-info">
+          <span class="stat-number">6</span>
+          <span class="stat-label">Romantic</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green">🤝</div>
+        <div class="stat-info">
+          <span class="stat-number">10</span>
+          <span class="stat-label">Allies</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon red">⚔️</div>
+        <div class="stat-info">
+          <span class="stat-number">8</span>
+          <span class="stat-label">Rivals / Enemies</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FILTER BAR ========== -->
+    <div class="filter-bar">
+      <div class="filter-tabs">
+        <button class="filter-tab active">All</button>
+        <button class="filter-tab">Allies</button>
+        <button class="filter-tab">Rivals</button>
+        <button class="filter-tab">Romantic</button>
+        <button class="filter-tab">Family</button>
+        <button class="filter-tab">Mentor</button>
+      </div>
+      <div class="filter-actions">
+        <select class="filter-select">
+          <option value="">Story</option>
+          <option value="lost-kingdom">The Lost Kingdom</option>
+          <option value="beyond-stars">Beyond the Stars</option>
+        </select>
+        <select class="filter-select">
+          <option value="">Sort by</option>
+          <option value="recent">Recently Added</option>
+          <option value="type">By Type</option>
+          <option value="strength">By Strength</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ========== RELATION MAP ========== -->
+    <section class="map-section">
+      <div class="map-header">
+        <h2 class="map-title">Relationship Map</h2>
+        <div class="map-legend">
+          <span class="legend-item"><span class="legend-dot ally"></span> Ally</span>
+          <span class="legend-item"><span class="legend-dot rival"></span> Rival</span>
+          <span class="legend-item"><span class="legend-dot romantic"></span> Romantic</span>
+          <span class="legend-item"><span class="legend-dot family"></span> Family</span>
+          <span class="legend-item"><span class="legend-dot mentor"></span> Mentor</span>
+        </div>
+      </div>
+
+      <div class="map-canvas">
+        <div class="map-node center" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+          <div class="node-avatar">AB</div>
+          <span class="node-name">Arin Blackwood</span>
+        </div>
+        <div class="map-node" style="top: 15%; left: 30%;">
+          <div class="node-avatar teal">KR</div>
+          <span class="node-name">Kael Ren</span>
+        </div>
+        <div class="map-line ally" style="top: 32%; left: 38%; width: 120px; transform: rotate(-40deg);"></div>
+        <div class="map-node" style="top: 15%; left: 68%;">
+          <div class="node-avatar purple">LV</div>
+          <span class="node-name">Lady Vespera</span>
+        </div>
+        <div class="map-line rival" style="top: 32%; left: 58%; width: 110px; transform: rotate(40deg);"></div>
+        <div class="map-node" style="top: 75%; left: 25%;">
+          <div class="node-avatar pink">SR</div>
+          <span class="node-name">Sera Ravencroft</span>
+        </div>
+        <div class="map-line romantic" style="top: 62%; left: 38%; width: 120px; transform: rotate(35deg);"></div>
+        <div class="map-node" style="top: 75%; left: 72%;">
+          <div class="node-avatar orange">EN</div>
+          <span class="node-name">Elder Nyx</span>
+        </div>
+        <div class="map-line mentor" style="top: 62%; left: 58%; width: 120px; transform: rotate(-35deg);"></div>
+        <div class="map-node" style="top: 45%; left: 10%;">
+          <div class="node-avatar green">DM</div>
+          <span class="node-name">Duke Maren</span>
+        </div>
+        <div class="map-line family" style="top: 50%; left: 20%; width: 140px; transform: rotate(0deg);"></div>
+        <div class="map-node" style="top: 45%; left: 88%;">
+          <div class="node-avatar red">BT</div>
+          <span class="node-name">Baron Thorne</span>
+        </div>
+        <div class="map-line rival" style="top: 50%; left: 66%; width: 120px; transform: rotate(0deg);"></div>
+      </div>
+    </section>
+
+    <!-- ========== RELATIONS LIST ========== -->
+    <section class="relations-list-section">
+      <div class="section-header">
+        <h2 class="section-title">All Relationships</h2>
+        <span class="section-count">24 relations</span>
+      </div>
+
+      <div class="relations-grid">
+
+        <!-- RELATION 1 -->
+        <div class="relation-card">
+          <div class="relation-card-top">
+            <div class="relation-pair">
+              <div class="pair-avatar">AB</div>
+              <div class="pair-connector ally">
+                <span class="connector-line"></span>
+                <span class="connector-label">Best Friends</span>
+              </div>
+              <div class="pair-avatar teal">KR</div>
+            </div>
+            <div class="relation-card-actions">
+              <button class="rel-btn">✏️</button>
+              <button class="rel-btn">🗑️</button>
+            </div>
+          </div>
+          <div class="relation-names">
+            <span class="rel-name">Arin Blackwood</span>
+            <span class="rel-arrow">↔</span>
+            <span class="rel-name">Kael Ren</span>
+          </div>
+          <div class="relation-type-row">
+            <span class="relation-type-badge ally">Ally</span>
+            <span class="relation-strength">
+              <span class="strength-bar"><span class="strength-fill high"></span></span>
+              <span class="strength-label">Strong</span>
+            </span>
+          </div>
+          <p class="relation-desc">Childhood friends bound by shared battles and memories. Trust runs deep, though recent events have tested their bond.</p>
+          <div class="relation-evolution">
+            <span class="evolution-label">Evolution</span>
+            <div class="evolution-timeline">
+              <span class="evo-point">Strangers</span>
+              <span class="evo-arrow">→</span>
+              <span class="evo-point">Friends</span>
+              <span class="evo-arrow">→</span>
+              <span class="evo-point active">Best Friends</span>
+              <span class="evo-arrow">→</span>
+              <span class="evo-point dim">Rivals?</span>
+            </div>
+          </div>
+          <div class="relation-card-footer">
+            <span class="rel-story">📖 The Lost Kingdom</span>
+            <span class="rel-date">Updated 2d ago</span>
+          </div>
+        </div>
+
+        <!-- RELATION 2 -->
+        <div class="relation-card">
+          <div class="relation-card-top">
+            <div class="relation-pair">
+              <div class="pair-avatar">AB</div>
+              <div class="pair-connector rival">
+                <span class="connector-line"></span>
+                <span class="connector-label">Nemesis</span>
+              </div>
+              <div class="pair-avatar purple">LV</div>
+            </div>
+            <div class="relation-card-actions">
+              <button class="rel-btn">✏️</button>
+              <button class="rel-btn">🗑️</button>
+            </div>
+          </div>
+          <div class="relation-names">
+            <span class="rel-name">Arin Blackwood</span>
+            <span class="rel-arrow">↔</span>
+            <span class="rel-name">Lady Vespera</span>
+          </div>
+          <div class="relation-type-row">
+            <span class="relation-type-badge rival">Rival</span>
+            <span class="relation-strength">
+              <span class="strength-bar"><span class="strength-fill high"></span></span>
+              <span class="strength-label">Intense</span>
+            </span>
+          </div>
+          <p class="relation-desc">The queen who destroyed his kingdom. Their rivalry drives the core conflict of the story.</p>
+          <div class="relation-evolution">
+            <span class="evolution-label">Evolution</span>
+            <div class="evolution-timeline">
+              <span class="evo-point">Unknown</span>
+              <span class="evo-arrow">→</span>
+              <span class="evo-point">Enemies</span>
+              <span class="evo-arrow">→</span>
+              <span class="evo-point active">Nemesis</span>
+            </div>
+          </div>
+          <div class="relation-card-footer">
+            <span class="rel-story">📖 The Lost Kingdom</span>
+            <span class="rel-date">Updated 1d ago</span>
+          </div>
+        </div>
+
+        <!-- RELATION 3 -->
+        <div class="relation-card">
+          <div class="relation-card-top">
+            <div class="relation-pair">
+              <div class="pair-avatar">AB</div>
+              <div class="pair-connector romantic">
+                <span class="connector-line"></span>
+                <span class="connector-label">Love Interest</span>
+              </div>
+              <div class="pair-avatar pink">SR</div>
+            </div>
+            <div class="relation-card-actions">
+              <button class="rel-btn">✏️</button>
+              <button class="rel-btn">🗑️</button>
+            </div>
+          </div>
+          <div class="relation-names">
+            <span class="rel-name">Arin Blackwood</span>
+            <span class="rel-arrow">↔</span>
+            <span class="rel-name">Sera Ravencroft</span>
+          </div>
+          <div class="relation-type-row">
+            <span class="relation-type-badge romantic">Romantic</span>
+            <span class="relation-strength">
+              <span class="strength-bar"><span class="strength-fill medium"></span></span>
+              <span class="strength-label">Growing</span>
+            </span>
+          </div>
+          <p class="relation-desc">A slow-burn romance born from mutual need. Sera healed his wounds, Arin gave her purpose.</p>
+          <div class="relation-evolution">
+            <span class="evolution-label">Evolution</span>
+            <div class="evolution-timeline">
+              <span class="evo-point">Strangers</span>
+              <span class="evo-arrow">→</span>
+              <span class="evo-point active">Trust Building</span>
+              <span class="evo-arrow">→</span>
+              <span class="evo-point dim">Love?</span>
+            </div>
+          </div>
+          <div class="relation-card-footer">
+            <span class="rel-story">📖 The Lost Kingdom</span>
+            <span class="rel-date">Updated 3d ago</span>
+          </div>
+        </div>
+
+        <!-- RELATION 4 -->
+        <div class="relation-card">
+          <div class="relation-card-top">
+            <div class="relation-pair">
+              <div class="pair-avatar">AB</div>
+              <div class="pair-connector mentor">
+                <span class="connector-line"></span>
+                <span class="connector-label">Guide</span>
+              </div>
+              <div class="pair-avatar orange">EN</div>
+            </div>
+            <div class="relation-card-actions">
+              <button class="rel-btn">✏️</button>
+              <button class="rel-btn">🗑️</button>
+            </div>
+          </div>
+          <div class="relation-names">
+            <span class="rel-name">Arin Blackwood</span>
+            <span class="rel-arrow">↔</span>
+            <span class="rel-name">Elder Nyx</span>
+          </div>
+          <div class="relation-type-row">
+            <span class="relation-type-badge mentor-badge">Mentor</span>
+            <span class="relation-strength">
+              <span class="strength-bar"><span class="strength-fill medium"></span></span>
+              <span class="strength-label">Steady</span>
+            </span>
+          </div>
+          <p class="relation-desc">Elder Nyx guides Arin with cryptic wisdom. Their bond is built on respect and shared duty.</p>
+          <div class="relation-evolution">
+            <span class="evolution-label">Evolution</span>
+            <div class="evolution-timeline">
+              <span class="evo-point">Stranger</span>
+              <span class="evo-arrow">→</span>
+              <span class="evo-point active">Mentor & Student</span>
+            </div>
+          </div>
+          <div class="relation-card-footer">
+            <span class="rel-story">📖 The Lost Kingdom</span>
+            <span class="rel-date">Updated 5d ago</span>
+          </div>
+        </div>
+
+        <!-- RELATION 5 -->
+        <div class="relation-card">
+          <div class="relation-card-top">
+            <div class="relation-pair">
+              <div class="pair-avatar">AB</div>
+              <div class="pair-connector family">
+                <span class="connector-line"></span>
+                <span class="connector-label">Cousin</span>
+              </div>
+              <div class="pair-avatar green">DM</div>
+            </div>
+            <div class="relation-card-actions">
+              <button class="rel-btn">✏️</button>
+              <button class="rel-btn">🗑️</button>
+            </div>
+          </div>
+          <div class="relation-names">
+            <span class="rel-name">Arin Blackwood</span>
+            <span class="rel-arrow">↔</span>
+            <span class="rel-name">Duke Maren</span>
+          </div>
+          <div class="relation-type-row">
+            <span class="relation-type-badge family-badge">Family</span>
+            <span class="relation-strength">
+              <span class="strength-bar"><span class="strength-fill low"></span></span>
+              <span class="strength-label">Distant</span>
+            </span>
+          </div>
+          <p class="relation-desc">Estranged cousin who chose political survival over family loyalty when the kingdom fell.</p>
+          <div class="relation-evolution">
+            <span class="evolution-label">Evolution</span>
+            <div class="evolution-timeline">
+              <span class="evo-point">Close Family</span>
+              <span class="evo-arrow">→</span>
+              <span class="evo-point active">Estranged</span>
+              <span class="evo-arrow">→</span>
+              <span class="evo-point dim">Reconcile?</span>
+            </div>
+          </div>
+          <div class="relation-card-footer">
+            <span class="rel-story">📖 The Lost Kingdom</span>
+            <span class="rel-date">Updated 1w ago</span>
+          </div>
+        </div>
+
+        <!-- ADD RELATION -->
+        <div class="relation-card add-card">
+          <div class="add-icon">+</div>
+          <span class="add-text">Add New Relation</span>
+          <span class="add-sub">Map a new relationship between characters</span>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+</div>
