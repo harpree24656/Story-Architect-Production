@@ -17,12 +17,12 @@ for(const variable of requireEnvVariable){
 
 export const env = {
     // export port, clerk_key, mongo_url
-    PORT = process.env.PORT,
-    MONDGO_URL = process.env.MONDGO_URL,
-    CLERK_SECRET_KEY = process.env.CLERK_SECRET_KEY,
-    OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || null,
+    PORT: process.env.PORT,
+    MONDGO_URL: process.env.MONDGO_URL,
+    CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
+    OPEN_AI_API_KEY: process.env.OPEN_AI_API_KEY || null,
 
     // for node production 
-    NODE_ENV = process.env.NODE_ENV || 'development'
+    NODE_ENV: process.env.NODE_ENV || 'development'
 
 }
