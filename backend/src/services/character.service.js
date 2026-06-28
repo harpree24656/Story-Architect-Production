@@ -120,7 +120,7 @@ async function deleteCharacter(characterId, userId){
 
 export default {
     createCharacter,
-    getCharacterByStory,
+    getCharactersByStory,
     getCharacterById,
     updateCharacter,
     deleteCharacter

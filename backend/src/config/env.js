@@ -11,14 +11,14 @@ const requireEnvVariable = [
 // prevention for app
 for(const variable of requireEnvVariable){
     if(!process.env[variable]){
-        throw new error(`Missing required environment variables: ${variable}`)
+        throw new Error(`Missing required environment variables: ${variable}`)
     }
 }
 
-export const env = {
+export default {
     // export port, clerk_key, mongo_url
     PORT: process.env.PORT,
-    MONDGO_URL: process.env.MONDGO_URL,
+    MONGO_URL: process.env.MONGO_URL,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
     OPEN_AI_API_KEY: process.env.OPEN_AI_API_KEY || null,
 

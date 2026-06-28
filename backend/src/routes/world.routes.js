@@ -5,10 +5,10 @@ import { authMiddleware } from '../middleware/auth.middleware.js'
 import { validateMiddleware } from '../middleware/validate.middleware.js'
 import worldController from '../controllers/world.controller.js'
 
-router.post('/', authMiddleware, validateMiddleware, worldController.createWorld)
-router.get('/story/:storyId', authMiddleware, worldController.getWorldByStory)
-router.get('/:id', authMiddleware, worldController.getWorldById)
-router.put('/:id', authMiddleware, validateMiddleware, worldController.updateWorld)
-router.delete('/:id', authMiddleware, worldController.deleteWorldById)
+router.post('/', authMiddleware, validateMiddleware, worldController.createWorldItem)
+router.get('/story/:storyId', authMiddleware, worldController.getWorldItemsByStory)
+router.get('/:id', authMiddleware, worldController.getWorldItemsById)
+router.put('/:id', authMiddleware, validateMiddleware, worldController.updateWorldItem)
+router.delete('/:id', authMiddleware, worldController.deleteWorldItem)
 
 export default router

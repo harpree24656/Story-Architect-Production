@@ -1,6 +1,6 @@
 // import the clerk auth 
 import { verifyToken } from '@clerk/express'
-import { env } from '../config/env.js'
+import env  from '../config/env.js'
 
 // create middlware of auth
 export const authMiddleware = async (req, res, next) => {

@@ -96,7 +96,7 @@ const deleteEvent = asyncHandler( async ( req, res ) => {
 
 export default {
     createEvent,
-    getEventsByStory,
+    getEventByStory,
     getEventById,
     updateEvent,
     deleteEvent

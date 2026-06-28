@@ -62,3 +62,11 @@ async function deleteStory(storyId, userId){
     await story.save()
     return story
 }
+
+export default {
+    createStory,
+    getStoriesByUser,
+    getStoryById,
+    updateStory,
+    deleteStory
+}

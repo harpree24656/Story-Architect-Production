@@ -6,9 +6,9 @@ import characterController from '../controllers/character.controller.js'
 
 // create
 router.post('/', authMiddleware, validateMiddleware, characterController.createCharacter)
-router.get('/story/:storyId', authMiddleware, characterController.getCharacter)
+router.get('/story/:storyId', authMiddleware, characterController.getCharactersByStory)
 router.get('/:id', authMiddleware, characterController.getCharacterById)
-router.put('/:id', authMiddleware, validateMiddleware, characterController.updateCharacterById)
-router.delete('/:id', authMiddleware, characterController.deleteCharacterById)
+router.put('/:id', authMiddleware, validateMiddleware, characterController.updateCharacter)
+router.delete('/:id', authMiddleware, characterController.deleteCharacter)
 
 export default router;

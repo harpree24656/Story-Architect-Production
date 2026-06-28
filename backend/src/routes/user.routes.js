@@ -4,7 +4,7 @@ const router = express.Router()
 
 // importing some other files
 import { authMiddleware } from '../middleware/auth.middleware.js'
-import { validateMiddleware } from '../middleware/validate.middleware.js'
+import { validateMiddleware  } from '../middleware/validate.middleware.js'
 import userController from '../controllers/user.controller.js'
 
 // route

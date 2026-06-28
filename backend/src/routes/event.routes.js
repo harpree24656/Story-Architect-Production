@@ -7,7 +7,7 @@ import { validateMiddleware } from '../middleware/validate.middleware.js'
 import getEventsByStory from '../controllers/event.controller.js'
 
 router.post('/', authMiddleware, validateMiddleware, getEventsByStory.createEvent)
-router.get('/story/:storyId', authMiddleware, getEventsByStory.getEvent)
+router.get('/story/:storyId', authMiddleware, getEventsByStory.getEventByStory)
 router.get('/:id', authMiddleware, getEventsByStory.getEventById)
 router.put('/:id', authMiddleware, validateMiddleware, getEventsByStory.updateEvent)
 router.delete('/:id', authMiddleware, getEventsByStory.deleteEvent)

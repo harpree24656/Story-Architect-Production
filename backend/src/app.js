@@ -1,12 +1,18 @@
 // importing some package to build app
 import express, { text } from 'express'
 import cors from 'cors'
-import { routeIndex } from './routes/index.js'
+import routeIndex from './routes/index.js'
 import { errorMiddleware } from './middleware/error.middleware.js'
 import { rateLimitMiddleware } from './middleware/rateLimit.middleware.js'
 
 // create app for req, res
 const app = express()
+
+// connection between frontend and backend
+app.use(cors({
+   origin: 'http://localhost:4200',
+   credentials: true
+}))
 
 // connection between frontend and backend
 const corsOptions = {

@@ -40,5 +40,5 @@ const relationshipSchema = new mongoose.Schema(
         timestamps: true
     }
 )
-const Relation = mongoose.Schema("Relation", relationshipSchema)
+const Relation = mongoose.model("Relation", relationshipSchema)
 export default Relation;
