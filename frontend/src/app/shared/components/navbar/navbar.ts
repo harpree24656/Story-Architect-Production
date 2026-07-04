@@ -20,7 +20,5 @@ export class Navbar {
 
   isActive(path: string): boolean {
     return window.location.pathname === path;
-
-    
   }
 }
