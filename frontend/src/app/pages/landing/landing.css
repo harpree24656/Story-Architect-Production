@@ -728,3 +728,12 @@
     gap: 16px;
   }
 }
+
+
+/* for sidebar create rending  */
+.sidebar-create-link{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+}

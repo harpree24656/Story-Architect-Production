@@ -24,6 +24,13 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+.sidebar-brand-link{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+}
+
 .brand-icon {
   font-size: 22px;
 }
@@ -31,6 +38,7 @@
 .brand-name {
   font-size: 17px;
   font-weight: 700;
+  margin-top: 5px;
   color: #818cf8;
   letter-spacing: -0.3px;
 }

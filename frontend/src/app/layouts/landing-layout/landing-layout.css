@@ -1,0 +1,14 @@
+.landing-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #ffffff;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  color: #1e293b;
+  overflow-x: hidden;
+}
+
+.landing-main {
+  flex: 1;
+  width: 100%;
+}
