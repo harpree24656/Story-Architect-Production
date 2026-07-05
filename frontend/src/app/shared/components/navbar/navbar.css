@@ -1,13 +1,17 @@
 /* ============================================================
-   NAVBAR
+   NAVBAR (STICKY / FIXED ON SCROLL)
    ============================================================ */
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: rgba(255, 255, 255, 0.92);
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid #e2e8f0;
+  width: 100%;
 }
 
 .navbar-container {
@@ -39,7 +43,6 @@
   font-size: 17px;
   font-weight: 700;
   color: #6c63ff;
-  margin-top: 7px;
   letter-spacing: -0.3px;
 }
 
@@ -112,6 +115,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-family: inherit;
 }
 
 .btn-signin:hover {
@@ -128,6 +132,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-family: inherit;
 }
 
 .btn-getstarted:hover {
@@ -233,10 +238,7 @@
    RESPONSIVE
    ============================================================ */
 @media (max-width: 768px) {
-  .navbar-links {
-    display: none;
-  }
-
+  .navbar-links,
   .navbar-actions {
     display: none;
   }

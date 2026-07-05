@@ -1,374 +1,344 @@
-<div class="page-wrapper">
+<!-- ========== MAP TOOLBAR ========== -->
+<div class="map-toolbar">
+  <div class="toolbar-left">
+    <div class="zoom-controls">
+      <button class="zoom-btn">−</button>
+      <span class="zoom-level">100%</span>
+      <button class="zoom-btn">+</button>
+    </div>
+    <button class="toolbar-action">⛶ Fit</button>
+    <button class="toolbar-action">↺ Reset</button>
+  </div>
+  <div class="toolbar-center">
+    <div class="map-legend">
+      <span class="legend-item"><span class="legend-dot chapter"></span> Chapter</span>
+      <span class="legend-item"><span class="legend-dot event"></span> Event</span>
+      <span class="legend-item"><span class="legend-dot character"></span> Character</span>
+      <span class="legend-item"><span class="legend-dot location"></span> Location</span>
+      <span class="legend-item"><span class="legend-dot twist"></span> Plot Twist</span>
+    </div>
+  </div>
+  <div class="toolbar-right-actions">
+    <button class="toolbar-action active">🗺️ Map</button>
+    <button class="toolbar-action">📋 List</button>
+    <button class="toolbar-action">🌳 Tree</button>
+  </div>
+</div>
 
-  <!-- SHARED SIDEBAR -->
-  <app-sidebar></app-sidebar>
+<!-- ========== MAP CANVAS ========== -->
+<div class="map-canvas-wrapper">
+  <div class="map-canvas">
 
-  <!-- MAIN CONTENT -->
-  <main class="main-content">
+    <!-- ACT I -->
+    <div class="act-section" style="left: 40px; top: 30px;">
+      <div class="act-label">Act I — The Beginning</div>
+    </div>
 
-    <!-- ========== TOPBAR ========== -->
-    <header class="topbar">
-      <div class="topbar-left">
-        <h1 class="page-title">Story Map</h1>
-        <span class="page-subtitle">Visual overview of your entire narrative structure</span>
+    <div class="map-node chapter-node" style="left: 80px; top: 100px;">
+      <div class="node-icon chapter">📖</div>
+      <div class="node-body">
+        <span class="node-title">Prologue</span>
+        <span class="node-sub">1,240 words</span>
       </div>
-      <div class="topbar-right">
-        <select class="story-select">
-          <option value="">Select Story</option>
-          <option value="lost-kingdom" selected>The Lost Kingdom</option>
-          <option value="beyond-stars">Beyond the Stars</option>
-          <option value="mystic">Mystic Academy</option>
-        </select>
-        <button class="btn-outline">Export</button>
-        <button class="btn-primary-sm">+ Add Node</button>
-      </div>
-    </header>
+      <span class="node-status done"></span>
+    </div>
 
-    <!-- ========== MAP TOOLBAR ========== -->
-    <div class="map-toolbar">
-      <div class="toolbar-left">
-        <div class="zoom-controls">
-          <button class="zoom-btn">−</button>
-          <span class="zoom-level">100%</span>
-          <button class="zoom-btn">+</button>
-        </div>
-        <button class="toolbar-action">⛶ Fit</button>
-        <button class="toolbar-action">↺ Reset</button>
+    <div class="node-connector horizontal" style="left: 250px; top: 124px; width: 60px;"></div>
+
+    <div class="map-node event-node" style="left: 320px; top: 90px;">
+      <div class="node-icon event">⚔️</div>
+      <div class="node-body">
+        <span class="node-title">The Fall of Blackwood Keep</span>
+        <span class="node-sub">Major Event</span>
       </div>
-      <div class="toolbar-center">
-        <div class="map-legend">
-          <span class="legend-item"><span class="legend-dot chapter"></span> Chapter</span>
-          <span class="legend-item"><span class="legend-dot event"></span> Event</span>
-          <span class="legend-item"><span class="legend-dot character"></span> Character</span>
-          <span class="legend-item"><span class="legend-dot location"></span> Location</span>
-          <span class="legend-item"><span class="legend-dot twist"></span> Plot Twist</span>
-        </div>
-      </div>
-      <div class="toolbar-right-actions">
-        <button class="toolbar-action active">🗺️ Map</button>
-        <button class="toolbar-action">📋 List</button>
-        <button class="toolbar-action">🌳 Tree</button>
+      <span class="node-status done"></span>
+      <div class="node-chars">
+        <span class="mini-avatar">AB</span>
+        <span class="mini-avatar purple">LV</span>
       </div>
     </div>
 
-    <!-- ========== MAP CANVAS ========== -->
-    <div class="map-canvas-wrapper">
-      <div class="map-canvas">
+    <div class="node-connector horizontal" style="left: 560px; top: 114px; width: 60px;"></div>
 
-        <!-- ACT I -->
-        <div class="act-section" style="left: 40px; top: 30px;">
-          <div class="act-label">Act I — The Beginning</div>
-        </div>
+    <div class="map-node chapter-node" style="left: 630px; top: 100px;">
+      <div class="node-icon chapter">📖</div>
+      <div class="node-body">
+        <span class="node-title">The Exile</span>
+        <span class="node-sub">2,180 words</span>
+      </div>
+      <span class="node-status done"></span>
+    </div>
 
-        <div class="map-node chapter-node" style="left: 80px; top: 100px;">
-          <div class="node-icon chapter">📖</div>
-          <div class="node-body">
-            <span class="node-title">Prologue</span>
-            <span class="node-sub">1,240 words</span>
-          </div>
-          <span class="node-status done"></span>
-        </div>
+    <div class="node-connector vertical" style="left: 700px; top: 170px; height: 50px;"></div>
 
-        <div class="node-connector horizontal" style="left: 250px; top: 124px; width: 60px;"></div>
-
-        <div class="map-node event-node" style="left: 320px; top: 90px;">
-          <div class="node-icon event">⚔️</div>
-          <div class="node-body">
-            <span class="node-title">The Fall of Blackwood Keep</span>
-            <span class="node-sub">Major Event</span>
-          </div>
-          <span class="node-status done"></span>
-          <div class="node-chars">
-            <span class="mini-avatar">AB</span>
-            <span class="mini-avatar purple">LV</span>
-          </div>
-        </div>
-
-        <div class="node-connector horizontal" style="left: 560px; top: 114px; width: 60px;"></div>
-
-        <div class="map-node chapter-node" style="left: 630px; top: 100px;">
-          <div class="node-icon chapter">📖</div>
-          <div class="node-body">
-            <span class="node-title">The Exile</span>
-            <span class="node-sub">2,180 words</span>
-          </div>
-          <span class="node-status done"></span>
-        </div>
-
-        <div class="node-connector vertical" style="left: 700px; top: 170px; height: 50px;"></div>
-
-        <div class="map-node location-node" style="left: 640px; top: 230px;">
-          <div class="node-icon location">📍</div>
-          <div class="node-body">
-            <span class="node-title">Ashwood Forest</span>
-            <span class="node-sub">Eastern Border</span>
-          </div>
-        </div>
-
-        <!-- ACT II -->
-        <div class="act-section" style="left: 40px; top: 320px;">
-          <div class="act-label">Act II — The Journey</div>
-        </div>
-
-        <div class="map-node chapter-node active-node" style="left: 80px; top: 390px;">
-          <div class="node-icon chapter">📖</div>
-          <div class="node-body">
-            <span class="node-title">Into the Wild</span>
-            <span class="node-sub">860 words · Writing</span>
-          </div>
-          <span class="node-status writing"></span>
-        </div>
-
-        <div class="node-connector horizontal" style="left: 250px; top: 414px; width: 60px;"></div>
-
-        <div class="map-node event-node" style="left: 320px; top: 380px;">
-          <div class="node-icon event">🤝</div>
-          <div class="node-body">
-            <span class="node-title">Arin Meets Sera</span>
-            <span class="node-sub">Minor Event</span>
-          </div>
-          <span class="node-status done"></span>
-          <div class="node-chars">
-            <span class="mini-avatar">AB</span>
-            <span class="mini-avatar pink">SR</span>
-          </div>
-        </div>
-
-        <div class="node-connector horizontal" style="left: 530px; top: 404px; width: 60px;"></div>
-
-        <div class="map-node character-node" style="left: 600px; top: 380px;">
-          <div class="node-icon character">👤</div>
-          <div class="node-body">
-            <span class="node-title">Sera Ravencroft</span>
-            <span class="node-sub">Introduced · Supporting</span>
-          </div>
-          <div class="node-chars">
-            <span class="mini-avatar pink">SR</span>
-          </div>
-        </div>
-
-        <div class="node-connector vertical" style="left: 400px; top: 450px; height: 50px;"></div>
-
-        <div class="map-node twist-node" style="left: 320px; top: 510px;">
-          <div class="node-icon twist">🔀</div>
-          <div class="node-body">
-            <span class="node-title">Kael's Betrayal</span>
-            <span class="node-sub">Plot Twist · High Impact</span>
-          </div>
-          <span class="node-status done"></span>
-          <div class="node-chars">
-            <span class="mini-avatar">AB</span>
-            <span class="mini-avatar teal">KR</span>
-            <span class="mini-avatar purple">LV</span>
-          </div>
-        </div>
-
-        <div class="node-connector horizontal" style="left: 540px; top: 534px; width: 60px;"></div>
-
-        <div class="map-node chapter-node" style="left: 610px; top: 520px;">
-          <div class="node-icon chapter">📖</div>
-          <div class="node-body">
-            <span class="node-title">Broken Brotherhood</span>
-            <span class="node-sub">0 words · Planned</span>
-          </div>
-          <span class="node-status empty"></span>
-        </div>
-
-        <!-- ACT III -->
-        <div class="act-section" style="left: 40px; top: 620px;">
-          <div class="act-label">Act III — The Reckoning</div>
-        </div>
-
-        <div class="map-node event-node" style="left: 80px; top: 690px;">
-          <div class="node-icon event">⚔️</div>
-          <div class="node-body">
-            <span class="node-title">Siege of Eldarion</span>
-            <span class="node-sub">Major Event · Climax</span>
-          </div>
-          <span class="node-status empty"></span>
-          <div class="node-chars">
-            <span class="mini-avatar">AB</span>
-            <span class="mini-avatar purple">LV</span>
-            <span class="mini-avatar teal">KR</span>
-            <span class="mini-avatar pink">SR</span>
-            <span class="mini-avatar orange">EN</span>
-          </div>
-        </div>
-
-        <div class="node-connector horizontal" style="left: 310px; top: 714px; width: 60px;"></div>
-
-        <div class="map-node chapter-node" style="left: 380px; top: 700px;">
-          <div class="node-icon chapter">📖</div>
-          <div class="node-body">
-            <span class="node-title">Resolution</span>
-            <span class="node-sub">0 words · Planned</span>
-          </div>
-          <span class="node-status empty"></span>
-        </div>
-
-        <div class="node-connector horizontal" style="left: 540px; top: 724px; width: 60px;"></div>
-
-        <div class="map-node chapter-node" style="left: 610px; top: 700px;">
-          <div class="node-icon chapter">📖</div>
-          <div class="node-body">
-            <span class="node-title">Epilogue</span>
-            <span class="node-sub">0 words · Planned</span>
-          </div>
-          <span class="node-status empty"></span>
-        </div>
-
-        <div class="map-node add-node" style="left: 380px; top: 810px;">
-          <div class="node-icon add">+</div>
-          <div class="node-body">
-            <span class="node-title">Add New Node</span>
-            <span class="node-sub">Click to add</span>
-          </div>
-        </div>
-
+    <div class="map-node location-node" style="left: 640px; top: 230px;">
+      <div class="node-icon location">📍</div>
+      <div class="node-body">
+        <span class="node-title">Ashwood Forest</span>
+        <span class="node-sub">Eastern Border</span>
       </div>
     </div>
 
-    <!-- ========== NODE DETAIL ========== -->
-    <div class="node-detail-section">
-      <div class="detail-header">
-        <h2 class="detail-title">Node Details</h2>
-        <span class="detail-sub">Select a node to view details</span>
+    <!-- ACT II -->
+    <div class="act-section" style="left: 40px; top: 320px;">
+      <div class="act-label">Act II — The Journey</div>
+    </div>
+
+    <div class="map-node chapter-node active-node" style="left: 80px; top: 390px;">
+      <div class="node-icon chapter">📖</div>
+      <div class="node-body">
+        <span class="node-title">Into the Wild</span>
+        <span class="node-sub">860 words · Writing</span>
       </div>
+      <span class="node-status writing"></span>
+    </div>
 
-      <div class="detail-grid">
+    <div class="node-connector horizontal" style="left: 250px; top: 414px; width: 60px;"></div>
 
-        <div class="detail-card">
-          <div class="detail-card-header">
-            <div class="detail-node-icon chapter">📖</div>
-            <div class="detail-node-info">
-              <h3 class="detail-node-title">Into the Wild</h3>
-              <span class="detail-node-type">Chapter 3</span>
-            </div>
-            <span class="detail-node-status writing">Writing</span>
-          </div>
-          <div class="detail-card-body">
-            <div class="detail-row">
-              <span class="detail-label">Story</span>
-              <span class="detail-value">The Lost Kingdom</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Act</span>
-              <span class="detail-value">Act II — The Journey</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Word Count</span>
-              <span class="detail-value">860</span>
-            </div>
-            <div class="detail-row">
-              <span class="detail-label">Status</span>
-              <span class="detail-value">In Progress</span>
-            </div>
-          </div>
-          <div class="detail-card-section">
-            <span class="detail-section-label">Connected Characters</span>
-            <div class="detail-char-list">
-              <div class="detail-char">
-                <div class="detail-char-avatar">AB</div>
-                <span class="detail-char-name">Arin Blackwood</span>
-              </div>
-              <div class="detail-char">
-                <div class="detail-char-avatar pink">SR</div>
-                <span class="detail-char-name">Sera Ravencroft</span>
-              </div>
-            </div>
-          </div>
-          <div class="detail-card-section">
-            <span class="detail-section-label">Connected Events</span>
-            <div class="detail-event-list">
-              <div class="detail-event">
-                <span class="detail-event-dot major"></span>
-                <span class="detail-event-name">The Fall of Blackwood Keep</span>
-              </div>
-              <div class="detail-event">
-                <span class="detail-event-dot minor"></span>
-                <span class="detail-event-name">Arin Meets Sera</span>
-              </div>
-            </div>
-          </div>
-          <div class="detail-card-section">
-            <span class="detail-section-label">Connected Nodes</span>
-            <div class="detail-connected-nodes">
-              <span class="connected-node-pill">← The Exile</span>
-              <span class="connected-node-pill">→ Broken Brotherhood</span>
-              <span class="connected-node-pill">↓ Kael's Betrayal</span>
-            </div>
-          </div>
-          <div class="detail-card-actions">
-            <button class="btn-outline-sm">Edit Node</button>
-            <button class="btn-primary-xs">Open Chapter</button>
-          </div>
-        </div>
-
-        <div class="summary-card">
-          <h3 class="summary-title">Map Summary</h3>
-          <div class="summary-stats">
-            <div class="summary-stat">
-              <span class="summary-icon">📖</span>
-              <div class="summary-info">
-                <span class="summary-num">8</span>
-                <span class="summary-label">Chapters</span>
-              </div>
-            </div>
-            <div class="summary-stat">
-              <span class="summary-icon">⚔️</span>
-              <div class="summary-info">
-                <span class="summary-num">5</span>
-                <span class="summary-label">Events</span>
-              </div>
-            </div>
-            <div class="summary-stat">
-              <span class="summary-icon">👤</span>
-              <div class="summary-info">
-                <span class="summary-num">6</span>
-                <span class="summary-label">Characters</span>
-              </div>
-            </div>
-            <div class="summary-stat">
-              <span class="summary-icon">📍</span>
-              <div class="summary-info">
-                <span class="summary-num">4</span>
-                <span class="summary-label">Locations</span>
-              </div>
-            </div>
-            <div class="summary-stat">
-              <span class="summary-icon">🔀</span>
-              <div class="summary-info">
-                <span class="summary-num">2</span>
-                <span class="summary-label">Twists</span>
-              </div>
-            </div>
-            <div class="summary-stat">
-              <span class="summary-icon">🔗</span>
-              <div class="summary-info">
-                <span class="summary-num">18</span>
-                <span class="summary-label">Connections</span>
-              </div>
-            </div>
-          </div>
-          <div class="progress-section">
-            <div class="progress-header">
-              <span class="progress-label">Story Progress</span>
-              <span class="progress-percent">35%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 35%;"></div>
-            </div>
-            <div class="progress-breakdown">
-              <span class="breakdown-item"><span class="breakdown-dot done"></span> 3 Done</span>
-              <span class="breakdown-item"><span class="breakdown-dot writing"></span> 1 Writing</span>
-              <span class="breakdown-item"><span class="breakdown-dot empty"></span> 4 Planned</span>
-            </div>
-          </div>
-        </div>
-
+    <div class="map-node event-node" style="left: 320px; top: 380px;">
+      <div class="node-icon event">🤝</div>
+      <div class="node-body">
+        <span class="node-title">Arin Meets Sera</span>
+        <span class="node-sub">Minor Event</span>
+      </div>
+      <span class="node-status done"></span>
+      <div class="node-chars">
+        <span class="mini-avatar">AB</span>
+        <span class="mini-avatar pink">SR</span>
       </div>
     </div>
 
-  </main>
+    <div class="node-connector horizontal" style="left: 530px; top: 404px; width: 60px;"></div>
 
+    <div class="map-node character-node" style="left: 600px; top: 380px;">
+      <div class="node-icon character">👤</div>
+      <div class="node-body">
+        <span class="node-title">Sera Ravencroft</span>
+        <span class="node-sub">Introduced · Supporting</span>
+      </div>
+      <div class="node-chars">
+        <span class="mini-avatar pink">SR</span>
+      </div>
+    </div>
+
+    <div class="node-connector vertical" style="left: 400px; top: 450px; height: 50px;"></div>
+
+    <div class="map-node twist-node" style="left: 320px; top: 510px;">
+      <div class="node-icon twist">🔀</div>
+      <div class="node-body">
+        <span class="node-title">Kael's Betrayal</span>
+        <span class="node-sub">Plot Twist · High Impact</span>
+      </div>
+      <span class="node-status done"></span>
+      <div class="node-chars">
+        <span class="mini-avatar">AB</span>
+        <span class="mini-avatar teal">KR</span>
+        <span class="mini-avatar purple">LV</span>
+      </div>
+    </div>
+
+    <div class="node-connector horizontal" style="left: 540px; top: 534px; width: 60px;"></div>
+
+    <div class="map-node chapter-node" style="left: 610px; top: 520px;">
+      <div class="node-icon chapter">📖</div>
+      <div class="node-body">
+        <span class="node-title">Broken Brotherhood</span>
+        <span class="node-sub">0 words · Planned</span>
+      </div>
+      <span class="node-status empty"></span>
+    </div>
+
+    <!-- ACT III -->
+    <div class="act-section" style="left: 40px; top: 620px;">
+      <div class="act-label">Act III — The Reckoning</div>
+    </div>
+
+    <div class="map-node event-node" style="left: 80px; top: 690px;">
+      <div class="node-icon event">⚔️</div>
+      <div class="node-body">
+        <span class="node-title">Siege of Eldarion</span>
+        <span class="node-sub">Major Event · Climax</span>
+      </div>
+      <span class="node-status empty"></span>
+      <div class="node-chars">
+        <span class="mini-avatar">AB</span>
+        <span class="mini-avatar purple">LV</span>
+        <span class="mini-avatar teal">KR</span>
+        <span class="mini-avatar pink">SR</span>
+        <span class="mini-avatar orange">EN</span>
+      </div>
+    </div>
+
+    <div class="node-connector horizontal" style="left: 310px; top: 714px; width: 60px;"></div>
+
+    <div class="map-node chapter-node" style="left: 380px; top: 700px;">
+      <div class="node-icon chapter">📖</div>
+      <div class="node-body">
+        <span class="node-title">Resolution</span>
+        <span class="node-sub">0 words · Planned</span>
+      </div>
+      <span class="node-status empty"></span>
+    </div>
+
+    <div class="node-connector horizontal" style="left: 540px; top: 724px; width: 60px;"></div>
+
+    <div class="map-node chapter-node" style="left: 610px; top: 700px;">
+      <div class="node-icon chapter">📖</div>
+      <div class="node-body">
+        <span class="node-title">Epilogue</span>
+        <span class="node-sub">0 words · Planned</span>
+      </div>
+      <span class="node-status empty"></span>
+    </div>
+
+    <div class="map-node add-node" style="left: 380px; top: 810px;">
+      <div class="node-icon add">+</div>
+      <div class="node-body">
+        <span class="node-title">Add New Node</span>
+        <span class="node-sub">Click to add</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== NODE DETAIL ========== -->
+<div class="node-detail-section">
+  <div class="detail-header">
+    <h2 class="detail-title">Node Details</h2>
+    <span class="detail-sub">Select a node to view details</span>
+  </div>
+
+  <div class="detail-grid">
+
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="detail-node-icon chapter">📖</div>
+        <div class="detail-node-info">
+          <h3 class="detail-node-title">Into the Wild</h3>
+          <span class="detail-node-type">Chapter 3</span>
+        </div>
+        <span class="detail-node-status writing">Writing</span>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-row">
+          <span class="detail-label">Story</span>
+          <span class="detail-value">The Lost Kingdom</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Act</span>
+          <span class="detail-value">Act II — The Journey</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Word Count</span>
+          <span class="detail-value">860</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Status</span>
+          <span class="detail-value">In Progress</span>
+        </div>
+      </div>
+      <div class="detail-card-section">
+        <span class="detail-section-label">Connected Characters</span>
+        <div class="detail-char-list">
+          <div class="detail-char">
+            <div class="detail-char-avatar">AB</div>
+            <span class="detail-char-name">Arin Blackwood</span>
+          </div>
+          <div class="detail-char">
+            <div class="detail-char-avatar pink">SR</div>
+            <span class="detail-char-name">Sera Ravencroft</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-section">
+        <span class="detail-section-label">Connected Events</span>
+        <div class="detail-event-list">
+          <div class="detail-event">
+            <span class="detail-event-dot major"></span>
+            <span class="detail-event-name">The Fall of Blackwood Keep</span>
+          </div>
+          <div class="detail-event">
+            <span class="detail-event-dot minor"></span>
+            <span class="detail-event-name">Arin Meets Sera</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-section">
+        <span class="detail-section-label">Connected Nodes</span>
+        <div class="detail-connected-nodes">
+          <span class="connected-node-pill">← The Exile</span>
+          <span class="connected-node-pill">→ Broken Brotherhood</span>
+          <span class="connected-node-pill">↓ Kael's Betrayal</span>
+        </div>
+      </div>
+      <div class="detail-card-actions">
+        <button class="btn-outline-sm">Edit Node</button>
+        <button class="btn-primary-xs">Open Chapter</button>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <h3 class="summary-title">Map Summary</h3>
+      <div class="summary-stats">
+        <div class="summary-stat">
+          <span class="summary-icon">📖</span>
+          <div class="summary-info">
+            <span class="summary-num">8</span>
+            <span class="summary-label">Chapters</span>
+          </div>
+        </div>
+        <div class="summary-stat">
+          <span class="summary-icon">⚔️</span>
+          <div class="summary-info">
+            <span class="summary-num">5</span>
+            <span class="summary-label">Events</span>
+          </div>
+        </div>
+        <div class="summary-stat">
+          <span class="summary-icon">👤</span>
+          <div class="summary-info">
+            <span class="summary-num">6</span>
+            <span class="summary-label">Characters</span>
+          </div>
+        </div>
+        <div class="summary-stat">
+          <span class="summary-icon">📍</span>
+          <div class="summary-info">
+            <span class="summary-num">4</span>
+            <span class="summary-label">Locations</span>
+          </div>
+        </div>
+        <div class="summary-stat">
+          <span class="summary-icon">🔀</span>
+          <div class="summary-info">
+            <span class="summary-num">2</span>
+            <span class="summary-label">Twists</span>
+          </div>
+        </div>
+        <div class="summary-stat">
+          <span class="summary-icon">🔗</span>
+          <div class="summary-info">
+            <span class="summary-num">18</span>
+            <span class="summary-label">Connections</span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Story Progress</span>
+          <span class="progress-percent">35%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 35%;"></div>
+        </div>
+        <div class="progress-breakdown">
+          <span class="breakdown-item"><span class="breakdown-dot done"></span> 3 Done</span>
+          <span class="breakdown-item"><span class="breakdown-dot writing"></span> 1 Writing</span>
+          <span class="breakdown-item"><span class="breakdown-dot empty"></span> 4 Planned</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

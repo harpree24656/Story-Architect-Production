@@ -5,7 +5,7 @@
   font-family: 'Inter', 'Segoe UI', sans-serif;
   background-color: #ffffff;
   color: #1e293b;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ============================================================

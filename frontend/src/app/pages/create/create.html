@@ -1,253 +1,228 @@
-<div class="page-wrapper">
+<div class="create-content">
 
-  <!-- SHARED SIDEBAR -->
-  <app-sidebar></app-sidebar>
+  <div class="form-area">
 
-  <!-- MAIN CONTENT -->
-  <main class="main-content">
-
-    <!-- ========== TOPBAR ========== -->
-    <header class="topbar">
-      <div class="topbar-left">
-        <h1 class="page-title">Create New Story</h1>
-        <span class="page-subtitle">Set up your story project</span>
+    <!-- STEP INDICATOR -->
+    <div class="step-indicator">
+      <div class="step active">
+        <div class="step-dot">1</div>
+        <span class="step-label">Basic Info</span>
       </div>
-      <div class="topbar-right">
-        <button class="btn-outline">Save Draft</button>
-        <button class="btn-primary-sm">Create Story</button>
+      <div class="step-line active"></div>
+      <div class="step">
+        <div class="step-dot">2</div>
+        <span class="step-label">Story Details</span>
       </div>
-    </header>
-
-    <!-- ========== FORM AREA ========== -->
-    <div class="create-content">
-
-      <div class="form-area">
-
-        <!-- STEP INDICATOR -->
-        <div class="step-indicator">
-          <div class="step active">
-            <div class="step-dot">1</div>
-            <span class="step-label">Basic Info</span>
-          </div>
-          <div class="step-line active"></div>
-          <div class="step">
-            <div class="step-dot">2</div>
-            <span class="step-label">Story Details</span>
-          </div>
-          <div class="step-line"></div>
-          <div class="step">
-            <div class="step-dot">3</div>
-            <span class="step-label">World Setup</span>
-          </div>
-        </div>
-
-        <!-- BASIC INFO -->
-        <div class="form-section">
-          <h2 class="form-section-title">Basic Information</h2>
-          <p class="form-section-desc">Give your story a name and choose its genre.</p>
-
-          <div class="form-group">
-            <label class="form-label">Story Title</label>
-            <input type="text" class="form-input" placeholder="Enter your story title" />
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Subtitle / Tagline</label>
-            <input type="text" class="form-input" placeholder="A short tagline for your story" />
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Genre</label>
-              <select class="form-select">
-                <option value="">Select Genre</option>
-                <option value="fantasy">Fantasy</option>
-                <option value="sci-fi">Sci-Fi</option>
-                <option value="mystery">Mystery</option>
-                <option value="romance">Romance</option>
-                <option value="thriller">Thriller</option>
-                <option value="horror">Horror</option>
-                <option value="historical">Historical Fiction</option>
-                <option value="adventure">Adventure</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Sub-Genre</label>
-              <select class="form-select">
-                <option value="">Select Sub-Genre</option>
-                <option value="dark-fantasy">Dark Fantasy</option>
-                <option value="space-opera">Space Opera</option>
-                <option value="detective">Detective</option>
-                <option value="dystopian">Dystopian</option>
-                <option value="urban-fantasy">Urban Fantasy</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Story Description</label>
-            <textarea class="form-textarea" rows="4" placeholder="Describe your story in a few sentences..."></textarea>
-          </div>
-        </div>
-
-        <!-- STORY DETAILS -->
-        <div class="form-section">
-          <h2 class="form-section-title">Story Details</h2>
-          <p class="form-section-desc">Define the structure and tone of your narrative.</p>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Narrative Style</label>
-              <select class="form-select">
-                <option value="">Select Style</option>
-                <option value="first-person">First Person</option>
-                <option value="third-person">Third Person</option>
-                <option value="omniscient">Omniscient</option>
-                <option value="second-person">Second Person</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Story Tone</label>
-              <select class="form-select">
-                <option value="">Select Tone</option>
-                <option value="dark">Dark</option>
-                <option value="light">Light</option>
-                <option value="epic">Epic</option>
-                <option value="comedic">Comedic</option>
-                <option value="tragic">Tragic</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Target Audience</label>
-            <div class="tag-group">
-              <span class="tag">Young Adult</span>
-              <span class="tag">Adult</span>
-              <span class="tag selected">All Ages</span>
-              <span class="tag">Children</span>
-              <span class="tag">Mature</span>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Themes</label>
-            <div class="tag-group">
-              <span class="tag selected">Redemption</span>
-              <span class="tag">Love</span>
-              <span class="tag selected">Power</span>
-              <span class="tag">Betrayal</span>
-              <span class="tag">Survival</span>
-              <span class="tag">Justice</span>
-              <span class="tag">Identity</span>
-              <span class="tag">Freedom</span>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Estimated Chapters</label>
-              <input type="number" class="form-input" placeholder="e.g. 24" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Time Period</label>
-              <input type="text" class="form-input" placeholder="e.g. Medieval, Futuristic" />
-            </div>
-          </div>
-        </div>
-
-        <!-- WORLD SETUP -->
-        <div class="form-section">
-          <h2 class="form-section-title">World Setup</h2>
-          <p class="form-section-desc">Describe the world where your story takes place.</p>
-
-          <div class="form-group">
-            <label class="form-label">World Name</label>
-            <input type="text" class="form-input" placeholder="Name your story world" />
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">World Description</label>
-            <textarea class="form-textarea" rows="4" placeholder="Describe the world — geography, culture, rules..."></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Magic / Technology System</label>
-            <textarea class="form-textarea" rows="3" placeholder="Describe any magic or technology system in this world..."></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Key Locations</label>
-            <div class="location-list">
-              <div class="location-item">
-                <span class="location-icon">📍</span>
-                <input type="text" class="form-input-inline" placeholder="Add a location" />
-                <button class="btn-add">+</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- FORM ACTIONS -->
-        <div class="form-actions">
-          <button class="btn-outline">Save as Draft</button>
-          <button class="btn-primary-lg">Create Story Project</button>
-        </div>
-
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="step-dot">3</div>
+        <span class="step-label">World Setup</span>
       </div>
-
-      <!-- ========== PREVIEW PANEL ========== -->
-      <div class="preview-panel">
-        <div class="preview-card">
-          <h3 class="preview-title">Story Preview</h3>
-          <div class="preview-cover">
-            <span class="preview-emoji">📖</span>
-          </div>
-          <div class="preview-info">
-            <span class="preview-label">Title</span>
-            <span class="preview-value">Untitled Story</span>
-          </div>
-          <div class="preview-info">
-            <span class="preview-label">Genre</span>
-            <span class="preview-value">Not Selected</span>
-          </div>
-          <div class="preview-info">
-            <span class="preview-label">Tone</span>
-            <span class="preview-value">Not Selected</span>
-          </div>
-          <div class="preview-info">
-            <span class="preview-label">Audience</span>
-            <span class="preview-value">All Ages</span>
-          </div>
-          <div class="preview-info">
-            <span class="preview-label">Themes</span>
-            <div class="preview-tags">
-              <span class="preview-tag">Redemption</span>
-              <span class="preview-tag">Power</span>
-            </div>
-          </div>
-          <div class="preview-divider"></div>
-          <div class="preview-info">
-            <span class="preview-label">World</span>
-            <span class="preview-value">Not Set</span>
-          </div>
-          <div class="preview-info">
-            <span class="preview-label">Chapters</span>
-            <span class="preview-value">—</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-icon">💡</span>
-          <div class="tip-content">
-            <span class="tip-title">Pro Tip</span>
-            <p class="tip-desc">Start with a strong title and genre. You can always refine your world details later as your story evolves.</p>
-          </div>
-        </div>
-      </div>
-
     </div>
 
-  </main>
+    <!-- BASIC INFO -->
+    <div class="form-section">
+      <h2 class="form-section-title">Basic Information</h2>
+      <p class="form-section-desc">Give your story a name and choose its genre.</p>
+
+      <div class="form-group">
+        <label class="form-label">Story Title</label>
+        <input type="text" class="form-input" placeholder="Enter your story title" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Subtitle / Tagline</label>
+        <input type="text" class="form-input" placeholder="A short tagline for your story" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Genre</label>
+          <select class="form-select">
+            <option value="">Select Genre</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="sci-fi">Sci-Fi</option>
+            <option value="mystery">Mystery</option>
+            <option value="romance">Romance</option>
+            <option value="thriller">Thriller</option>
+            <option value="horror">Horror</option>
+            <option value="historical">Historical Fiction</option>
+            <option value="adventure">Adventure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sub-Genre</label>
+          <select class="form-select">
+            <option value="">Select Sub-Genre</option>
+            <option value="dark-fantasy">Dark Fantasy</option>
+            <option value="space-opera">Space Opera</option>
+            <option value="detective">Detective</option>
+            <option value="dystopian">Dystopian</option>
+            <option value="urban-fantasy">Urban Fantasy</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Story Description</label>
+        <textarea class="form-textarea" rows="4" placeholder="Describe your story in a few sentences..."></textarea>
+      </div>
+    </div>
+
+    <!-- STORY DETAILS -->
+    <div class="form-section">
+      <h2 class="form-section-title">Story Details</h2>
+      <p class="form-section-desc">Define the structure and tone of your narrative.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Narrative Style</label>
+          <select class="form-select">
+            <option value="">Select Style</option>
+            <option value="first-person">First Person</option>
+            <option value="third-person">Third Person</option>
+            <option value="omniscient">Omniscient</option>
+            <option value="second-person">Second Person</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Story Tone</label>
+          <select class="form-select">
+            <option value="">Select Tone</option>
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="epic">Epic</option>
+            <option value="comedic">Comedic</option>
+            <option value="tragic">Tragic</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Target Audience</label>
+        <div class="tag-group">
+          <span class="tag">Young Adult</span>
+          <span class="tag">Adult</span>
+          <span class="tag selected">All Ages</span>
+          <span class="tag">Children</span>
+          <span class="tag">Mature</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Themes</label>
+        <div class="tag-group">
+          <span class="tag selected">Redemption</span>
+          <span class="tag">Love</span>
+          <span class="tag selected">Power</span>
+          <span class="tag">Betrayal</span>
+          <span class="tag">Survival</span>
+          <span class="tag">Justice</span>
+          <span class="tag">Identity</span>
+          <span class="tag">Freedom</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Estimated Chapters</label>
+          <input type="number" class="form-input" placeholder="e.g. 24" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Time Period</label>
+          <input type="text" class="form-input" placeholder="e.g. Medieval, Futuristic" />
+        </div>
+      </div>
+    </div>
+
+    <!-- WORLD SETUP -->
+    <div class="form-section">
+      <h2 class="form-section-title">World Setup</h2>
+      <p class="form-section-desc">Describe the world where your story takes place.</p>
+
+      <div class="form-group">
+        <label class="form-label">World Name</label>
+        <input type="text" class="form-input" placeholder="Name your story world" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">World Description</label>
+        <textarea class="form-textarea" rows="4" placeholder="Describe the world — geography, culture, rules..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Magic / Technology System</label>
+        <textarea class="form-textarea" rows="3" placeholder="Describe any magic or technology system in this world..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Key Locations</label>
+        <div class="location-list">
+          <div class="location-item">
+            <span class="location-icon">📍</span>
+            <input type="text" class="form-input-inline" placeholder="Add a location" />
+            <button class="btn-add">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM ACTIONS -->
+    <div class="form-actions">
+      <button class="btn-outline">Save as Draft</button>
+      <button class="btn-primary-lg">Create Story Project</button>
+    </div>
+
+  </div>
+
+  <!-- ========== PREVIEW PANEL ========== -->
+  <div class="preview-panel">
+    <div class="preview-card">
+      <h3 class="preview-title">Story Preview</h3>
+      <div class="preview-cover">
+        <span class="preview-emoji">📖</span>
+      </div>
+      <div class="preview-info">
+        <span class="preview-label">Title</span>
+        <span class="preview-value">Untitled Story</span>
+      </div>
+      <div class="preview-info">
+        <span class="preview-label">Genre</span>
+        <span class="preview-value">Not Selected</span>
+      </div>
+      <div class="preview-info">
+        <span class="preview-label">Tone</span>
+        <span class="preview-value">Not Selected</span>
+      </div>
+      <div class="preview-info">
+        <span class="preview-label">Audience</span>
+        <span class="preview-value">All Ages</span>
+      </div>
+      <div class="preview-info">
+        <span class="preview-label">Themes</span>
+        <div class="preview-tags">
+          <span class="preview-tag">Redemption</span>
+          <span class="preview-tag">Power</span>
+        </div>
+      </div>
+      <div class="preview-divider"></div>
+      <div class="preview-info">
+        <span class="preview-label">World</span>
+        <span class="preview-value">Not Set</span>
+      </div>
+      <div class="preview-info">
+        <span class="preview-label">Chapters</span>
+        <span class="preview-value">—</span>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <span class="tip-icon">💡</span>
+      <div class="tip-content">
+        <span class="tip-title">Pro Tip</span>
+        <p class="tip-desc">Start with a strong title and genre. You can always refine your world details later as your story evolves.</p>
+      </div>
+    </div>
+  </div>
 
 </div>

@@ -1,527 +1,500 @@
-<div class="page-wrapper">
-
-  <!-- SHARED SIDEBAR -->
-  <app-sidebar></app-sidebar>
-
-  <!-- MAIN CONTENT -->
-  <main class="main-content">
-
-    <!-- ========== TOPBAR ========== -->
-    <header class="topbar">
-      <div class="topbar-left">
-        <h1 class="page-title">World Library</h1>
-        <span class="page-subtitle">Build and organize your story world's lore</span>
-      </div>
-      <div class="topbar-right">
-        <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input type="text" placeholder="Search world elements..." />
-        </div>
-        <button class="btn-primary-sm">+ Add Entry</button>
-      </div>
-    </header>
-
-    <!-- ========== STATS ROW ========== -->
-    <section class="stats-row">
-      <div class="stat-card">
-        <div class="stat-icon blue">📍</div>
-        <div class="stat-info">
-          <span class="stat-number">12</span>
-          <span class="stat-label">Locations</span>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon purple">🏛️</div>
-        <div class="stat-info">
-          <span class="stat-number">5</span>
-          <span class="stat-label">Factions</span>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon green">🌿</div>
-        <div class="stat-info">
-          <span class="stat-number">8</span>
-          <span class="stat-label">Cultures</span>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon orange">✨</div>
-        <div class="stat-info">
-          <span class="stat-number">3</span>
-          <span class="stat-label">Magic Systems</span>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon teal">🐉</div>
-        <div class="stat-info">
-          <span class="stat-number">6</span>
-          <span class="stat-label">Creatures</span>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon red">📜</div>
-        <div class="stat-info">
-          <span class="stat-number">14</span>
-          <span class="stat-label">Lore Entries</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== CATEGORY TABS ========== -->
-    <div class="category-bar">
-      <div class="category-tabs">
-        <button class="category-tab active">
-          <span class="tab-icon">📚</span>
-          <span class="tab-text">All</span>
-          <span class="tab-count">48</span>
-        </button>
-        <button class="category-tab">
-          <span class="tab-icon">📍</span>
-          <span class="tab-text">Locations</span>
-          <span class="tab-count">12</span>
-        </button>
-        <button class="category-tab">
-          <span class="tab-icon">🏛️</span>
-          <span class="tab-text">Factions</span>
-          <span class="tab-count">5</span>
-        </button>
-        <button class="category-tab">
-          <span class="tab-icon">🌿</span>
-          <span class="tab-text">Cultures</span>
-          <span class="tab-count">8</span>
-        </button>
-        <button class="category-tab">
-          <span class="tab-icon">✨</span>
-          <span class="tab-text">Magic</span>
-          <span class="tab-count">3</span>
-        </button>
-        <button class="category-tab">
-          <span class="tab-icon">🐉</span>
-          <span class="tab-text">Creatures</span>
-          <span class="tab-count">6</span>
-        </button>
-        <button class="category-tab">
-          <span class="tab-icon">📜</span>
-          <span class="tab-text">Lore</span>
-          <span class="tab-count">14</span>
-        </button>
-      </div>
-      <div class="category-actions">
-        <select class="filter-select">
-          <option value="">Sort by</option>
-          <option value="name">Name A-Z</option>
-          <option value="recent">Recently Added</option>
-          <option value="category">Category</option>
-        </select>
-      </div>
+<!-- ========== STATS ROW ========== -->
+<section class="stats-row">
+  <div class="stat-card">
+    <div class="stat-icon blue">📍</div>
+    <div class="stat-info">
+      <span class="stat-number">12</span>
+      <span class="stat-label">Locations</span>
     </div>
-
-    <!-- ========== LOCATIONS ========== -->
-    <div class="entry-section">
-      <div class="entry-section-header">
-        <div class="entry-section-label">
-          <span class="section-icon">📍</span>
-          <h2 class="section-name">Locations</h2>
-          <span class="section-count">12 entries</span>
-        </div>
-        <button class="btn-add-entry">+ Add</button>
-      </div>
-
-      <div class="entries-grid">
-        <div class="world-card">
-          <div class="world-card-cover location-cover">
-            <span class="cover-emoji">🏰</span>
-          </div>
-          <div class="world-card-body">
-            <div class="world-card-top">
-              <span class="world-category-badge location">Location</span>
-              <div class="world-card-actions">
-                <button class="world-btn">✏️</button>
-                <button class="world-btn">🗑️</button>
-              </div>
-            </div>
-            <h3 class="world-card-title">Blackwood Keep</h3>
-            <p class="world-card-desc">The ancestral fortress of House Blackwood, now in ruins after the shadow army's attack. Located in the Northern Province.</p>
-            <div class="world-card-tags">
-              <span class="world-tag">Ruins</span>
-              <span class="world-tag">Fortress</span>
-              <span class="world-tag">North</span>
-            </div>
-            <div class="world-card-meta">
-              <span class="meta-item">📖 The Lost Kingdom</span>
-              <span class="meta-item">👤 3 Characters</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="world-card">
-          <div class="world-card-cover forest-cover">
-            <span class="cover-emoji">🌲</span>
-          </div>
-          <div class="world-card-body">
-            <div class="world-card-top">
-              <span class="world-category-badge location">Location</span>
-              <div class="world-card-actions">
-                <button class="world-btn">✏️</button>
-                <button class="world-btn">🗑️</button>
-              </div>
-            </div>
-            <h3 class="world-card-title">Ashwood Forest</h3>
-            <p class="world-card-desc">A vast ancient forest on the Eastern Border. Home to forgotten creatures and the place where Arin first meets Sera.</p>
-            <div class="world-card-tags">
-              <span class="world-tag">Forest</span>
-              <span class="world-tag">Ancient</span>
-              <span class="world-tag">East</span>
-            </div>
-            <div class="world-card-meta">
-              <span class="meta-item">📖 The Lost Kingdom</span>
-              <span class="meta-item">👤 2 Characters</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="world-card">
-          <div class="world-card-cover city-cover">
-            <span class="cover-emoji">🏙️</span>
-          </div>
-          <div class="world-card-body">
-            <div class="world-card-top">
-              <span class="world-category-badge location">Location</span>
-              <div class="world-card-actions">
-                <button class="world-btn">✏️</button>
-                <button class="world-btn">🗑️</button>
-              </div>
-            </div>
-            <h3 class="world-card-title">Eldarion Capital</h3>
-            <p class="world-card-desc">The grand capital city and seat of power. Controlled by Lady Vespera after the coup. Site of the final siege.</p>
-            <div class="world-card-tags">
-              <span class="world-tag">Capital</span>
-              <span class="world-tag">City</span>
-              <span class="world-tag">Central</span>
-            </div>
-            <div class="world-card-meta">
-              <span class="meta-item">📖 The Lost Kingdom</span>
-              <span class="meta-item">👤 5 Characters</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon purple">🏛️</div>
+    <div class="stat-info">
+      <span class="stat-number">5</span>
+      <span class="stat-label">Factions</span>
     </div>
-
-    <!-- ========== FACTIONS ========== -->
-    <div class="entry-section">
-      <div class="entry-section-header">
-        <div class="entry-section-label">
-          <span class="section-icon">🏛️</span>
-          <h2 class="section-name">Factions</h2>
-          <span class="section-count">5 entries</span>
-        </div>
-        <button class="btn-add-entry">+ Add</button>
-      </div>
-
-      <div class="entries-grid">
-        <div class="world-card">
-          <div class="world-card-cover faction-cover">
-            <span class="cover-emoji">🛡️</span>
-          </div>
-          <div class="world-card-body">
-            <div class="world-card-top">
-              <span class="world-category-badge faction">Faction</span>
-              <div class="world-card-actions">
-                <button class="world-btn">✏️</button>
-                <button class="world-btn">🗑️</button>
-              </div>
-            </div>
-            <h3 class="world-card-title">Order of the Silver Dawn</h3>
-            <p class="world-card-desc">An ancient order of knights sworn to protect the realm. Disbanded after Blackwood Keep fell, but loyalists remain in hiding.</p>
-            <div class="world-card-tags">
-              <span class="world-tag">Knights</span>
-              <span class="world-tag">Honor</span>
-              <span class="world-tag">Disbanded</span>
-            </div>
-            <div class="world-card-meta">
-              <span class="meta-item">📖 The Lost Kingdom</span>
-              <span class="meta-item">👤 4 Members</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="world-card">
-          <div class="world-card-cover shadow-cover">
-            <span class="cover-emoji">🌑</span>
-          </div>
-          <div class="world-card-body">
-            <div class="world-card-top">
-              <span class="world-category-badge faction">Faction</span>
-              <div class="world-card-actions">
-                <button class="world-btn">✏️</button>
-                <button class="world-btn">🗑️</button>
-              </div>
-            </div>
-            <h3 class="world-card-title">Shadow Court</h3>
-            <p class="world-card-desc">Lady Vespera's secret council of spies, assassins, and dark mages. They operate from the shadows to maintain her grip on power.</p>
-            <div class="world-card-tags">
-              <span class="world-tag">Dark</span>
-              <span class="world-tag">Espionage</span>
-              <span class="world-tag">Evil</span>
-            </div>
-            <div class="world-card-meta">
-              <span class="meta-item">📖 The Lost Kingdom</span>
-              <span class="meta-item">👤 6 Members</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon green">🌿</div>
+    <div class="stat-info">
+      <span class="stat-number">8</span>
+      <span class="stat-label">Cultures</span>
     </div>
-
-    <!-- ========== MAGIC SYSTEMS ========== -->
-    <div class="entry-section">
-      <div class="entry-section-header">
-        <div class="entry-section-label">
-          <span class="section-icon">✨</span>
-          <h2 class="section-name">Magic Systems</h2>
-          <span class="section-count">3 entries</span>
-        </div>
-        <button class="btn-add-entry">+ Add</button>
-      </div>
-
-      <div class="entries-grid">
-        <div class="world-card">
-          <div class="world-card-cover magic-cover">
-            <span class="cover-emoji">🔮</span>
-          </div>
-          <div class="world-card-body">
-            <div class="world-card-top">
-              <span class="world-category-badge magic">Magic</span>
-              <div class="world-card-actions">
-                <button class="world-btn">✏️</button>
-                <button class="world-btn">🗑️</button>
-              </div>
-            </div>
-            <h3 class="world-card-title">Runic Binding</h3>
-            <p class="world-card-desc">An ancient magic system that channels power through carved runes. Requires physical inscriptions and immense focus.</p>
-            <div class="world-card-rules">
-              <div class="rule-item">
-                <span class="rule-icon">📌</span>
-                <span class="rule-text">Must carve runes into stone or metal</span>
-              </div>
-              <div class="rule-item">
-                <span class="rule-icon">📌</span>
-                <span class="rule-text">Power drains life force if overused</span>
-              </div>
-              <div class="rule-item">
-                <span class="rule-icon">📌</span>
-                <span class="rule-text">Only works within line of sight</span>
-              </div>
-            </div>
-            <div class="world-card-tags">
-              <span class="world-tag">Ancient</span>
-              <span class="world-tag">Runes</span>
-              <span class="world-tag">Physical</span>
-            </div>
-            <div class="world-card-meta">
-              <span class="meta-item">📖 The Lost Kingdom</span>
-              <span class="meta-item">👤 2 Users</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="world-card">
-          <div class="world-card-cover dark-magic-cover">
-            <span class="cover-emoji">🌑</span>
-          </div>
-          <div class="world-card-body">
-            <div class="world-card-top">
-              <span class="world-category-badge magic">Magic</span>
-              <div class="world-card-actions">
-                <button class="world-btn">✏️</button>
-                <button class="world-btn">🗑️</button>
-              </div>
-            </div>
-            <h3 class="world-card-title">Shadow Weaving</h3>
-            <p class="world-card-desc">Forbidden dark magic that manipulates shadows into physical form. Draws power from fear and darkness.</p>
-            <div class="world-card-rules">
-              <div class="rule-item">
-                <span class="rule-icon">📌</span>
-                <span class="rule-text">Requires darkness to function</span>
-              </div>
-              <div class="rule-item">
-                <span class="rule-icon">📌</span>
-                <span class="rule-text">Corrupts the user over time</span>
-              </div>
-            </div>
-            <div class="world-card-tags">
-              <span class="world-tag">Forbidden</span>
-              <span class="world-tag">Shadow</span>
-              <span class="world-tag">Dark</span>
-            </div>
-            <div class="world-card-meta">
-              <span class="meta-item">📖 The Lost Kingdom</span>
-              <span class="meta-item">👤 3 Users</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon orange">✨</div>
+    <div class="stat-info">
+      <span class="stat-number">3</span>
+      <span class="stat-label">Magic Systems</span>
     </div>
-
-    <!-- ========== CREATURES ========== -->
-    <div class="entry-section">
-      <div class="entry-section-header">
-        <div class="entry-section-label">
-          <span class="section-icon">🐉</span>
-          <h2 class="section-name">Creatures</h2>
-          <span class="section-count">6 entries</span>
-        </div>
-        <button class="btn-add-entry">+ Add</button>
-      </div>
-
-      <div class="entries-grid">
-        <div class="world-card">
-          <div class="world-card-cover creature-cover">
-            <span class="cover-emoji">🐺</span>
-          </div>
-          <div class="world-card-body">
-            <div class="world-card-top">
-              <span class="world-category-badge creature">Creature</span>
-              <div class="world-card-actions">
-                <button class="world-btn">✏️</button>
-                <button class="world-btn">🗑️</button>
-              </div>
-            </div>
-            <h3 class="world-card-title">Ashwood Direwolf</h3>
-            <p class="world-card-desc">Massive wolves native to the Ashwood Forest. Intelligent, pack hunters. Some can be bonded with by those possessing Runic Binding magic.</p>
-            <div class="creature-stats">
-              <div class="creature-stat">
-                <span class="creature-stat-label">Threat</span>
-                <div class="threat-bar"><div class="threat-fill high"></div></div>
-              </div>
-              <div class="creature-stat">
-                <span class="creature-stat-label">Rarity</span>
-                <span class="creature-stat-value rare">Rare</span>
-              </div>
-            </div>
-            <div class="world-card-tags">
-              <span class="world-tag">Predator</span>
-              <span class="world-tag">Pack</span>
-              <span class="world-tag">Bondable</span>
-            </div>
-            <div class="world-card-meta">
-              <span class="meta-item">📖 The Lost Kingdom</span>
-              <span class="meta-item">📍 Ashwood Forest</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="world-card">
-          <div class="world-card-cover creature-cover-2">
-            <span class="cover-emoji">🦅</span>
-          </div>
-          <div class="world-card-body">
-            <div class="world-card-top">
-              <span class="world-category-badge creature">Creature</span>
-              <div class="world-card-actions">
-                <button class="world-btn">✏️</button>
-                <button class="world-btn">🗑️</button>
-              </div>
-            </div>
-            <h3 class="world-card-title">Stormwing Raptor</h3>
-            <p class="world-card-desc">Giant birds of prey that nest in the Stoneridge Mountains. Used as war mounts by the Silver Dawn in ancient times.</p>
-            <div class="creature-stats">
-              <div class="creature-stat">
-                <span class="creature-stat-label">Threat</span>
-                <div class="threat-bar"><div class="threat-fill medium"></div></div>
-              </div>
-              <div class="creature-stat">
-                <span class="creature-stat-label">Rarity</span>
-                <span class="creature-stat-value legendary">Legendary</span>
-              </div>
-            </div>
-            <div class="world-card-tags">
-              <span class="world-tag">Flying</span>
-              <span class="world-tag">War Mount</span>
-              <span class="world-tag">Mountain</span>
-            </div>
-            <div class="world-card-meta">
-              <span class="meta-item">📖 The Lost Kingdom</span>
-              <span class="meta-item">📍 Stoneridge Mountains</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon teal">🐉</div>
+    <div class="stat-info">
+      <span class="stat-number">6</span>
+      <span class="stat-label">Creatures</span>
     </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon red">📜</div>
+    <div class="stat-info">
+      <span class="stat-number">14</span>
+      <span class="stat-label">Lore Entries</span>
+    </div>
+  </div>
+</section>
 
-    <!-- ========== LORE ========== -->
-    <div class="entry-section">
-      <div class="entry-section-header">
-        <div class="entry-section-label">
-          <span class="section-icon">📜</span>
-          <h2 class="section-name">Lore & History</h2>
-          <span class="section-count">14 entries</span>
-        </div>
-        <button class="btn-add-entry">+ Add</button>
+<!-- ========== CATEGORY TABS ========== -->
+<div class="category-bar">
+  <div class="category-tabs">
+    <button class="category-tab active">
+      <span class="tab-icon">📚</span>
+      <span class="tab-text">All</span>
+      <span class="tab-count">48</span>
+    </button>
+    <button class="category-tab">
+      <span class="tab-icon">📍</span>
+      <span class="tab-text">Locations</span>
+      <span class="tab-count">12</span>
+    </button>
+    <button class="category-tab">
+      <span class="tab-icon">🏛️</span>
+      <span class="tab-text">Factions</span>
+      <span class="tab-count">5</span>
+    </button>
+    <button class="category-tab">
+      <span class="tab-icon">🌿</span>
+      <span class="tab-text">Cultures</span>
+      <span class="tab-count">8</span>
+    </button>
+    <button class="category-tab">
+      <span class="tab-icon">✨</span>
+      <span class="tab-text">Magic</span>
+      <span class="tab-count">3</span>
+    </button>
+    <button class="category-tab">
+      <span class="tab-icon">🐉</span>
+      <span class="tab-text">Creatures</span>
+      <span class="tab-count">6</span>
+    </button>
+    <button class="category-tab">
+      <span class="tab-icon">📜</span>
+      <span class="tab-text">Lore</span>
+      <span class="tab-count">14</span>
+    </button>
+  </div>
+  <div class="category-actions">
+    <select class="filter-select">
+      <option value="">Sort by</option>
+      <option value="name">Name A-Z</option>
+      <option value="recent">Recently Added</option>
+      <option value="category">Category</option>
+    </select>
+  </div>
+</div>
+
+<!-- ========== LOCATIONS ========== -->
+<div class="entry-section">
+  <div class="entry-section-header">
+    <div class="entry-section-label">
+      <span class="section-icon">📍</span>
+      <h2 class="section-name">Locations</h2>
+      <span class="section-count">12 entries</span>
+    </div>
+    <button class="btn-add-entry">+ Add</button>
+  </div>
+
+  <div class="entries-grid">
+    <div class="world-card">
+      <div class="world-card-cover location-cover">
+        <span class="cover-emoji">🏰</span>
       </div>
-
-      <div class="lore-list">
-        <div class="lore-item">
-          <div class="lore-icon">📜</div>
-          <div class="lore-body">
-            <h3 class="lore-title">The Founding of Eldarion</h3>
-            <p class="lore-desc">Over a thousand years ago, the Five Great Houses united under the first King to build the city of Eldarion as a symbol of peace.</p>
-            <div class="lore-meta">
-              <span class="lore-tag">History</span>
-              <span class="lore-tag">Origin</span>
-              <span class="lore-date">Added 1 week ago</span>
-            </div>
-          </div>
-          <div class="lore-actions">
+      <div class="world-card-body">
+        <div class="world-card-top">
+          <span class="world-category-badge location">Location</span>
+          <div class="world-card-actions">
             <button class="world-btn">✏️</button>
             <button class="world-btn">🗑️</button>
           </div>
         </div>
-
-        <div class="lore-item">
-          <div class="lore-icon">📜</div>
-          <div class="lore-body">
-            <h3 class="lore-title">The Oath of the Silver Dawn</h3>
-            <p class="lore-desc">Every knight swears a sacred oath binding their soul to runic magic. Breaking the oath results in losing all magical ability.</p>
-            <div class="lore-meta">
-              <span class="lore-tag">Tradition</span>
-              <span class="lore-tag">Magic</span>
-              <span class="lore-date">Added 5 days ago</span>
-            </div>
-          </div>
-          <div class="lore-actions">
-            <button class="world-btn">✏️</button>
-            <button class="world-btn">🗑️</button>
-          </div>
+        <h3 class="world-card-title">Blackwood Keep</h3>
+        <p class="world-card-desc">The ancestral fortress of House Blackwood, now in ruins after the shadow army's attack. Located in the Northern Province.</p>
+        <div class="world-card-tags">
+          <span class="world-tag">Ruins</span>
+          <span class="world-tag">Fortress</span>
+          <span class="world-tag">North</span>
         </div>
-
-        <div class="lore-item">
-          <div class="lore-icon">📜</div>
-          <div class="lore-body">
-            <h3 class="lore-title">The Shadow Plague of Year 400</h3>
-            <p class="lore-desc">A devastating magical plague caused by uncontrolled Shadow Weaving that killed thousands and led to the banning of dark magic.</p>
-            <div class="lore-meta">
-              <span class="lore-tag">Catastrophe</span>
-              <span class="lore-tag">Dark Magic</span>
-              <span class="lore-date">Added 3 days ago</span>
-            </div>
-          </div>
-          <div class="lore-actions">
-            <button class="world-btn">✏️</button>
-            <button class="world-btn">🗑️</button>
-          </div>
+        <div class="world-card-meta">
+          <span class="meta-item">📖 The Lost Kingdom</span>
+          <span class="meta-item">👤 3 Characters</span>
         </div>
       </div>
     </div>
 
-    <!-- ADD ENTRY -->
-    <div class="add-entry-card">
-      <div class="add-icon">+</div>
-      <span class="add-text">Add New World Entry</span>
-      <span class="add-sub">Add locations, factions, magic systems, creatures, or lore</span>
+    <div class="world-card">
+      <div class="world-card-cover forest-cover">
+        <span class="cover-emoji">🌲</span>
+      </div>
+      <div class="world-card-body">
+        <div class="world-card-top">
+          <span class="world-category-badge location">Location</span>
+          <div class="world-card-actions">
+            <button class="world-btn">✏️</button>
+            <button class="world-btn">🗑️</button>
+          </div>
+        </div>
+        <h3 class="world-card-title">Ashwood Forest</h3>
+        <p class="world-card-desc">A vast ancient forest on the Eastern Border. Home to forgotten creatures and the place where Arin first meets Sera.</p>
+        <div class="world-card-tags">
+          <span class="world-tag">Forest</span>
+          <span class="world-tag">Ancient</span>
+          <span class="world-tag">East</span>
+        </div>
+        <div class="world-card-meta">
+          <span class="meta-item">📖 The Lost Kingdom</span>
+          <span class="meta-item">👤 2 Characters</span>
+        </div>
+      </div>
     </div>
 
-  </main>
+    <div class="world-card">
+      <div class="world-card-cover city-cover">
+        <span class="cover-emoji">🏙️</span>
+      </div>
+      <div class="world-card-body">
+        <div class="world-card-top">
+          <span class="world-category-badge location">Location</span>
+          <div class="world-card-actions">
+            <button class="world-btn">✏️</button>
+            <button class="world-btn">🗑️</button>
+          </div>
+        </div>
+        <h3 class="world-card-title">Eldarion Capital</h3>
+        <p class="world-card-desc">The grand capital city and seat of power. Controlled by Lady Vespera after the coup. Site of the final siege.</p>
+        <div class="world-card-tags">
+          <span class="world-tag">Capital</span>
+          <span class="world-tag">City</span>
+          <span class="world-tag">Central</span>
+        </div>
+        <div class="world-card-meta">
+          <span class="meta-item">📖 The Lost Kingdom</span>
+          <span class="meta-item">👤 5 Characters</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- ========== FACTIONS ========== -->
+<div class="entry-section">
+  <div class="entry-section-header">
+    <div class="entry-section-label">
+      <span class="section-icon">🏛️</span>
+      <h2 class="section-name">Factions</h2>
+      <span class="section-count">5 entries</span>
+    </div>
+    <button class="btn-add-entry">+ Add</button>
+  </div>
+
+  <div class="entries-grid">
+    <div class="world-card">
+      <div class="world-card-cover faction-cover">
+        <span class="cover-emoji">🛡️</span>
+      </div>
+      <div class="world-card-body">
+        <div class="world-card-top">
+          <span class="world-category-badge faction">Faction</span>
+          <div class="world-card-actions">
+            <button class="world-btn">✏️</button>
+            <button class="world-btn">🗑️</button>
+          </div>
+        </div>
+        <h3 class="world-card-title">Order of the Silver Dawn</h3>
+        <p class="world-card-desc">An ancient order of knights sworn to protect the realm. Disbanded after Blackwood Keep fell, but loyalists remain in hiding.</p>
+        <div class="world-card-tags">
+          <span class="world-tag">Knights</span>
+          <span class="world-tag">Honor</span>
+          <span class="world-tag">Disbanded</span>
+        </div>
+        <div class="world-card-meta">
+          <span class="meta-item">📖 The Lost Kingdom</span>
+          <span class="meta-item">👤 4 Members</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="world-card">
+      <div class="world-card-cover shadow-cover">
+        <span class="cover-emoji">🌑</span>
+      </div>
+      <div class="world-card-body">
+        <div class="world-card-top">
+          <span class="world-category-badge faction">Faction</span>
+          <div class="world-card-actions">
+            <button class="world-btn">✏️</button>
+            <button class="world-btn">🗑️</button>
+          </div>
+        </div>
+        <h3 class="world-card-title">Shadow Court</h3>
+        <p class="world-card-desc">Lady Vespera's secret council of spies, assassins, and dark mages. They operate from the shadows to maintain her grip on power.</p>
+        <div class="world-card-tags">
+          <span class="world-tag">Dark</span>
+          <span class="world-tag">Espionage</span>
+          <span class="world-tag">Evil</span>
+        </div>
+        <div class="world-card-meta">
+          <span class="meta-item">📖 The Lost Kingdom</span>
+          <span class="meta-item">👤 6 Members</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MAGIC SYSTEMS ========== -->
+<div class="entry-section">
+  <div class="entry-section-header">
+    <div class="entry-section-label">
+      <span class="section-icon">✨</span>
+      <h2 class="section-name">Magic Systems</h2>
+      <span class="section-count">3 entries</span>
+    </div>
+    <button class="btn-add-entry">+ Add</button>
+  </div>
+
+  <div class="entries-grid">
+    <div class="world-card">
+      <div class="world-card-cover magic-cover">
+        <span class="cover-emoji">🔮</span>
+      </div>
+      <div class="world-card-body">
+        <div class="world-card-top">
+          <span class="world-category-badge magic">Magic</span>
+          <div class="world-card-actions">
+            <button class="world-btn">✏️</button>
+            <button class="world-btn">🗑️</button>
+          </div>
+        </div>
+        <h3 class="world-card-title">Runic Binding</h3>
+        <p class="world-card-desc">An ancient magic system that channels power through carved runes. Requires physical inscriptions and immense focus.</p>
+        <div class="world-card-rules">
+          <div class="rule-item">
+            <span class="rule-icon">📌</span>
+            <span class="rule-text">Must carve runes into stone or metal</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">📌</span>
+            <span class="rule-text">Power drains life force if overused</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">📌</span>
+            <span class="rule-text">Only works within line of sight</span>
+          </div>
+        </div>
+        <div class="world-card-tags">
+          <span class="world-tag">Ancient</span>
+          <span class="world-tag">Runes</span>
+          <span class="world-tag">Physical</span>
+        </div>
+        <div class="world-card-meta">
+          <span class="meta-item">📖 The Lost Kingdom</span>
+          <span class="meta-item">👤 2 Users</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="world-card">
+      <div class="world-card-cover dark-magic-cover">
+        <span class="cover-emoji">🌑</span>
+      </div>
+      <div class="world-card-body">
+        <div class="world-card-top">
+          <span class="world-category-badge magic">Magic</span>
+          <div class="world-card-actions">
+            <button class="world-btn">✏️</button>
+            <button class="world-btn">🗑️</button>
+          </div>
+        </div>
+        <h3 class="world-card-title">Shadow Weaving</h3>
+        <p class="world-card-desc">Forbidden dark magic that manipulates shadows into physical form. Draws power from fear and darkness.</p>
+        <div class="world-card-rules">
+          <div class="rule-item">
+            <span class="rule-icon">📌</span>
+            <span class="rule-text">Requires darkness to function</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">📌</span>
+            <span class="rule-text">Corrupts the user over time</span>
+          </div>
+        </div>
+        <div class="world-card-tags">
+          <span class="world-tag">Forbidden</span>
+          <span class="world-tag">Shadow</span>
+          <span class="world-tag">Dark</span>
+        </div>
+        <div class="world-card-meta">
+          <span class="meta-item">📖 The Lost Kingdom</span>
+          <span class="meta-item">👤 3 Users</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== CREATURES ========== -->
+<div class="entry-section">
+  <div class="entry-section-header">
+    <div class="entry-section-label">
+      <span class="section-icon">🐉</span>
+      <h2 class="section-name">Creatures</h2>
+      <span class="section-count">6 entries</span>
+    </div>
+    <button class="btn-add-entry">+ Add</button>
+  </div>
+
+  <div class="entries-grid">
+    <div class="world-card">
+      <div class="world-card-cover creature-cover">
+        <span class="cover-emoji">🐺</span>
+      </div>
+      <div class="world-card-body">
+        <div class="world-card-top">
+          <span class="world-category-badge creature">Creature</span>
+          <div class="world-card-actions">
+            <button class="world-btn">✏️</button>
+            <button class="world-btn">🗑️</button>
+          </div>
+        </div>
+        <h3 class="world-card-title">Ashwood Direwolf</h3>
+        <p class="world-card-desc">Massive wolves native to the Ashwood Forest. Intelligent, pack hunters. Some can be bonded with by those possessing Runic Binding magic.</p>
+        <div class="creature-stats">
+          <div class="creature-stat">
+            <span class="creature-stat-label">Threat</span>
+            <div class="threat-bar"><div class="threat-fill high"></div></div>
+          </div>
+          <div class="creature-stat">
+            <span class="creature-stat-label">Rarity</span>
+            <span class="creature-stat-value rare">Rare</span>
+          </div>
+        </div>
+        <div class="world-card-tags">
+          <span class="world-tag">Predator</span>
+          <span class="world-tag">Pack</span>
+          <span class="world-tag">Bondable</span>
+        </div>
+        <div class="world-card-meta">
+          <span class="meta-item">📖 The Lost Kingdom</span>
+          <span class="meta-item">📍 Ashwood Forest</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="world-card">
+      <div class="world-card-cover creature-cover-2">
+        <span class="cover-emoji">🦅</span>
+      </div>
+      <div class="world-card-body">
+        <div class="world-card-top">
+          <span class="world-category-badge creature">Creature</span>
+          <div class="world-card-actions">
+            <button class="world-btn">✏️</button>
+            <button class="world-btn">🗑️</button>
+          </div>
+        </div>
+        <h3 class="world-card-title">Stormwing Raptor</h3>
+        <p class="world-card-desc">Giant birds of prey that nest in the Stoneridge Mountains. Used as war mounts by the Silver Dawn in ancient times.</p>
+        <div class="creature-stats">
+          <div class="creature-stat">
+            <span class="creature-stat-label">Threat</span>
+            <div class="threat-bar"><div class="threat-fill medium"></div></div>
+          </div>
+          <div class="creature-stat">
+            <span class="creature-stat-label">Rarity</span>
+            <span class="creature-stat-value legendary">Legendary</span>
+          </div>
+        </div>
+        <div class="world-card-tags">
+          <span class="world-tag">Flying</span>
+          <span class="world-tag">War Mount</span>
+          <span class="world-tag">Mountain</span>
+        </div>
+        <div class="world-card-meta">
+          <span class="meta-item">📖 The Lost Kingdom</span>
+          <span class="meta-item">📍 Stoneridge Mountains</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== LORE ========== -->
+<div class="entry-section">
+  <div class="entry-section-header">
+    <div class="entry-section-label">
+      <span class="section-icon">📜</span>
+      <h2 class="section-name">Lore & History</h2>
+      <span class="section-count">14 entries</span>
+    </div>
+    <button class="btn-add-entry">+ Add</button>
+  </div>
+
+  <div class="lore-list">
+    <div class="lore-item">
+      <div class="lore-icon">📜</div>
+      <div class="lore-body">
+        <h3 class="lore-title">The Founding of Eldarion</h3>
+        <p class="lore-desc">Over a thousand years ago, the Five Great Houses united under the first King to build the city of Eldarion as a symbol of peace.</p>
+        <div class="lore-meta">
+          <span class="lore-tag">History</span>
+          <span class="lore-tag">Origin</span>
+          <span class="lore-date">Added 1 week ago</span>
+        </div>
+      </div>
+      <div class="lore-actions">
+        <button class="world-btn">✏️</button>
+        <button class="world-btn">🗑️</button>
+      </div>
+    </div>
+
+    <div class="lore-item">
+      <div class="lore-icon">📜</div>
+      <div class="lore-body">
+        <h3 class="lore-title">The Oath of the Silver Dawn</h3>
+        <p class="lore-desc">Every knight swears a sacred oath binding their soul to runic magic. Breaking the oath results in losing all magical ability.</p>
+        <div class="lore-meta">
+          <span class="lore-tag">Tradition</span>
+          <span class="lore-tag">Magic</span>
+          <span class="lore-date">Added 5 days ago</span>
+        </div>
+      </div>
+      <div class="lore-actions">
+        <button class="world-btn">✏️</button>
+        <button class="world-btn">🗑️</button>
+      </div>
+    </div>
+
+    <div class="lore-item">
+      <div class="lore-icon">📜</div>
+      <div class="lore-body">
+        <h3 class="lore-title">The Shadow Plague of Year 400</h3>
+        <p class="lore-desc">A devastating magical plague caused by uncontrolled Shadow Weaving that killed thousands and led to the banning of dark magic.</p>
+        <div class="lore-meta">
+          <span class="lore-tag">Catastrophe</span>
+          <span class="lore-tag">Dark Magic</span>
+          <span class="lore-date">Added 3 days ago</span>
+        </div>
+      </div>
+      <div class="lore-actions">
+        <button class="world-btn">✏️</button>
+        <button class="world-btn">🗑️</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD ENTRY -->
+<div class="add-entry-card">
+  <div class="add-icon">+</div>
+  <span class="add-text">Add New World Entry</span>
+  <span class="add-sub">Add locations, factions, magic systems, creatures, or lore</span>
 </div>

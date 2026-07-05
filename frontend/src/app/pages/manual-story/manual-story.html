@@ -1,254 +1,229 @@
-<div class="page-wrapper">
+<div class="writer-layout">
 
-  <app-sidebar></app-sidebar>
-
-  <main class="main-content">
-
-    <header class="topbar">
-      <div class="topbar-left">
-        <h1 class="page-title">Manual Story Writer</h1>
-        <span class="page-subtitle">Write your story chapter by chapter</span>
+  <!-- CHAPTERS PANEL -->
+  <div class="chapters-panel">
+    <div class="chapters-header">
+      <h3 class="chapters-title">Chapters</h3>
+      <button class="btn-add-chapter">+</button>
+    </div>
+    <div class="chapters-list">
+      <div class="chapter-item">
+        <span class="chapter-number">01</span>
+        <div class="chapter-info">
+          <span class="chapter-name">Prologue</span>
+          <span class="chapter-words">1,240 words</span>
+        </div>
+        <span class="chapter-status done"></span>
       </div>
-      <div class="topbar-right">
-        <span class="save-status">
-          <span class="save-dot"></span>
-          Auto-saved
-        </span>
-        <button class="btn-outline">Preview</button>
-        <button class="btn-primary-sm">Publish</button>
+      <div class="chapter-item">
+        <span class="chapter-number">02</span>
+        <div class="chapter-info">
+          <span class="chapter-name">The Fall</span>
+          <span class="chapter-words">2,180 words</span>
+        </div>
+        <span class="chapter-status done"></span>
       </div>
-    </header>
-
-    <div class="writer-layout">
-
-      <!-- CHAPTERS PANEL -->
-      <div class="chapters-panel">
-        <div class="chapters-header">
-          <h3 class="chapters-title">Chapters</h3>
-          <button class="btn-add-chapter">+</button>
+      <div class="chapter-item active">
+        <span class="chapter-number">03</span>
+        <div class="chapter-info">
+          <span class="chapter-name">Into the Wild</span>
+          <span class="chapter-words">860 words</span>
         </div>
-        <div class="chapters-list">
-          <div class="chapter-item">
-            <span class="chapter-number">01</span>
-            <div class="chapter-info">
-              <span class="chapter-name">Prologue</span>
-              <span class="chapter-words">1,240 words</span>
-            </div>
-            <span class="chapter-status done"></span>
-          </div>
-          <div class="chapter-item">
-            <span class="chapter-number">02</span>
-            <div class="chapter-info">
-              <span class="chapter-name">The Fall</span>
-              <span class="chapter-words">2,180 words</span>
-            </div>
-            <span class="chapter-status done"></span>
-          </div>
-          <div class="chapter-item active">
-            <span class="chapter-number">03</span>
-            <div class="chapter-info">
-              <span class="chapter-name">Into the Wild</span>
-              <span class="chapter-words">860 words</span>
-            </div>
-            <span class="chapter-status writing"></span>
-          </div>
-          <div class="chapter-item">
-            <span class="chapter-number">04</span>
-            <div class="chapter-info">
-              <span class="chapter-name">The Healer</span>
-              <span class="chapter-words">0 words</span>
-            </div>
-            <span class="chapter-status empty"></span>
-          </div>
-          <div class="chapter-item">
-            <span class="chapter-number">05</span>
-            <div class="chapter-info">
-              <span class="chapter-name">Shadows Rise</span>
-              <span class="chapter-words">0 words</span>
-            </div>
-            <span class="chapter-status empty"></span>
-          </div>
-          <div class="chapter-item">
-            <span class="chapter-number">06</span>
-            <div class="chapter-info">
-              <span class="chapter-name">Untitled</span>
-              <span class="chapter-words">0 words</span>
-            </div>
-            <span class="chapter-status empty"></span>
-          </div>
-        </div>
-        <div class="chapters-footer">
-          <div class="total-info">
-            <span class="total-label">Total Words</span>
-            <span class="total-value">4,280</span>
-          </div>
-          <div class="total-info">
-            <span class="total-label">Chapters</span>
-            <span class="total-value">6</span>
-          </div>
-        </div>
+        <span class="chapter-status writing"></span>
       </div>
-
-      <!-- EDITOR -->
-      <div class="editor-area">
-        <div class="editor-chapter-header">
-          <div class="editor-chapter-info">
-            <span class="editor-chapter-label">Chapter 3</span>
-            <input type="text" class="editor-chapter-title" value="Into the Wild" placeholder="Chapter title..." />
-          </div>
-          <div class="editor-chapter-meta">
-            <span class="meta-pill">📖 The Lost Kingdom</span>
-            <span class="meta-pill">⏰ Act I</span>
-            <span class="meta-pill">📝 860 words</span>
-          </div>
+      <div class="chapter-item">
+        <span class="chapter-number">04</span>
+        <div class="chapter-info">
+          <span class="chapter-name">The Healer</span>
+          <span class="chapter-words">0 words</span>
         </div>
-
-        <div class="editor-toolbar">
-          <div class="toolbar-group">
-            <button class="toolbar-btn"><b>B</b></button>
-            <button class="toolbar-btn"><i>I</i></button>
-            <button class="toolbar-btn"><u>U</u></button>
-            <button class="toolbar-btn"><s>S</s></button>
-          </div>
-          <div class="toolbar-divider"></div>
-          <div class="toolbar-group">
-            <button class="toolbar-btn">H1</button>
-            <button class="toolbar-btn">H2</button>
-            <button class="toolbar-btn">H3</button>
-          </div>
-          <div class="toolbar-divider"></div>
-          <div class="toolbar-group">
-            <button class="toolbar-btn">•≡</button>
-            <button class="toolbar-btn">1≡</button>
-            <button class="toolbar-btn">❝</button>
-          </div>
-          <div class="toolbar-divider"></div>
-          <div class="toolbar-group">
-            <button class="toolbar-btn">🔗</button>
-            <button class="toolbar-btn">🖼️</button>
-            <button class="toolbar-btn">—</button>
-          </div>
-          <div class="toolbar-divider"></div>
-          <div class="toolbar-group">
-            <button class="toolbar-btn">↩️</button>
-            <button class="toolbar-btn">↪️</button>
-          </div>
-          <div class="toolbar-right">
-            <button class="toolbar-btn">🎯</button>
-            <button class="toolbar-btn">⛶</button>
-          </div>
-        </div>
-
-        <div class="writing-area" contenteditable="true">
-          <h2>Into the Wild</h2>
-          <p>The gates of Blackwood Keep were nothing but ash and memory now. Arin stood at the edge of the Ashwood Forest, the last place he'd ever thought he'd find himself — alone, wounded, and stripped of everything he once held dear.</p>
-          <p>The forest stretched endlessly before him, a dark canopy of ancient oaks and twisted pines. The air was thick with moisture and the scent of decaying leaves.</p>
-          <p>"Keep moving," he muttered to himself, gripping the hilt of his broken sword.</p>
-          <p>He walked for hours. The sun never quite reached the forest floor, and the shadows played tricks on his eyes.</p>
-          <p>Then he heard it — a voice. Soft, melodic, and completely out of place in this forsaken woodland.</p>
-          <p>"You're bleeding," the voice said.</p>
-          <p>Arin spun around, raising his broken blade. A woman stood behind a cluster of ferns, her dark hair braided with wildflowers.</p>
-          <p>"Who are you?" Arin demanded.</p>
-          <p>"Someone who can help," she said simply. "If you let me."</p>
-          <p class="placeholder-text">Continue writing...</p>
-        </div>
-
-        <div class="editor-footer">
-          <div class="editor-stats">
-            <span class="editor-stat">860 words</span>
-            <span class="editor-stat-divider">·</span>
-            <span class="editor-stat">4,512 characters</span>
-            <span class="editor-stat-divider">·</span>
-            <span class="editor-stat">~3 min read</span>
-          </div>
-          <div class="editor-actions">
-            <button class="btn-outline-sm">Save Draft</button>
-            <button class="btn-primary-xs">Save & Continue</button>
-          </div>
-        </div>
+        <span class="chapter-status empty"></span>
       </div>
-
-      <!-- CONTEXT PANEL -->
-      <div class="context-panel">
-        <div class="context-card">
-          <h3 class="context-title">Story Context</h3>
-          <div class="context-info">
-            <span class="context-label">Story</span>
-            <span class="context-value">The Lost Kingdom</span>
-          </div>
-          <div class="context-info">
-            <span class="context-label">Genre</span>
-            <span class="context-value">Fantasy</span>
-          </div>
-          <div class="context-info">
-            <span class="context-label">Tone</span>
-            <span class="context-value">Dark & Epic</span>
-          </div>
-          <div class="context-info">
-            <span class="context-label">POV</span>
-            <span class="context-value">Third Person</span>
-          </div>
+      <div class="chapter-item">
+        <span class="chapter-number">05</span>
+        <div class="chapter-info">
+          <span class="chapter-name">Shadows Rise</span>
+          <span class="chapter-words">0 words</span>
         </div>
-
-        <div class="context-card">
-          <h3 class="context-title">Characters in Chapter</h3>
-          <div class="context-char-list">
-            <div class="context-char">
-              <div class="context-char-avatar">AB</div>
-              <div class="context-char-info">
-                <span class="context-char-name">Arin Blackwood</span>
-                <span class="context-char-role">Main Character</span>
-              </div>
-            </div>
-            <div class="context-char">
-              <div class="context-char-avatar pink">SR</div>
-              <div class="context-char-info">
-                <span class="context-char-name">Sera Ravencroft</span>
-                <span class="context-char-role">Supporting</span>
-              </div>
-            </div>
-          </div>
-          <button class="btn-context">+ Add Character</button>
-        </div>
-
-        <div class="context-card">
-          <h3 class="context-title">Linked Events</h3>
-          <div class="context-event-list">
-            <div class="context-event">
-              <span class="context-event-dot major"></span>
-              <div class="context-event-info">
-                <span class="context-event-name">The Fall of Blackwood Keep</span>
-                <span class="context-event-type">Major Event</span>
-              </div>
-            </div>
-            <div class="context-event">
-              <span class="context-event-dot minor"></span>
-              <div class="context-event-info">
-                <span class="context-event-name">Arin Meets Sera</span>
-                <span class="context-event-type">Minor Event</span>
-              </div>
-            </div>
-          </div>
-          <button class="btn-context">+ Link Event</button>
-        </div>
-
-        <div class="context-card">
-          <h3 class="context-title">Chapter Notes</h3>
-          <textarea class="context-notes" rows="4" placeholder="Add notes for this chapter...">Introduce Sera as mysterious but trustworthy. Show Arin's vulnerability. Foreshadow the healing magic connection.</textarea>
-          <button class="btn-context">Save Notes</button>
-        </div>
-
-        <div class="context-card tip">
-          <span class="tip-icon">💡</span>
-          <div class="tip-content">
-            <span class="tip-title">Writing Tip</span>
-            <p class="tip-desc">Use sensory details to immerse the reader in new environments.</p>
-          </div>
-        </div>
+        <span class="chapter-status empty"></span>
       </div>
+      <div class="chapter-item">
+        <span class="chapter-number">06</span>
+        <div class="chapter-info">
+          <span class="chapter-name">Untitled</span>
+          <span class="chapter-words">0 words</span>
+        </div>
+        <span class="chapter-status empty"></span>
+      </div>
+    </div>
+    <div class="chapters-footer">
+      <div class="total-info">
+        <span class="total-label">Total Words</span>
+        <span class="total-value">4,280</span>
+      </div>
+      <div class="total-info">
+        <span class="total-label">Chapters</span>
+        <span class="total-value">6</span>
+      </div>
+    </div>
+  </div>
 
+  <!-- EDITOR -->
+  <div class="editor-area">
+    <div class="editor-chapter-header">
+      <div class="editor-chapter-info">
+        <span class="editor-chapter-label">Chapter 3</span>
+        <input type="text" class="editor-chapter-title" value="Into the Wild" placeholder="Chapter title..." />
+      </div>
+      <div class="editor-chapter-meta">
+        <span class="meta-pill">📖 The Lost Kingdom</span>
+        <span class="meta-pill">⏰ Act I</span>
+        <span class="meta-pill">📝 860 words</span>
+      </div>
     </div>
 
-  </main>
+    <div class="editor-toolbar">
+      <div class="toolbar-group">
+        <button class="toolbar-btn"><b>B</b></button>
+        <button class="toolbar-btn"><i>I</i></button>
+        <button class="toolbar-btn"><u>U</u></button>
+        <button class="toolbar-btn"><s>S</s></button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button class="toolbar-btn">H1</button>
+        <button class="toolbar-btn">H2</button>
+        <button class="toolbar-btn">H3</button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button class="toolbar-btn">•≡</button>
+        <button class="toolbar-btn">1≡</button>
+        <button class="toolbar-btn">❝</button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button class="toolbar-btn">🔗</button>
+        <button class="toolbar-btn">🖼️</button>
+        <button class="toolbar-btn">—</button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button class="toolbar-btn">↩️</button>
+        <button class="toolbar-btn">↪️</button>
+      </div>
+      <div class="toolbar-right">
+        <button class="toolbar-btn">🎯</button>
+        <button class="toolbar-btn">⛶</button>
+      </div>
+    </div>
+
+    <div class="writing-area" contenteditable="true">
+      <h2>Into the Wild</h2>
+      <p>The gates of Blackwood Keep were nothing but ash and memory now. Arin stood at the edge of the Ashwood Forest, the last place he'd ever thought he'd find himself — alone, wounded, and stripped of everything he once held dear.</p>
+      <p>The forest stretched endlessly before him, a dark canopy of ancient oaks and twisted pines. The air was thick with moisture and the scent of decaying leaves.</p>
+      <p>"Keep moving," he muttered to himself, gripping the hilt of his broken sword.</p>
+      <p>He walked for hours. The sun never quite reached the forest floor, and the shadows played tricks on his eyes.</p>
+      <p>Then he heard it — a voice. Soft, melodic, and completely out of place in this forsaken woodland.</p>
+      <p>"You're bleeding," the voice said.</p>
+      <p>Arin spun around, raising his broken blade. A woman stood behind a cluster of ferns, her dark hair braided with wildflowers.</p>
+      <p>"Who are you?" Arin demanded.</p>
+      <p>"Someone who can help," she said simply. "If you let me."</p>
+      <p class="placeholder-text">Continue writing...</p>
+    </div>
+
+    <div class="editor-footer">
+      <div class="editor-stats">
+        <span class="editor-stat">860 words</span>
+        <span class="editor-stat-divider">·</span>
+        <span class="editor-stat">4,512 characters</span>
+        <span class="editor-stat-divider">·</span>
+        <span class="editor-stat">~3 min read</span>
+      </div>
+      <div class="editor-actions">
+        <button class="btn-outline-sm">Save Draft</button>
+        <button class="btn-primary-xs">Save & Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEXT PANEL -->
+  <div class="context-panel">
+    <div class="context-card">
+      <h3 class="context-title">Story Context</h3>
+      <div class="context-info">
+        <span class="context-label">Story</span>
+        <span class="context-value">The Lost Kingdom</span>
+      </div>
+      <div class="context-info">
+        <span class="context-label">Genre</span>
+        <span class="context-value">Fantasy</span>
+      </div>
+      <div class="context-info">
+        <span class="context-label">Tone</span>
+        <span class="context-value">Dark & Epic</span>
+      </div>
+      <div class="context-info">
+        <span class="context-label">POV</span>
+        <span class="context-value">Third Person</span>
+      </div>
+    </div>
+
+    <div class="context-card">
+      <h3 class="context-title">Characters in Chapter</h3>
+      <div class="context-char-list">
+        <div class="context-char">
+          <div class="context-char-avatar">AB</div>
+          <div class="context-char-info">
+            <span class="context-char-name">Arin Blackwood</span>
+            <span class="context-char-role">Main Character</span>
+          </div>
+        </div>
+        <div class="context-char">
+          <div class="context-char-avatar pink">SR</div>
+          <div class="context-char-info">
+            <span class="context-char-name">Sera Ravencroft</span>
+            <span class="context-char-role">Supporting</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn-context">+ Add Character</button>
+    </div>
+
+    <div class="context-card">
+      <h3 class="context-title">Linked Events</h3>
+      <div class="context-event-list">
+        <div class="context-event">
+          <span class="context-event-dot major"></span>
+          <div class="context-event-info">
+            <span class="context-event-name">The Fall of Blackwood Keep</span>
+            <span class="context-event-type">Major Event</span>
+          </div>
+        </div>
+        <div class="context-event">
+          <span class="context-event-dot minor"></span>
+          <div class="context-event-info">
+            <span class="context-event-name">Arin Meets Sera</span>
+            <span class="context-event-type">Minor Event</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn-context">+ Link Event</button>
+    </div>
+
+    <div class="context-card">
+      <h3 class="context-title">Chapter Notes</h3>
+      <textarea class="context-notes" rows="4" placeholder="Add notes for this chapter...">Introduce Sera as mysterious but trustworthy. Show Arin's vulnerability. Foreshadow the healing magic connection.</textarea>
+      <button class="btn-context">Save Notes</button>
+    </div>
+
+    <div class="context-card tip">
+      <span class="tip-icon">💡</span>
+      <div class="tip-content">
+        <span class="tip-title">Writing Tip</span>
+        <p class="tip-desc">Use sensory details to immerse the reader in new environments.</p>
+      </div>
+    </div>
+  </div>
 
 </div>

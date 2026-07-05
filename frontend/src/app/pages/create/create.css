@@ -1,88 +1,5 @@
 /* ============================================================
-   PAGE WRAPPER
-   ============================================================ */
-.page-wrapper {
-  display: flex;
-  min-height: 100vh;
-  background-color: #f8fafc;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
-}
-
-.main-content {
-  flex: 1;
-  margin-left: 260px;
-  padding: 24px;
-  max-width: calc(100vw - 260px);
-}
-
-/* ============================================================
-   TOPBAR
-   ============================================================ */
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-
-.topbar-left {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.page-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #1e293b;
-  margin: 0;
-}
-
-.page-subtitle {
-  font-size: 13px;
-  color: #64748b;
-}
-
-.topbar-right {
-  display: flex;
-  gap: 10px;
-}
-
-.btn-outline {
-  background: #ffffff;
-  color: #475569;
-  border: 1px solid #e2e8f0;
-  padding: 9px 18px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-outline:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
-}
-
-.btn-primary-sm {
-  background: #6c63ff;
-  color: #ffffff;
-  border: none;
-  padding: 9px 18px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-primary-sm:hover {
-  background: #5b54e0;
-}
-
-/* ============================================================
-   CREATE CONTENT
+   CREATE CONTENT LAYOUT
    ============================================================ */
 .create-content {
   display: grid;
@@ -208,6 +125,7 @@
   outline: none;
   transition: all 0.2s ease;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 .form-input:focus {
@@ -232,6 +150,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   box-sizing: border-box;
+  font-family: inherit;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
@@ -345,6 +264,7 @@
   outline: none;
   transition: all 0.2s ease;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 .form-input-inline:focus {
@@ -390,6 +310,24 @@
   padding-top: 4px;
 }
 
+.btn-outline {
+  background: #ffffff;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-outline:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
 .btn-primary-lg {
   background: #6c63ff;
   color: #ffffff;
@@ -400,6 +338,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-family: inherit;
 }
 
 .btn-primary-lg:hover {
@@ -551,28 +490,6 @@
 }
 
 @media (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
-    padding: 16px;
-    max-width: 100vw;
-  }
-
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .topbar-right {
-    width: 100%;
-  }
-
-  .btn-outline,
-  .btn-primary-sm {
-    flex: 1;
-    text-align: center;
-  }
-
   .form-row {
     grid-template-columns: 1fr;
     gap: 0;
@@ -595,10 +512,6 @@
     justify-content: center;
   }
 
-  .page-title {
-    font-size: 22px;
-  }
-
   .form-section {
     padding: 20px 16px;
   }
@@ -611,7 +524,6 @@
   .btn-primary-lg {
     width: 100%;
     text-align: center;
-    justify-content: center;
   }
 
   .preview-panel {
@@ -620,10 +532,6 @@
 }
 
 @media (max-width: 480px) {
-  .main-content {
-    padding: 12px;
-  }
-
   .form-section {
     padding: 16px 14px;
     border-radius: 10px;

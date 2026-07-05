@@ -1,1 +1,32 @@
-<p>topbar works!</p>
+@if (config) {
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="page-title">{{ config.title }}</h1>
+      <span class="page-subtitle">{{ config.subtitle }}</span>
+    </div>
+
+    <div class="topbar-right">
+
+      @if (config.showSearch?.show) {
+        <app-search-bar [placeholder]="config.showSearch.placeholder"></app-search-bar>
+      }
+
+      @for (icon of config.showIcons; track icon.action) {
+        <button class="btn-icon" (click)="onIconClick(icon.action)">
+          {{ icon.icon }}
+        </button>
+      }
+
+      @for (btn of config.buttons; track btn.action) {
+        <button
+          class="topbar-btn"
+          [class.btn-primary-sm]="btn.style === 'primary'"
+          [class.btn-secondary-sm]="btn.style === 'secondary'"
+          (click)="onButtonClick(btn.action)">
+          {{ btn.label }}
+        </button>
+      }
+
+    </div>
+  </header>
+}

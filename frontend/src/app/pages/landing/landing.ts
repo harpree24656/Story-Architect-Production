@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { Navbar } from '../../shared/components/navbar/navbar';
 import { RouterLink, RouterLinkActive } from '@angular/router'
 
 @Component({
   selector: 'app-landing',
-  imports: [Navbar, RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './landing.html',
   styleUrl: './landing.css',
 })

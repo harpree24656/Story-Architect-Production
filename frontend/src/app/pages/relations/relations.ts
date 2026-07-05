@@ -1,11 +1,29 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Sidebar } from '../../shared/components/sidebar/sidebar';
+import { Component, inject, OnInit } from '@angular/core';
+import { TopbarService } from '../../core/services/topbar';
+import { PAGE_CONFIG } from '../../core/config/page-config';
 
 @Component({
   selector: 'app-relations',
-  imports: [CommonModule, Sidebar],
+  standalone: true,
+  imports: [],
   templateUrl: './relations.html',
   styleUrl: './relations.css',
 })
-export class Relations {}
+export class Relations implements OnInit {
+  
+  private topbarService = inject(TopbarService)
+  isModalOpen = false;
+
+
+  ngOnInit(): void{
+    this.topbarService.setConfig(PAGE_CONFIG.relations)
+    this.topbarService.action$.subscribe((action) => {
+      this.handleAction(action)
+    })
+  }
+  handleAction(action: string): void{
+    if(action === 'new-realtion'){
+      this.isModalOpen = true; 
+    }
+  }
+}
