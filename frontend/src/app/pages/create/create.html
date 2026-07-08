@@ -1,179 +1,221 @@
 <div class="create-content">
 
-  <div class="form-area">
+  <form class="form-area" [formGroup]="storyForm" (ngSubmit)="onSubmit()">
 
     <!-- STEP INDICATOR -->
     <div class="step-indicator">
-      <div class="step active">
-        <div class="step-dot">1</div>
-        <span class="step-label">Basic Info</span>
-      </div>
-      <div class="step-line active"></div>
-      <div class="step">
-        <div class="step-dot">2</div>
-        <span class="step-label">Story Details</span>
-      </div>
-      <div class="step-line"></div>
-      <div class="step">
-        <div class="step-dot">3</div>
-        <span class="step-label">World Setup</span>
-      </div>
+      @for (step of steps; track step.id) {
+        <div class="step" [class.active]="step.id <= currentStep">
+          <div class="step-dot">{{ step.id }}</div>
+          <span class="step-label">{{ step.label }}</span>
+        </div>
+        @if (step.id < steps.length) {
+          <div class="step-line" [class.active]="step.id < currentStep"></div>
+        }
+      }
     </div>
 
-    <!-- BASIC INFO -->
-    <div class="form-section">
-      <h2 class="form-section-title">Basic Information</h2>
-      <p class="form-section-desc">Give your story a name and choose its genre.</p>
+    <!-- STEP 1: BASIC INFO -->
+    @if (currentStep === 1) {
+      <div class="form-section" formGroupName="basicInfo">
+        <h2 class="form-section-title">Basic Information</h2>
+        <p class="form-section-desc">Give your story a name and choose its genre.</p>
 
-      <div class="form-group">
-        <label class="form-label">Story Title</label>
-        <input type="text" class="form-input" placeholder="Enter your story title" />
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Subtitle / Tagline</label>
-        <input type="text" class="form-input" placeholder="A short tagline for your story" />
-      </div>
-
-      <div class="form-row">
         <div class="form-group">
-          <label class="form-label">Genre</label>
-          <select class="form-select">
-            <option value="">Select Genre</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="sci-fi">Sci-Fi</option>
-            <option value="mystery">Mystery</option>
-            <option value="romance">Romance</option>
-            <option value="thriller">Thriller</option>
-            <option value="horror">Horror</option>
-            <option value="historical">Historical Fiction</option>
-            <option value="adventure">Adventure</option>
-          </select>
+          <label class="form-label">Story Title</label>
+          <input type="text" class="form-input" placeholder="Enter your story title" formControlName="title" />
+          @if (storyForm.get('basicInfo.title')?.touched && storyForm.get('basicInfo.title')?.hasError('required')) {
+            <span class="form-error">Story title is required</span>
+          }
+          @if (storyForm.get('basicInfo.title')?.touched && storyForm.get('basicInfo.title')?.hasError('minlength')) {
+            <span class="form-error">Title must be at least 3 characters</span>
+          }
         </div>
+
         <div class="form-group">
-          <label class="form-label">Sub-Genre</label>
-          <select class="form-select">
-            <option value="">Select Sub-Genre</option>
-            <option value="dark-fantasy">Dark Fantasy</option>
-            <option value="space-opera">Space Opera</option>
-            <option value="detective">Detective</option>
-            <option value="dystopian">Dystopian</option>
-            <option value="urban-fantasy">Urban Fantasy</option>
-          </select>
+          <label class="form-label">Subtitle / Tagline</label>
+          <input type="text" class="form-input" placeholder="A short tagline for your story" formControlName="subtitle" />
         </div>
-      </div>
 
-      <div class="form-group">
-        <label class="form-label">Story Description</label>
-        <textarea class="form-textarea" rows="4" placeholder="Describe your story in a few sentences..."></textarea>
-      </div>
-    </div>
-
-    <!-- STORY DETAILS -->
-    <div class="form-section">
-      <h2 class="form-section-title">Story Details</h2>
-      <p class="form-section-desc">Define the structure and tone of your narrative.</p>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Narrative Style</label>
-          <select class="form-select">
-            <option value="">Select Style</option>
-            <option value="first-person">First Person</option>
-            <option value="third-person">Third Person</option>
-            <option value="omniscient">Omniscient</option>
-            <option value="second-person">Second Person</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Story Tone</label>
-          <select class="form-select">
-            <option value="">Select Tone</option>
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
-            <option value="epic">Epic</option>
-            <option value="comedic">Comedic</option>
-            <option value="tragic">Tragic</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Target Audience</label>
-        <div class="tag-group">
-          <span class="tag">Young Adult</span>
-          <span class="tag">Adult</span>
-          <span class="tag selected">All Ages</span>
-          <span class="tag">Children</span>
-          <span class="tag">Mature</span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Themes</label>
-        <div class="tag-group">
-          <span class="tag selected">Redemption</span>
-          <span class="tag">Love</span>
-          <span class="tag selected">Power</span>
-          <span class="tag">Betrayal</span>
-          <span class="tag">Survival</span>
-          <span class="tag">Justice</span>
-          <span class="tag">Identity</span>
-          <span class="tag">Freedom</span>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Estimated Chapters</label>
-          <input type="number" class="form-input" placeholder="e.g. 24" />
-        </div>
-        <div class="form-group">
-          <label class="form-label">Time Period</label>
-          <input type="text" class="form-input" placeholder="e.g. Medieval, Futuristic" />
-        </div>
-      </div>
-    </div>
-
-    <!-- WORLD SETUP -->
-    <div class="form-section">
-      <h2 class="form-section-title">World Setup</h2>
-      <p class="form-section-desc">Describe the world where your story takes place.</p>
-
-      <div class="form-group">
-        <label class="form-label">World Name</label>
-        <input type="text" class="form-input" placeholder="Name your story world" />
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">World Description</label>
-        <textarea class="form-textarea" rows="4" placeholder="Describe the world — geography, culture, rules..."></textarea>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Magic / Technology System</label>
-        <textarea class="form-textarea" rows="3" placeholder="Describe any magic or technology system in this world..."></textarea>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Key Locations</label>
-        <div class="location-list">
-          <div class="location-item">
-            <span class="location-icon">📍</span>
-            <input type="text" class="form-input-inline" placeholder="Add a location" />
-            <button class="btn-add">+</button>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Genre</label>
+            <select class="form-select" formControlName="genre">
+              <option value="">Select Genre</option>
+              @for (genre of genres; track genre.value) {
+                <option [value]="genre.value">{{ genre.label }}</option>
+              }
+            </select>
+            @if (storyForm.get('basicInfo.genre')?.touched && storyForm.get('basicInfo.genre')?.hasError('required')) {
+              <span class="form-error">Genre is required</span>
+            }
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sub-Genre</label>
+            <select class="form-select" formControlName="subGenre">
+              <option value="">Select Sub-Genre</option>
+              @for (subGenre of subGenres; track subGenre.value) {
+                <option [value]="subGenre.value">{{ subGenre.label }}</option>
+              }
+            </select>
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="form-label">Story Description</label>
+          <textarea class="form-textarea" rows="4" placeholder="Describe your story in a few sentences..." formControlName="description"></textarea>
+          @if (storyForm.get('basicInfo.description')?.touched && storyForm.get('basicInfo.description')?.hasError('required')) {
+            <span class="form-error">Description is required</span>
+          }
+          @if (storyForm.get('basicInfo.description')?.touched && storyForm.get('basicInfo.description')?.hasError('minlength')) {
+            <span class="form-error">Description must be at least 20 characters</span>
+          }
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-primary-lg" (click)="nextStep()">Next →</button>
+        </div>
       </div>
-    </div>
+    }
 
-    <!-- FORM ACTIONS -->
-    <div class="form-actions">
-      <button class="btn-outline">Save as Draft</button>
-      <button class="btn-primary-lg">Create Story Project</button>
-    </div>
+    <!-- STEP 2: STORY DETAILS -->
+    @if (currentStep === 2) {
+      <div class="form-section" formGroupName="storyDetails">
+        <h2 class="form-section-title">Story Details</h2>
+        <p class="form-section-desc">Define the structure and tone of your narrative.</p>
 
-  </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Narrative Style</label>
+            <select class="form-select" formControlName="narrativeStyle">
+              <option value="">Select Style</option>
+              @for (style of narrativeStyles; track style.value) {
+                <option [value]="style.value">{{ style.label }}</option>
+              }
+            </select>
+            @if (storyForm.get('storyDetails.narrativeStyle')?.touched && storyForm.get('storyDetails.narrativeStyle')?.hasError('required')) {
+              <span class="form-error">Narrative style is required</span>
+            }
+          </div>
+          <div class="form-group">
+            <label class="form-label">Story Tone</label>
+            <select class="form-select" formControlName="tone">
+              <option value="">Select Tone</option>
+              @for (tone of tones; track tone.value) {
+                <option [value]="tone.value">{{ tone.label }}</option>
+              }
+            </select>
+            @if (storyForm.get('storyDetails.tone')?.touched && storyForm.get('storyDetails.tone')?.hasError('required')) {
+              <span class="form-error">Tone is required</span>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Target Audience</label>
+          <div class="tag-group">
+            @for (audience of audiences; track audience) {
+              <span
+                class="tag"
+                [class.selected]="selectedAudience === audience"
+                (click)="selectAudience(audience)"
+              >
+                {{ audience }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Themes</label>
+          <div class="tag-group">
+            @for (theme of themes; track theme) {
+              <span
+                class="tag"
+                [class.selected]="selectedThemes.includes(theme)"
+                (click)="toggleTheme(theme)"
+              >
+                {{ theme }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Estimated Chapters</label>
+            <input type="number" class="form-input" placeholder="e.g. 24" formControlName="estimatedChapters" />
+            @if (storyForm.get('storyDetails.estimatedChapters')?.touched && storyForm.get('storyDetails.estimatedChapters')?.hasError('min')) {
+              <span class="form-error">Chapters must be at least 1</span>
+            }
+          </div>
+          <div class="form-group">
+            <label class="form-label">Time Period</label>
+            <input type="text" class="form-input" placeholder="e.g. Medieval, Futuristic" formControlName="timePeriod" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-outline" (click)="prevStep()">← Previous</button>
+          <button type="button" class="btn-primary-lg" (click)="nextStep()">Next →</button>
+        </div>
+      </div>
+    }
+
+    <!-- STEP 3: WORLD SETUP -->
+    @if (currentStep === 3) {
+      <div class="form-section" formGroupName="worldSetup">
+        <h2 class="form-section-title">World Setup</h2>
+        <p class="form-section-desc">Describe the world where your story takes place.</p>
+
+        <div class="form-group">
+          <label class="form-label">World Name</label>
+          <input type="text" class="form-input" placeholder="Name your story world" formControlName="worldName" />
+          @if (storyForm.get('worldSetup.worldName')?.touched && storyForm.get('worldSetup.worldName')?.hasError('required')) {
+            <span class="form-error">World name is required</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">World Description</label>
+          <textarea class="form-textarea" rows="4" placeholder="Describe the world — geography, culture, rules..." formControlName="worldDescription"></textarea>
+          @if (storyForm.get('worldSetup.worldDescription')?.touched && storyForm.get('worldSetup.worldDescription')?.hasError('required')) {
+            <span class="form-error">World description is required</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Magic / Technology System</label>
+          <textarea class="form-textarea" rows="3" placeholder="Describe any magic or technology system in this world..." formControlName="magicSystem"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Key Locations</label>
+          <div class="location-list" formArrayName="keyLocations">
+            @for (control of keyLocations.controls; track $index; let i = $index) {
+              <div class="location-item">
+                <span class="location-icon">📍</span>
+                <input type="text" class="form-input-inline" placeholder="Add a location" [formControlName]="i" />
+                @if (keyLocations.length > 1) {
+                  <button type="button" class="btn-remove" (click)="removeLocation(i)">−</button>
+                }
+                @if (i === keyLocations.length - 1) {
+                  <button type="button" class="btn-add" (click)="addLocation()">+</button>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-outline" (click)="prevStep()">← Previous</button>
+          <button type="button" class="btn-outline" (click)="saveDraft()">Save as Draft</button>
+          <button type="submit" class="btn-primary-lg">Create Story Project</button>
+        </div>
+      </div>
+    }
+
+  </form>
 
   <!-- ========== PREVIEW PANEL ========== -->
   <div class="preview-panel">
@@ -184,35 +226,36 @@
       </div>
       <div class="preview-info">
         <span class="preview-label">Title</span>
-        <span class="preview-value">Untitled Story</span>
+        <span class="preview-value">{{ previewData().title }}</span>
       </div>
       <div class="preview-info">
         <span class="preview-label">Genre</span>
-        <span class="preview-value">Not Selected</span>
+        <span class="preview-value">{{ previewData().genre }}</span>
       </div>
       <div class="preview-info">
         <span class="preview-label">Tone</span>
-        <span class="preview-value">Not Selected</span>
+        <span class="preview-value">{{ previewData().tone }}</span>
       </div>
       <div class="preview-info">
         <span class="preview-label">Audience</span>
-        <span class="preview-value">All Ages</span>
+        <span class="preview-value">{{ previewData().audience }}</span>
       </div>
       <div class="preview-info">
         <span class="preview-label">Themes</span>
         <div class="preview-tags">
-          <span class="preview-tag">Redemption</span>
-          <span class="preview-tag">Power</span>
+          @for (theme of previewData().themes; track theme) {
+            <span class="preview-tag">{{ theme }}</span>
+          }
         </div>
       </div>
       <div class="preview-divider"></div>
       <div class="preview-info">
         <span class="preview-label">World</span>
-        <span class="preview-value">Not Set</span>
+        <span class="preview-value">{{ previewData().world }}</span>
       </div>
       <div class="preview-info">
         <span class="preview-label">Chapters</span>
-        <span class="preview-value">—</span>
+        <span class="preview-value">{{ previewData().chapters }}</span>
       </div>
     </div>
 
