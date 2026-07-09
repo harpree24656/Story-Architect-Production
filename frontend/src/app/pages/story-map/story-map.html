@@ -2,196 +2,100 @@
 <div class="map-toolbar">
   <div class="toolbar-left">
     <div class="zoom-controls">
-      <button class="zoom-btn">−</button>
-      <span class="zoom-level">100%</span>
-      <button class="zoom-btn">+</button>
+      <button class="zoom-btn" type="button" (click)="zoomOut()">−</button>
+      <span class="zoom-level">{{ zoomLevel }}%</span>
+      <button class="zoom-btn" type="button" (click)="zoomIn()">+</button>
     </div>
-    <button class="toolbar-action">⛶ Fit</button>
-    <button class="toolbar-action">↺ Reset</button>
+    <button class="toolbar-action" type="button" (click)="fitCanvas()">⛶ Fit</button>
+    <button class="toolbar-action" type="button" (click)="resetCanvas()">↺ Reset</button>
   </div>
+
   <div class="toolbar-center">
     <div class="map-legend">
-      <span class="legend-item"><span class="legend-dot chapter"></span> Chapter</span>
-      <span class="legend-item"><span class="legend-dot event"></span> Event</span>
-      <span class="legend-item"><span class="legend-dot character"></span> Character</span>
-      <span class="legend-item"><span class="legend-dot location"></span> Location</span>
-      <span class="legend-item"><span class="legend-dot twist"></span> Plot Twist</span>
+      @for (type of nodeTypes; track type.value) {
+        <span class="legend-item">
+          <span class="legend-dot" [ngClass]="type.value"></span>
+          {{ type.label }}
+        </span>
+      }
     </div>
   </div>
+
   <div class="toolbar-right-actions">
-    <button class="toolbar-action active">🗺️ Map</button>
-    <button class="toolbar-action">📋 List</button>
-    <button class="toolbar-action">🌳 Tree</button>
+    @for (mode of viewModes; track mode.value) {
+      <button
+        class="toolbar-action"
+        type="button"
+        [class.active]="activeView === mode.value"
+        (click)="setView(mode.value)">
+        {{ mode.label }}
+      </button>
+    }
   </div>
 </div>
 
 <!-- ========== MAP CANVAS ========== -->
 <div class="map-canvas-wrapper">
-  <div class="map-canvas">
+  <div class="map-canvas" [style.transform]="'scale(' + zoomLevel / 100 + ')'">
 
-    <!-- ACT I -->
-    <div class="act-section" style="left: 40px; top: 30px;">
-      <div class="act-label">Act I — The Beginning</div>
-    </div>
-
-    <div class="map-node chapter-node" style="left: 80px; top: 100px;">
-      <div class="node-icon chapter">📖</div>
-      <div class="node-body">
-        <span class="node-title">Prologue</span>
-        <span class="node-sub">1,240 words</span>
+    <!-- ACT LABELS -->
+    @for (act of actOptions; track act.value) {
+      <div class="act-section" [style.left.px]="40" [style.top.px]="act.value === 'act1' ? 30 : act.value === 'act2' ? 320 : 620">
+        <div class="act-label">{{ act.label }}</div>
       </div>
-      <span class="node-status done"></span>
-    </div>
+    }
 
-    <div class="node-connector horizontal" style="left: 250px; top: 124px; width: 60px;"></div>
-
-    <div class="map-node event-node" style="left: 320px; top: 90px;">
-      <div class="node-icon event">⚔️</div>
-      <div class="node-body">
-        <span class="node-title">The Fall of Blackwood Keep</span>
-        <span class="node-sub">Major Event</span>
+    <!-- CONNECTORS -->
+    @for (connector of connectors(); track connector.id) {
+      <div
+        class="node-connector"
+        [ngClass]="connector.direction"
+        [style.left.px]="connector.x"
+        [style.top.px]="connector.y"
+        [style.width.px]="connector.direction === 'horizontal' ? connector.length : null"
+        [style.height.px]="connector.direction === 'vertical' ? connector.length : null">
       </div>
-      <span class="node-status done"></span>
-      <div class="node-chars">
-        <span class="mini-avatar">AB</span>
-        <span class="mini-avatar purple">LV</span>
+    }
+
+    <!-- NODES -->
+    @for (node of nodes(); track node.id) {
+      <div
+        class="map-node"
+        [ngClass]="[node.type + '-node', selectedNode()?.id === node.id ? 'active-node' : '']"
+        [style.left.px]="node.x"
+        [style.top.px]="node.y"
+        (click)="selectNode(node)">
+
+        <div class="node-icon" [ngClass]="node.type">
+          @if (node.type === 'chapter') { 📖 }
+          @if (node.type === 'event') { ⚔️ }
+          @if (node.type === 'character') { 👤 }
+          @if (node.type === 'location') { 📍 }
+          @if (node.type === 'twist') { 🔀 }
+        </div>
+
+        <div class="node-body">
+          <span class="node-title">{{ node.title }}</span>
+          <span class="node-sub">{{ node.subtitle }}</span>
+        </div>
+
+        @if (node.status) {
+          <span class="node-status" [ngClass]="node.status"></span>
+        }
+
+        @if (node.characters.length > 0) {
+          <div class="node-chars">
+            @for (char of node.characters; track char.initials) {
+              <span class="mini-avatar" [ngClass]="char.color">{{ char.initials }}</span>
+            }
+          </div>
+        }
+
       </div>
-    </div>
+    }
 
-    <div class="node-connector horizontal" style="left: 560px; top: 114px; width: 60px;"></div>
-
-    <div class="map-node chapter-node" style="left: 630px; top: 100px;">
-      <div class="node-icon chapter">📖</div>
-      <div class="node-body">
-        <span class="node-title">The Exile</span>
-        <span class="node-sub">2,180 words</span>
-      </div>
-      <span class="node-status done"></span>
-    </div>
-
-    <div class="node-connector vertical" style="left: 700px; top: 170px; height: 50px;"></div>
-
-    <div class="map-node location-node" style="left: 640px; top: 230px;">
-      <div class="node-icon location">📍</div>
-      <div class="node-body">
-        <span class="node-title">Ashwood Forest</span>
-        <span class="node-sub">Eastern Border</span>
-      </div>
-    </div>
-
-    <!-- ACT II -->
-    <div class="act-section" style="left: 40px; top: 320px;">
-      <div class="act-label">Act II — The Journey</div>
-    </div>
-
-    <div class="map-node chapter-node active-node" style="left: 80px; top: 390px;">
-      <div class="node-icon chapter">📖</div>
-      <div class="node-body">
-        <span class="node-title">Into the Wild</span>
-        <span class="node-sub">860 words · Writing</span>
-      </div>
-      <span class="node-status writing"></span>
-    </div>
-
-    <div class="node-connector horizontal" style="left: 250px; top: 414px; width: 60px;"></div>
-
-    <div class="map-node event-node" style="left: 320px; top: 380px;">
-      <div class="node-icon event">🤝</div>
-      <div class="node-body">
-        <span class="node-title">Arin Meets Sera</span>
-        <span class="node-sub">Minor Event</span>
-      </div>
-      <span class="node-status done"></span>
-      <div class="node-chars">
-        <span class="mini-avatar">AB</span>
-        <span class="mini-avatar pink">SR</span>
-      </div>
-    </div>
-
-    <div class="node-connector horizontal" style="left: 530px; top: 404px; width: 60px;"></div>
-
-    <div class="map-node character-node" style="left: 600px; top: 380px;">
-      <div class="node-icon character">👤</div>
-      <div class="node-body">
-        <span class="node-title">Sera Ravencroft</span>
-        <span class="node-sub">Introduced · Supporting</span>
-      </div>
-      <div class="node-chars">
-        <span class="mini-avatar pink">SR</span>
-      </div>
-    </div>
-
-    <div class="node-connector vertical" style="left: 400px; top: 450px; height: 50px;"></div>
-
-    <div class="map-node twist-node" style="left: 320px; top: 510px;">
-      <div class="node-icon twist">🔀</div>
-      <div class="node-body">
-        <span class="node-title">Kael's Betrayal</span>
-        <span class="node-sub">Plot Twist · High Impact</span>
-      </div>
-      <span class="node-status done"></span>
-      <div class="node-chars">
-        <span class="mini-avatar">AB</span>
-        <span class="mini-avatar teal">KR</span>
-        <span class="mini-avatar purple">LV</span>
-      </div>
-    </div>
-
-    <div class="node-connector horizontal" style="left: 540px; top: 534px; width: 60px;"></div>
-
-    <div class="map-node chapter-node" style="left: 610px; top: 520px;">
-      <div class="node-icon chapter">📖</div>
-      <div class="node-body">
-        <span class="node-title">Broken Brotherhood</span>
-        <span class="node-sub">0 words · Planned</span>
-      </div>
-      <span class="node-status empty"></span>
-    </div>
-
-    <!-- ACT III -->
-    <div class="act-section" style="left: 40px; top: 620px;">
-      <div class="act-label">Act III — The Reckoning</div>
-    </div>
-
-    <div class="map-node event-node" style="left: 80px; top: 690px;">
-      <div class="node-icon event">⚔️</div>
-      <div class="node-body">
-        <span class="node-title">Siege of Eldarion</span>
-        <span class="node-sub">Major Event · Climax</span>
-      </div>
-      <span class="node-status empty"></span>
-      <div class="node-chars">
-        <span class="mini-avatar">AB</span>
-        <span class="mini-avatar purple">LV</span>
-        <span class="mini-avatar teal">KR</span>
-        <span class="mini-avatar pink">SR</span>
-        <span class="mini-avatar orange">EN</span>
-      </div>
-    </div>
-
-    <div class="node-connector horizontal" style="left: 310px; top: 714px; width: 60px;"></div>
-
-    <div class="map-node chapter-node" style="left: 380px; top: 700px;">
-      <div class="node-icon chapter">📖</div>
-      <div class="node-body">
-        <span class="node-title">Resolution</span>
-        <span class="node-sub">0 words · Planned</span>
-      </div>
-      <span class="node-status empty"></span>
-    </div>
-
-    <div class="node-connector horizontal" style="left: 540px; top: 724px; width: 60px;"></div>
-
-    <div class="map-node chapter-node" style="left: 610px; top: 700px;">
-      <div class="node-icon chapter">📖</div>
-      <div class="node-body">
-        <span class="node-title">Epilogue</span>
-        <span class="node-sub">0 words · Planned</span>
-      </div>
-      <span class="node-status empty"></span>
-    </div>
-
-    <div class="map-node add-node" style="left: 380px; top: 810px;">
+    <!-- ADD NODE CARD -->
+    <div class="map-node add-node" style="left: 380px; top: 810px;" (click)="openAddModal()">
       <div class="node-icon add">+</div>
       <div class="node-body">
         <span class="node-title">Add New Node</span>
@@ -206,139 +110,278 @@
 <div class="node-detail-section">
   <div class="detail-header">
     <h2 class="detail-title">Node Details</h2>
-    <span class="detail-sub">Select a node to view details</span>
+    <span class="detail-sub">
+      @if (!selectedNode()) { Select a node to view details }
+      @if (selectedNode()) { {{ selectedNode()!.title }} }
+    </span>
   </div>
 
   <div class="detail-grid">
 
-    <div class="detail-card">
-      <div class="detail-card-header">
-        <div class="detail-node-icon chapter">📖</div>
-        <div class="detail-node-info">
-          <h3 class="detail-node-title">Into the Wild</h3>
-          <span class="detail-node-type">Chapter 3</span>
-        </div>
-        <span class="detail-node-status writing">Writing</span>
-      </div>
-      <div class="detail-card-body">
-        <div class="detail-row">
-          <span class="detail-label">Story</span>
-          <span class="detail-value">The Lost Kingdom</span>
-        </div>
-        <div class="detail-row">
-          <span class="detail-label">Act</span>
-          <span class="detail-value">Act II — The Journey</span>
-        </div>
-        <div class="detail-row">
-          <span class="detail-label">Word Count</span>
-          <span class="detail-value">860</span>
-        </div>
-        <div class="detail-row">
-          <span class="detail-label">Status</span>
-          <span class="detail-value">In Progress</span>
-        </div>
-      </div>
-      <div class="detail-card-section">
-        <span class="detail-section-label">Connected Characters</span>
-        <div class="detail-char-list">
-          <div class="detail-char">
-            <div class="detail-char-avatar">AB</div>
-            <span class="detail-char-name">Arin Blackwood</span>
+    <!-- DETAIL CARD -->
+    @if (selectedNode()) {
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-node-icon" [ngClass]="selectedNode()!.type">
+            @if (selectedNode()!.type === 'chapter') { 📖 }
+            @if (selectedNode()!.type === 'event') { ⚔️ }
+            @if (selectedNode()!.type === 'character') { 👤 }
+            @if (selectedNode()!.type === 'location') { 📍 }
+            @if (selectedNode()!.type === 'twist') { 🔀 }
           </div>
-          <div class="detail-char">
-            <div class="detail-char-avatar pink">SR</div>
-            <span class="detail-char-name">Sera Ravencroft</span>
+          <div class="detail-node-info">
+            <h3 class="detail-node-title">{{ selectedNode()!.title }}</h3>
+            <span class="detail-node-type">
+              @if (selectedNode()!.chapter) { Chapter {{ selectedNode()!.chapter }} }
+              @if (!selectedNode()!.chapter) { {{ selectedNode()!.type | titlecase }} }
+            </span>
           </div>
+          <span class="detail-node-status" [ngClass]="selectedNode()!.status">
+            {{ getStatusLabel(selectedNode()!.status) }}
+          </span>
         </div>
-      </div>
-      <div class="detail-card-section">
-        <span class="detail-section-label">Connected Events</span>
-        <div class="detail-event-list">
-          <div class="detail-event">
-            <span class="detail-event-dot major"></span>
-            <span class="detail-event-name">The Fall of Blackwood Keep</span>
-          </div>
-          <div class="detail-event">
-            <span class="detail-event-dot minor"></span>
-            <span class="detail-event-name">Arin Meets Sera</span>
-          </div>
-        </div>
-      </div>
-      <div class="detail-card-section">
-        <span class="detail-section-label">Connected Nodes</span>
-        <div class="detail-connected-nodes">
-          <span class="connected-node-pill">← The Exile</span>
-          <span class="connected-node-pill">→ Broken Brotherhood</span>
-          <span class="connected-node-pill">↓ Kael's Betrayal</span>
-        </div>
-      </div>
-      <div class="detail-card-actions">
-        <button class="btn-outline-sm">Edit Node</button>
-        <button class="btn-primary-xs">Open Chapter</button>
-      </div>
-    </div>
 
+        <div class="detail-card-body">
+          <div class="detail-row">
+            <span class="detail-label">Story</span>
+            <span class="detail-value">{{ selectedNode()!.story }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Act</span>
+            <span class="detail-value">{{ getActLabel(selectedNode()!.act) }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Word Count</span>
+            <span class="detail-value">{{ selectedNode()!.wordCount }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Status</span>
+            <span class="detail-value">{{ getStatusLabel(selectedNode()!.status) }}</span>
+          </div>
+        </div>
+
+        @if (selectedNode()!.characters.length > 0) {
+          <div class="detail-card-section">
+            <span class="detail-section-label">Connected Characters</span>
+            <div class="detail-char-list">
+              @for (char of selectedNode()!.characters; track char.initials) {
+                <div class="detail-char">
+                  <div class="detail-char-avatar" [ngClass]="char.color">{{ char.initials }}</div>
+                  <span class="detail-char-name">{{ char.name }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        @if (selectedNode()!.connectedEvents.length > 0) {
+          <div class="detail-card-section">
+            <span class="detail-section-label">Connected Events</span>
+            <div class="detail-event-list">
+              @for (event of selectedNode()!.connectedEvents; track event.name) {
+                <div class="detail-event">
+                  <span class="detail-event-dot" [ngClass]="event.impact"></span>
+                  <span class="detail-event-name">{{ event.name }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        @if (selectedNode()!.connectedNodes.length > 0) {
+          <div class="detail-card-section">
+            <span class="detail-section-label">Connected Nodes</span>
+            <div class="detail-connected-nodes">
+              @for (pill of selectedNode()!.connectedNodes; track pill) {
+                <span class="connected-node-pill">{{ pill }}</span>
+              }
+            </div>
+          </div>
+        }
+
+        <div class="detail-card-actions">
+          <button class="btn-outline-sm" type="button" (click)="openEditModal(selectedNode()!)">Edit Node</button>
+          <button class="btn-primary-xs" type="button">Open Chapter</button>
+        </div>
+      </div>
+    }
+
+    @if (!selectedNode()) {
+      <div class="detail-card empty-detail">
+        <p>Select a node from the map to view its details.</p>
+      </div>
+    }
+
+    <!-- SUMMARY CARD -->
     <div class="summary-card">
       <h3 class="summary-title">Map Summary</h3>
       <div class="summary-stats">
         <div class="summary-stat">
           <span class="summary-icon">📖</span>
           <div class="summary-info">
-            <span class="summary-num">8</span>
+            <span class="summary-num">{{ getTypeCount('chapter') }}</span>
             <span class="summary-label">Chapters</span>
           </div>
         </div>
         <div class="summary-stat">
           <span class="summary-icon">⚔️</span>
           <div class="summary-info">
-            <span class="summary-num">5</span>
+            <span class="summary-num">{{ getTypeCount('event') }}</span>
             <span class="summary-label">Events</span>
           </div>
         </div>
         <div class="summary-stat">
           <span class="summary-icon">👤</span>
           <div class="summary-info">
-            <span class="summary-num">6</span>
+            <span class="summary-num">{{ getTypeCount('character') }}</span>
             <span class="summary-label">Characters</span>
           </div>
         </div>
         <div class="summary-stat">
           <span class="summary-icon">📍</span>
           <div class="summary-info">
-            <span class="summary-num">4</span>
+            <span class="summary-num">{{ getTypeCount('location') }}</span>
             <span class="summary-label">Locations</span>
           </div>
         </div>
         <div class="summary-stat">
           <span class="summary-icon">🔀</span>
           <div class="summary-info">
-            <span class="summary-num">2</span>
+            <span class="summary-num">{{ getTypeCount('twist') }}</span>
             <span class="summary-label">Twists</span>
           </div>
         </div>
         <div class="summary-stat">
           <span class="summary-icon">🔗</span>
           <div class="summary-info">
-            <span class="summary-num">18</span>
+            <span class="summary-num">{{ getConnectionCount() }}</span>
             <span class="summary-label">Connections</span>
           </div>
         </div>
       </div>
+
       <div class="progress-section">
         <div class="progress-header">
           <span class="progress-label">Story Progress</span>
-          <span class="progress-percent">35%</span>
+          <span class="progress-percent">{{ getProgressPercent() }}%</span>
         </div>
         <div class="progress-bar">
-          <div class="progress-fill" style="width: 35%;"></div>
+          <div class="progress-fill" [style.width]="getProgressPercent() + '%'"></div>
         </div>
         <div class="progress-breakdown">
-          <span class="breakdown-item"><span class="breakdown-dot done"></span> 3 Done</span>
-          <span class="breakdown-item"><span class="breakdown-dot writing"></span> 1 Writing</span>
-          <span class="breakdown-item"><span class="breakdown-dot empty"></span> 4 Planned</span>
+          <span class="breakdown-item">
+            <span class="breakdown-dot done"></span>
+            {{ getStatusCount('done') }} Done
+          </span>
+          <span class="breakdown-item">
+            <span class="breakdown-dot writing"></span>
+            {{ getStatusCount('writing') }} Writing
+          </span>
+          <span class="breakdown-item">
+            <span class="breakdown-dot empty"></span>
+            {{ getStatusCount('empty') }} Planned
+          </span>
         </div>
       </div>
     </div>
 
   </div>
 </div>
+
+<!-- ========== MODAL ========== -->
+@if (isModalOpen) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+
+      <div class="modal-header">
+        <h2 class="modal-title">{{ isEditing ? 'Edit Node' : 'Add New Node' }}</h2>
+        <button class="modal-close" type="button" (click)="closeModal()">✕</button>
+      </div>
+
+      <form [formGroup]="nodeForm" (ngSubmit)="onSubmitNode()">
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label class="form-label">Title</label>
+            <input class="form-input" type="text" formControlName="title" placeholder="Enter node title" />
+            @if (nodeForm.get('title')?.invalid && nodeForm.get('title')?.touched) {
+              <span class="form-error">Title is required</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Subtitle</label>
+            <input class="form-input" type="text" formControlName="subtitle" placeholder="Enter subtitle" />
+            @if (nodeForm.get('subtitle')?.invalid && nodeForm.get('subtitle')?.touched) {
+              <span class="form-error">Subtitle is required</span>
+            }
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Type</label>
+              <select class="form-select" formControlName="type">
+                @for (type of nodeTypes; track type.value) {
+                  <option [value]="type.value">{{ type.label }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-select" formControlName="status">
+                @for (status of statusOptions; track status) {
+                  <option [value]="status">{{ status | titlecase }}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Act</label>
+              <select class="form-select" formControlName="act">
+                @for (act of actOptions; track act.value) {
+                  <option [value]="act.value">{{ act.label }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Story</label>
+              <select class="form-select" formControlName="story">
+                @for (story of storyOptions; track story) {
+                  <option [value]="story">{{ story }}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Chapter</label>
+              <input class="form-input" type="number" formControlName="chapter" placeholder="Chapter number" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Word Count</label>
+              <input class="form-input" type="number" formControlName="wordCount" placeholder="0" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" formControlName="description" placeholder="Enter description" rows="3"></textarea>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-cancel" type="button" (click)="closeModal()">Cancel</button>
+          <button class="btn-submit" type="submit">{{ isEditing ? 'Save Changes' : 'Add Node' }}</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+}

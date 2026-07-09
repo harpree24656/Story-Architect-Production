@@ -3,28 +3,28 @@
   <div class="stat-card">
     <div class="stat-icon blue">🔗</div>
     <div class="stat-info">
-      <span class="stat-number">24</span>
+      <span class="stat-number">{{ relations().length }}</span>
       <span class="stat-label">Total Relations</span>
     </div>
   </div>
   <div class="stat-card">
     <div class="stat-icon pink">❤️</div>
     <div class="stat-info">
-      <span class="stat-number">6</span>
+      <span class="stat-number">{{ getStatsCount('romantic') }}</span>
       <span class="stat-label">Romantic</span>
     </div>
   </div>
   <div class="stat-card">
     <div class="stat-icon green">🤝</div>
     <div class="stat-info">
-      <span class="stat-number">10</span>
+      <span class="stat-number">{{ getStatsCount('ally') }}</span>
       <span class="stat-label">Allies</span>
     </div>
   </div>
   <div class="stat-card">
     <div class="stat-icon red">⚔️</div>
     <div class="stat-info">
-      <span class="stat-number">8</span>
+      <span class="stat-number">{{ getStatsCount('rival') }}</span>
       <span class="stat-label">Rivals / Enemies</span>
     </div>
   </div>
@@ -33,24 +33,28 @@
 <!-- ========== FILTER BAR ========== -->
 <div class="filter-bar">
   <div class="filter-tabs">
-    <button class="filter-tab active">All</button>
-    <button class="filter-tab">Allies</button>
-    <button class="filter-tab">Rivals</button>
-    <button class="filter-tab">Romantic</button>
-    <button class="filter-tab">Family</button>
-    <button class="filter-tab">Mentor</button>
+    @for (type of relationTypes; track type) {
+      <button
+        class="filter-tab"
+        [class.active]="activeFilter === type"
+        (click)="filterByType(type)"
+      >
+        {{ type }}
+      </button>
+    }
   </div>
   <div class="filter-actions">
-    <select class="filter-select">
+    <select class="filter-select" (change)="filterByStory($any($event.target).value)">
       <option value="">Story</option>
-      <option value="lost-kingdom">The Lost Kingdom</option>
-      <option value="beyond-stars">Beyond the Stars</option>
+      @for (story of storyOptions; track story.value) {
+        <option [value]="story.label">{{ story.label }}</option>
+      }
     </select>
-    <select class="filter-select">
+    <select class="filter-select" (change)="sortRelations($any($event.target).value)">
       <option value="">Sort by</option>
-      <option value="recent">Recently Added</option>
-      <option value="type">By Type</option>
-      <option value="strength">By Strength</option>
+      @for (option of sortOptions; track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+      }
     </select>
   </div>
 </div>
@@ -110,238 +114,68 @@
 <section class="relations-list-section">
   <div class="section-header">
     <h2 class="section-title">All Relationships</h2>
-    <span class="section-count">24 relations</span>
+    <span class="section-count">{{ getFilteredRelations().length }} relations</span>
   </div>
 
   <div class="relations-grid">
 
-    <!-- RELATION 1 -->
-    <div class="relation-card">
-      <div class="relation-card-top">
-        <div class="relation-pair">
-          <div class="pair-avatar">AB</div>
-          <div class="pair-connector ally">
-            <span class="connector-line"></span>
-            <span class="connector-label">Best Friends</span>
+    @for (relation of getFilteredRelations(); track relation.id) {
+      <div class="relation-card">
+        <div class="relation-card-top">
+          <div class="relation-pair">
+            <div class="pair-avatar" [ngClass]="relation.character1Color">{{ relation.character1Avtar }}</div>
+            <div class="pair-connector" [ngClass]="relation.type">
+              <span class="connector-line"></span>
+              <span class="connector-label">{{ relation.label }}</span>
+            </div>
+            <div class="pair-avatar" [ngClass]="relation.character2Color">{{ relation.character2Avtar }}</div>
           </div>
-          <div class="pair-avatar teal">KR</div>
-        </div>
-        <div class="relation-card-actions">
-          <button class="rel-btn">✏️</button>
-          <button class="rel-btn">🗑️</button>
-        </div>
-      </div>
-      <div class="relation-names">
-        <span class="rel-name">Arin Blackwood</span>
-        <span class="rel-arrow">↔</span>
-        <span class="rel-name">Kael Ren</span>
-      </div>
-      <div class="relation-type-row">
-        <span class="relation-type-badge ally">Ally</span>
-        <span class="relation-strength">
-          <span class="strength-bar"><span class="strength-fill high"></span></span>
-          <span class="strength-label">Strong</span>
-        </span>
-      </div>
-      <p class="relation-desc">Childhood friends bound by shared battles and memories. Trust runs deep, though recent events have tested their bond.</p>
-      <div class="relation-evolution">
-        <span class="evolution-label">Evolution</span>
-        <div class="evolution-timeline">
-          <span class="evo-point">Strangers</span>
-          <span class="evo-arrow">→</span>
-          <span class="evo-point">Friends</span>
-          <span class="evo-arrow">→</span>
-          <span class="evo-point active">Best Friends</span>
-          <span class="evo-arrow">→</span>
-          <span class="evo-point dim">Rivals?</span>
-        </div>
-      </div>
-      <div class="relation-card-footer">
-        <span class="rel-story">📖 The Lost Kingdom</span>
-        <span class="rel-date">Updated 2d ago</span>
-      </div>
-    </div>
-
-    <!-- RELATION 2 -->
-    <div class="relation-card">
-      <div class="relation-card-top">
-        <div class="relation-pair">
-          <div class="pair-avatar">AB</div>
-          <div class="pair-connector rival">
-            <span class="connector-line"></span>
-            <span class="connector-label">Nemesis</span>
+          <div class="relation-card-actions">
+            <button class="rel-btn" (click)="openEditModal(relation)">✏️</button>
+            <button class="rel-btn" (click)="deleteRelation(relation.id)">🗑️</button>
           </div>
-          <div class="pair-avatar purple">LV</div>
         </div>
-        <div class="relation-card-actions">
-          <button class="rel-btn">✏️</button>
-          <button class="rel-btn">🗑️</button>
+        <div class="relation-names">
+          <span class="rel-name">{{ relation.character1Name }}</span>
+          <span class="rel-arrow">↔</span>
+          <span class="rel-name">{{ relation.character2Name }}</span>
         </div>
-      </div>
-      <div class="relation-names">
-        <span class="rel-name">Arin Blackwood</span>
-        <span class="rel-arrow">↔</span>
-        <span class="rel-name">Lady Vespera</span>
-      </div>
-      <div class="relation-type-row">
-        <span class="relation-type-badge rival">Rival</span>
-        <span class="relation-strength">
-          <span class="strength-bar"><span class="strength-fill high"></span></span>
-          <span class="strength-label">Intense</span>
-        </span>
-      </div>
-      <p class="relation-desc">The queen who destroyed his kingdom. Their rivalry drives the core conflict of the story.</p>
-      <div class="relation-evolution">
-        <span class="evolution-label">Evolution</span>
-        <div class="evolution-timeline">
-          <span class="evo-point">Unknown</span>
-          <span class="evo-arrow">→</span>
-          <span class="evo-point">Enemies</span>
-          <span class="evo-arrow">→</span>
-          <span class="evo-point active">Nemesis</span>
+        <div class="relation-type-row">
+          <span class="relation-type-badge" [ngClass]="relation.type">{{ relation.type | titlecase }}</span>
+          <span class="relation-strength">
+            <span class="strength-bar">
+              <span class="strength-fill" [ngClass]="relation.strength"></span>
+            </span>
+            <span class="strength-label">{{ relation.strengthLabel }}</span>
+          </span>
         </div>
-      </div>
-      <div class="relation-card-footer">
-        <span class="rel-story">📖 The Lost Kingdom</span>
-        <span class="rel-date">Updated 1d ago</span>
-      </div>
-    </div>
-
-    <!-- RELATION 3 -->
-    <div class="relation-card">
-      <div class="relation-card-top">
-        <div class="relation-pair">
-          <div class="pair-avatar">AB</div>
-          <div class="pair-connector romantic">
-            <span class="connector-line"></span>
-            <span class="connector-label">Love Interest</span>
+        <p class="relation-desc">{{ relation.description }}</p>
+        <div class="relation-evolution">
+          <span class="evolution-label">Evolution</span>
+          <div class="evolution-timeline">
+            @for (stage of relation.evolution; track $index; let i = $index; let last = $last) {
+              <span
+                class="evo-point"
+                [class.active]="i === relation.activeStage"
+                [class.dim]="i > relation.activeStage"
+              >
+                {{ stage }}
+              </span>
+              @if (!last) {
+                <span class="evo-arrow">→</span>
+              }
+            }
           </div>
-          <div class="pair-avatar pink">SR</div>
         </div>
-        <div class="relation-card-actions">
-          <button class="rel-btn">✏️</button>
-          <button class="rel-btn">🗑️</button>
-        </div>
-      </div>
-      <div class="relation-names">
-        <span class="rel-name">Arin Blackwood</span>
-        <span class="rel-arrow">↔</span>
-        <span class="rel-name">Sera Ravencroft</span>
-      </div>
-      <div class="relation-type-row">
-        <span class="relation-type-badge romantic">Romantic</span>
-        <span class="relation-strength">
-          <span class="strength-bar"><span class="strength-fill medium"></span></span>
-          <span class="strength-label">Growing</span>
-        </span>
-      </div>
-      <p class="relation-desc">A slow-burn romance born from mutual need. Sera healed his wounds, Arin gave her purpose.</p>
-      <div class="relation-evolution">
-        <span class="evolution-label">Evolution</span>
-        <div class="evolution-timeline">
-          <span class="evo-point">Strangers</span>
-          <span class="evo-arrow">→</span>
-          <span class="evo-point active">Trust Building</span>
-          <span class="evo-arrow">→</span>
-          <span class="evo-point dim">Love?</span>
+        <div class="relation-card-footer">
+          <span class="rel-story">📖 {{ relation.story }}</span>
+          <span class="rel-date">Updated {{ relation.updateAt }}</span>
         </div>
       </div>
-      <div class="relation-card-footer">
-        <span class="rel-story">📖 The Lost Kingdom</span>
-        <span class="rel-date">Updated 3d ago</span>
-      </div>
-    </div>
+    }
 
-    <!-- RELATION 4 -->
-    <div class="relation-card">
-      <div class="relation-card-top">
-        <div class="relation-pair">
-          <div class="pair-avatar">AB</div>
-          <div class="pair-connector mentor">
-            <span class="connector-line"></span>
-            <span class="connector-label">Guide</span>
-          </div>
-          <div class="pair-avatar orange">EN</div>
-        </div>
-        <div class="relation-card-actions">
-          <button class="rel-btn">✏️</button>
-          <button class="rel-btn">🗑️</button>
-        </div>
-      </div>
-      <div class="relation-names">
-        <span class="rel-name">Arin Blackwood</span>
-        <span class="rel-arrow">↔</span>
-        <span class="rel-name">Elder Nyx</span>
-      </div>
-      <div class="relation-type-row">
-        <span class="relation-type-badge mentor-badge">Mentor</span>
-        <span class="relation-strength">
-          <span class="strength-bar"><span class="strength-fill medium"></span></span>
-          <span class="strength-label">Steady</span>
-        </span>
-      </div>
-      <p class="relation-desc">Elder Nyx guides Arin with cryptic wisdom. Their bond is built on respect and shared duty.</p>
-      <div class="relation-evolution">
-        <span class="evolution-label">Evolution</span>
-        <div class="evolution-timeline">
-          <span class="evo-point">Stranger</span>
-          <span class="evo-arrow">→</span>
-          <span class="evo-point active">Mentor & Student</span>
-        </div>
-      </div>
-      <div class="relation-card-footer">
-        <span class="rel-story">📖 The Lost Kingdom</span>
-        <span class="rel-date">Updated 5d ago</span>
-      </div>
-    </div>
-
-    <!-- RELATION 5 -->
-    <div class="relation-card">
-      <div class="relation-card-top">
-        <div class="relation-pair">
-          <div class="pair-avatar">AB</div>
-          <div class="pair-connector family">
-            <span class="connector-line"></span>
-            <span class="connector-label">Cousin</span>
-          </div>
-          <div class="pair-avatar green">DM</div>
-        </div>
-        <div class="relation-card-actions">
-          <button class="rel-btn">✏️</button>
-          <button class="rel-btn">🗑️</button>
-        </div>
-      </div>
-      <div class="relation-names">
-        <span class="rel-name">Arin Blackwood</span>
-        <span class="rel-arrow">↔</span>
-        <span class="rel-name">Duke Maren</span>
-      </div>
-      <div class="relation-type-row">
-        <span class="relation-type-badge family-badge">Family</span>
-        <span class="relation-strength">
-          <span class="strength-bar"><span class="strength-fill low"></span></span>
-          <span class="strength-label">Distant</span>
-        </span>
-      </div>
-      <p class="relation-desc">Estranged cousin who chose political survival over family loyalty when the kingdom fell.</p>
-      <div class="relation-evolution">
-        <span class="evolution-label">Evolution</span>
-        <div class="evolution-timeline">
-          <span class="evo-point">Close Family</span>
-          <span class="evo-arrow">→</span>
-          <span class="evo-point active">Estranged</span>
-          <span class="evo-arrow">→</span>
-          <span class="evo-point dim">Reconcile?</span>
-        </div>
-      </div>
-      <div class="relation-card-footer">
-        <span class="rel-story">📖 The Lost Kingdom</span>
-        <span class="rel-date">Updated 1w ago</span>
-      </div>
-    </div>
-
-    <!-- ADD RELATION -->
-    <div class="relation-card add-card">
+    <!-- ADD RELATION CARD -->
+    <div class="relation-card add-card" (click)="openAddModal()">
       <div class="add-icon">+</div>
       <span class="add-text">Add New Relation</span>
       <span class="add-sub">Map a new relationship between characters</span>
@@ -349,3 +183,102 @@
 
   </div>
 </section>
+
+<!-- ========== RELATION MODAL ========== -->
+@if (isModalOpen) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">{{ isEditing ? 'Edit Relation' : 'Add New Relation' }}</h2>
+        <button class="modal-close" (click)="closeModal()">✕</button>
+      </div>
+
+      <form [formGroup]="relationForm" (ngSubmit)="onSubmitRelation()">
+        <div class="modal-body">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Character 1</label>
+              <input type="text" class="form-input" placeholder="First character name" formControlName="character1Name" />
+              @if (relationForm.get('character1Name')?.touched && relationForm.get('character1Name')?.hasError('required')) {
+                <span class="form-error">Character 1 is required</span>
+              }
+            </div>
+            <div class="form-group">
+              <label class="form-label">Character 2</label>
+              <input type="text" class="form-input" placeholder="Second character name" formControlName="character2Name" />
+              @if (relationForm.get('character2Name')?.touched && relationForm.get('character2Name')?.hasError('required')) {
+                <span class="form-error">Character 2 is required</span>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Relation Type</label>
+              <select class="form-select" formControlName="type">
+                <option value="">Select Type</option>
+                @for (option of typeOptions; track option.value) {
+                  <option [value]="option.value">{{ option.label }}</option>
+                }
+              </select>
+              @if (relationForm.get('type')?.touched && relationForm.get('type')?.hasError('required')) {
+                <span class="form-error">Type is required</span>
+              }
+            </div>
+            <div class="form-group">
+              <label class="form-label">Label</label>
+              <input type="text" class="form-input" placeholder="e.g. Best Friends" formControlName="label" />
+              @if (relationForm.get('label')?.touched && relationForm.get('label')?.hasError('required')) {
+                <span class="form-error">Label is required</span>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Strength</label>
+              <select class="form-select" formControlName="strength">
+                <option value="">Select Strength</option>
+                @for (level of strengthLevels; track level) {
+                  <option [value]="level">{{ level | titlecase }}</option>
+                }
+              </select>
+              @if (relationForm.get('strength')?.touched && relationForm.get('strength')?.hasError('required')) {
+                <span class="form-error">Strength is required</span>
+              }
+            </div>
+            <div class="form-group">
+              <label class="form-label">Strength Label</label>
+              <input type="text" class="form-input" placeholder="e.g. Strong, Growing" formControlName="strengthLabel" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" rows="3" placeholder="Describe the relationship..." formControlName="description"></textarea>
+            @if (relationForm.get('description')?.touched && relationForm.get('description')?.hasError('required')) {
+              <span class="form-error">Description is required</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Story</label>
+            <select class="form-select" formControlName="story">
+              <option value="">Select Story</option>
+              @for (story of storyOptions; track story.value) {
+                <option [value]="story.label">{{ story.label }}</option>
+              }
+            </select>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-outline" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="btn-primary-lg">{{ isEditing ? 'Save Changes' : 'Create Relation' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
