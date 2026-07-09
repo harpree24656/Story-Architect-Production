@@ -1,1 +1,20 @@
-export interface Relation {}
+export interface Relation {
+    id: string,
+    character1Id: string,
+    character1Name: string,
+    character1Avtar: string,
+    character1Color: string,
+    character2Id: string,
+    character2Name: string,
+    character2Avtar: string,
+    character2Color: string,
+    type: string,
+    label: string,
+    strength: string,
+    strengthLabel: string,
+    description: string,
+    evolution: string[],
+    activeStage: number,
+    story: string,
+    updateAt: string
+}
