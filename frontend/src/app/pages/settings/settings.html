@@ -1,19 +1,21 @@
 <div class="settings-body">
 
   <!-- USER PROFILE -->
-  <div class="profile-card">
-    <div class="profile-left">
-      <div class="profile-avatar">JD</div>
-      <div class="profile-info">
-        <h2 class="profile-name">John Doe</h2>
-        <span class="profile-email">john.doe&#64;example.com</span>
-        <span class="profile-plan-badge">Pro Plan</span>
+  @if (userProfile(); as user) {
+    <div class="profile-card">
+      <div class="profile-left">
+        <div class="profile-avatar" [ngClass]="user.avatarColor">{{ user.initials }}</div>
+        <div class="profile-info">
+          <h2 class="profile-name">{{ user.name }}</h2>
+          <span class="profile-email">{{ user.email }}</span>
+          <span class="profile-plan-badge">{{ getPlanLabel(user.plan) }}</span>
+        </div>
+      </div>
+      <div class="profile-right">
+        <span class="member-since">Member since {{ getMemberSinceLabel() }}</span>
       </div>
     </div>
-    <div class="profile-right">
-      <span class="member-since">Member since Jan 2025</span>
-    </div>
-  </div>
+  }
 
   <!-- OPTIONS -->
   <div class="settings-options">
@@ -31,7 +33,7 @@
       </div>
     </div>
 
-    <div class="settings-option logout-option">
+    <div class="settings-option logout-option" (click)="logout()">
       <div class="option-left">
         <div class="option-icon logout-icon">🚪</div>
         <div class="option-info">
@@ -49,77 +51,96 @@
 </div>
 
 <!-- FEEDBACK MODAL -->
-<div class="feedback-overlay" [class.open]="feedbackOpen">
-  <div class="feedback-modal">
+<div class="feedback-overlay" [class.open]="feedbackOpen" (click)="closeFeedback()">
+  <div class="feedback-modal" (click)="$event.stopPropagation()">
 
     <div class="modal-header">
       <div class="modal-header-left">
         <span class="modal-icon">💬</span>
         <h2 class="modal-title">Send Feedback</h2>
       </div>
-      <button class="modal-close" (click)="closeFeedback()">✕</button>
+      <button class="modal-close" type="button" (click)="closeFeedback()">✕</button>
     </div>
 
-    <div class="modal-body">
+    <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()">
+      <div class="modal-body">
 
-      <div class="form-group">
-        <label class="form-label">Feedback Type</label>
-        <div class="feedback-type-options">
-          <label class="type-option active">
-            <input type="radio" name="feedback-type" value="suggestion" checked />
-            <span class="type-icon">💡</span>
-            <span class="type-text">Suggestion</span>
-          </label>
-          <label class="type-option">
-            <input type="radio" name="feedback-type" value="bug" />
-            <span class="type-icon">🐛</span>
-            <span class="type-text">Bug Report</span>
-          </label>
-          <label class="type-option">
-            <input type="radio" name="feedback-type" value="compliment" />
-            <span class="type-icon">❤️</span>
-            <span class="type-text">Compliment</span>
-          </label>
-          <label class="type-option">
-            <input type="radio" name="feedback-type" value="other" />
-            <span class="type-icon">📝</span>
-            <span class="type-text">Other</span>
-          </label>
+        <div class="form-group">
+          <label class="form-label">Feedback Type</label>
+          <div class="feedback-type-options">
+            @for (type of feedbackTypes; track type.value) {
+              <label
+                class="type-option"
+                [class.active]="selectedFeedbackType === type.value"
+                (click)="selectFeedbackType(type.value)">
+                <input
+                  type="radio"
+                  name="feedback-type"
+                  [value]="type.value"
+                  [checked]="selectedFeedbackType === type.value" />
+                <span class="type-icon">{{ type.icon }}</span>
+                <span class="type-text">{{ type.label }}</span>
+              </label>
+            }
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label class="form-label">Subject</label>
-        <input type="text" class="form-input" placeholder="Brief summary of your feedback" />
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Message</label>
-        <textarea class="form-textarea" rows="5" placeholder="Describe your feedback in detail..."></textarea>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">How would you rate your experience?</label>
-        <div class="rating-options">
-          <button class="rating-btn" title="Terrible">😡</button>
-          <button class="rating-btn" title="Bad">😕</button>
-          <button class="rating-btn" title="Okay">😐</button>
-          <button class="rating-btn active" title="Good">😊</button>
-          <button class="rating-btn" title="Amazing">🤩</button>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input
+            type="text"
+            class="form-input"
+            formControlName="subject"
+            placeholder="Brief summary of your feedback" />
+          @if (feedbackForm.get('subject')?.invalid && feedbackForm.get('subject')?.touched) {
+            <span class="form-error">Subject is required</span>
+          }
         </div>
+
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea
+            class="form-textarea"
+            rows="5"
+            formControlName="message"
+            placeholder="Describe your feedback in detail..."></textarea>
+          @if (feedbackForm.get('message')?.invalid && feedbackForm.get('message')?.touched) {
+            <span class="form-error">Message must be at least 10 characters</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">How would you rate your experience?</label>
+          <div class="rating-options">
+            @for (rating of ratingOptions; track rating.value) {
+              <button
+                class="rating-btn"
+                type="button"
+                [class.active]="selectedRating === rating.value"
+                [title]="rating.label"
+                (click)="selectRating(rating.value)">
+                {{ rating.emoji }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email <span class="optional-tag">(optional)</span></label>
+          <input
+            type="email"
+            class="form-input"
+            formControlName="email"
+            placeholder="Your email for follow-up" />
+        </div>
+
       </div>
 
-      <div class="form-group">
-        <label class="form-label">Email <span class="optional-tag">(optional)</span></label>
-        <input type="email" class="form-input" placeholder="Your email for follow-up" value="john.doe@example.com" />
+      <div class="modal-footer">
+        <button class="btn-cancel" type="button" (click)="closeFeedback()">Cancel</button>
+        <button class="btn-submit" type="submit">Submit Feedback</button>
       </div>
-
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn-cancel" (click)="closeFeedback()">Cancel</button>
-      <button class="btn-submit">Submit Feedback</button>
-    </div>
+    </form>
 
   </div>
 </div>
