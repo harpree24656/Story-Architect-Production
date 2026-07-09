@@ -4,226 +4,313 @@
   <div class="chapters-panel">
     <div class="chapters-header">
       <h3 class="chapters-title">Chapters</h3>
-      <button class="btn-add-chapter">+</button>
+      <button class="btn-add-chapter" type="button" (click)="addNewChapter()">+</button>
     </div>
+
     <div class="chapters-list">
-      <div class="chapter-item">
-        <span class="chapter-number">01</span>
-        <div class="chapter-info">
-          <span class="chapter-name">Prologue</span>
-          <span class="chapter-words">1,240 words</span>
+      @for (chapter of chapters(); track chapter.id) {
+        <div
+          class="chapter-item"
+          [class.active]="selectedChapter()?.id === chapter.id"
+          (click)="selectChapter(chapter)">
+          <span class="chapter-number">{{ chapter.number < 10 ? '0' + chapter.number : chapter.number }}</span>
+          <div class="chapter-info">
+            <span class="chapter-name">{{ chapter.title }}</span>
+            <span class="chapter-words">{{ chapter.wordCount }} words</span>
+          </div>
+          <span class="chapter-status" [ngClass]="chapter.status"></span>
         </div>
-        <span class="chapter-status done"></span>
-      </div>
-      <div class="chapter-item">
-        <span class="chapter-number">02</span>
-        <div class="chapter-info">
-          <span class="chapter-name">The Fall</span>
-          <span class="chapter-words">2,180 words</span>
-        </div>
-        <span class="chapter-status done"></span>
-      </div>
-      <div class="chapter-item active">
-        <span class="chapter-number">03</span>
-        <div class="chapter-info">
-          <span class="chapter-name">Into the Wild</span>
-          <span class="chapter-words">860 words</span>
-        </div>
-        <span class="chapter-status writing"></span>
-      </div>
-      <div class="chapter-item">
-        <span class="chapter-number">04</span>
-        <div class="chapter-info">
-          <span class="chapter-name">The Healer</span>
-          <span class="chapter-words">0 words</span>
-        </div>
-        <span class="chapter-status empty"></span>
-      </div>
-      <div class="chapter-item">
-        <span class="chapter-number">05</span>
-        <div class="chapter-info">
-          <span class="chapter-name">Shadows Rise</span>
-          <span class="chapter-words">0 words</span>
-        </div>
-        <span class="chapter-status empty"></span>
-      </div>
-      <div class="chapter-item">
-        <span class="chapter-number">06</span>
-        <div class="chapter-info">
-          <span class="chapter-name">Untitled</span>
-          <span class="chapter-words">0 words</span>
-        </div>
-        <span class="chapter-status empty"></span>
-      </div>
+      }
     </div>
+
     <div class="chapters-footer">
       <div class="total-info">
         <span class="total-label">Total Words</span>
-        <span class="total-value">4,280</span>
+        <span class="total-value">{{ getTotalWords() }}</span>
       </div>
       <div class="total-info">
         <span class="total-label">Chapters</span>
-        <span class="total-value">6</span>
+        <span class="total-value">{{ getChapterCount() }}</span>
       </div>
     </div>
   </div>
 
   <!-- EDITOR -->
   <div class="editor-area">
-    <div class="editor-chapter-header">
-      <div class="editor-chapter-info">
-        <span class="editor-chapter-label">Chapter 3</span>
-        <input type="text" class="editor-chapter-title" value="Into the Wild" placeholder="Chapter title..." />
-      </div>
-      <div class="editor-chapter-meta">
-        <span class="meta-pill">📖 The Lost Kingdom</span>
-        <span class="meta-pill">⏰ Act I</span>
-        <span class="meta-pill">📝 860 words</span>
-      </div>
-    </div>
 
-    <div class="editor-toolbar">
-      <div class="toolbar-group">
-        <button class="toolbar-btn"><b>B</b></button>
-        <button class="toolbar-btn"><i>I</i></button>
-        <button class="toolbar-btn"><u>U</u></button>
-        <button class="toolbar-btn"><s>S</s></button>
+    @if (selectedChapter(); as chapter) {
+      <div class="editor-chapter-header">
+        <div class="editor-chapter-info">
+          <span class="editor-chapter-label">Chapter {{ chapter.number }}</span>
+          <input
+            type="text"
+            class="editor-chapter-title"
+            [ngModel]="chapter.title"
+            (ngModelChange)="onTitleChange($event)"
+            placeholder="Chapter title..." />
+        </div>
+        <div class="editor-chapter-meta">
+          <span class="meta-pill">📖 {{ chapter.story }}</span>
+          <span class="meta-pill">⏰ {{ chapter.act }}</span>
+          <span class="meta-pill">📝 {{ getWordCount(editorContent) }} words</span>
+        </div>
       </div>
-      <div class="toolbar-divider"></div>
-      <div class="toolbar-group">
-        <button class="toolbar-btn">H1</button>
-        <button class="toolbar-btn">H2</button>
-        <button class="toolbar-btn">H3</button>
-      </div>
-      <div class="toolbar-divider"></div>
-      <div class="toolbar-group">
-        <button class="toolbar-btn">•≡</button>
-        <button class="toolbar-btn">1≡</button>
-        <button class="toolbar-btn">❝</button>
-      </div>
-      <div class="toolbar-divider"></div>
-      <div class="toolbar-group">
-        <button class="toolbar-btn">🔗</button>
-        <button class="toolbar-btn">🖼️</button>
-        <button class="toolbar-btn">—</button>
-      </div>
-      <div class="toolbar-divider"></div>
-      <div class="toolbar-group">
-        <button class="toolbar-btn">↩️</button>
-        <button class="toolbar-btn">↪️</button>
-      </div>
-      <div class="toolbar-right">
-        <button class="toolbar-btn">🎯</button>
-        <button class="toolbar-btn">⛶</button>
-      </div>
-    </div>
 
-    <div class="writing-area" contenteditable="true">
-      <h2>Into the Wild</h2>
-      <p>The gates of Blackwood Keep were nothing but ash and memory now. Arin stood at the edge of the Ashwood Forest, the last place he'd ever thought he'd find himself — alone, wounded, and stripped of everything he once held dear.</p>
-      <p>The forest stretched endlessly before him, a dark canopy of ancient oaks and twisted pines. The air was thick with moisture and the scent of decaying leaves.</p>
-      <p>"Keep moving," he muttered to himself, gripping the hilt of his broken sword.</p>
-      <p>He walked for hours. The sun never quite reached the forest floor, and the shadows played tricks on his eyes.</p>
-      <p>Then he heard it — a voice. Soft, melodic, and completely out of place in this forsaken woodland.</p>
-      <p>"You're bleeding," the voice said.</p>
-      <p>Arin spun around, raising his broken blade. A woman stood behind a cluster of ferns, her dark hair braided with wildflowers.</p>
-      <p>"Who are you?" Arin demanded.</p>
-      <p>"Someone who can help," she said simply. "If you let me."</p>
-      <p class="placeholder-text">Continue writing...</p>
-    </div>
+      <div class="editor-toolbar">
+        @for (group of toolbarGroups; track group.type; let last = $last) {
+          <div class="toolbar-group">
+            @for (btn of group.buttons; track btn.label) {
+              <button
+                class="toolbar-btn"
+                type="button"
+                (click)="applyFormat(btn.command, $any(btn).value)">
+                {{ btn.label }}
+              </button>
+            }
+          </div>
+          @if (!last) {
+            <div class="toolbar-divider"></div>
+          }
+        }
+        <div class="toolbar-right">
+          <button class="toolbar-btn" type="button" (click)="toggleFocusMode()">🎯</button>
+          <button class="toolbar-btn" type="button" (click)="toggleFullscreen()">⛶</button>
+        </div>
+      </div>
 
-    <div class="editor-footer">
-      <div class="editor-stats">
-        <span class="editor-stat">860 words</span>
-        <span class="editor-stat-divider">·</span>
-        <span class="editor-stat">4,512 characters</span>
-        <span class="editor-stat-divider">·</span>
-        <span class="editor-stat">~3 min read</span>
+      <textarea
+        class="writing-area"
+        [(ngModel)]="editorContent"
+        placeholder="Start writing your chapter..."></textarea>
+
+      <div class="editor-footer">
+        <div class="editor-stats">
+          <span class="editor-stat">{{ getWordCount(editorContent) }} words</span>
+          <span class="editor-stat-divider">·</span>
+          <span class="editor-stat">{{ getCharCount(editorContent) }} characters</span>
+          <span class="editor-stat-divider">·</span>
+          <span class="editor-stat">~{{ getReadTime(getWordCount(editorContent)) }} min read</span>
+        </div>
+        <div class="editor-actions">
+          <button class="btn-outline-sm" type="button" (click)="saveDraft()">Save Draft</button>
+          <button class="btn-primary-xs" type="button" (click)="saveAndContinue()">Save & Continue</button>
+        </div>
       </div>
-      <div class="editor-actions">
-        <button class="btn-outline-sm">Save Draft</button>
-        <button class="btn-primary-xs">Save & Continue</button>
+    } @else {
+      <div class="editor-empty">
+        <p>Select a chapter from the left panel to start writing.</p>
       </div>
-    </div>
+    }
+
   </div>
 
   <!-- CONTEXT PANEL -->
   <div class="context-panel">
-    <div class="context-card">
-      <h3 class="context-title">Story Context</h3>
-      <div class="context-info">
-        <span class="context-label">Story</span>
-        <span class="context-value">The Lost Kingdom</span>
-      </div>
-      <div class="context-info">
-        <span class="context-label">Genre</span>
-        <span class="context-value">Fantasy</span>
-      </div>
-      <div class="context-info">
-        <span class="context-label">Tone</span>
-        <span class="context-value">Dark & Epic</span>
-      </div>
-      <div class="context-info">
-        <span class="context-label">POV</span>
-        <span class="context-value">Third Person</span>
-      </div>
-    </div>
 
-    <div class="context-card">
-      <h3 class="context-title">Characters in Chapter</h3>
-      <div class="context-char-list">
-        <div class="context-char">
-          <div class="context-char-avatar">AB</div>
-          <div class="context-char-info">
-            <span class="context-char-name">Arin Blackwood</span>
-            <span class="context-char-role">Main Character</span>
-          </div>
+    @if (selectedChapter(); as chapter) {
+      <div class="context-card">
+        <h3 class="context-title">Story Context</h3>
+        <div class="context-info">
+          <span class="context-label">Story</span>
+          <span class="context-value">{{ chapter.story }}</span>
         </div>
-        <div class="context-char">
-          <div class="context-char-avatar pink">SR</div>
-          <div class="context-char-info">
-            <span class="context-char-name">Sera Ravencroft</span>
-            <span class="context-char-role">Supporting</span>
-          </div>
+        <div class="context-info">
+          <span class="context-label">Genre</span>
+          <span class="context-value">{{ chapter.genre }}</span>
+        </div>
+        <div class="context-info">
+          <span class="context-label">Tone</span>
+          <span class="context-value">{{ chapter.tone }}</span>
+        </div>
+        <div class="context-info">
+          <span class="context-label">POV</span>
+          <span class="context-value">{{ chapter.pov }}</span>
         </div>
       </div>
-      <button class="btn-context">+ Add Character</button>
-    </div>
 
-    <div class="context-card">
-      <h3 class="context-title">Linked Events</h3>
-      <div class="context-event-list">
-        <div class="context-event">
-          <span class="context-event-dot major"></span>
-          <div class="context-event-info">
-            <span class="context-event-name">The Fall of Blackwood Keep</span>
-            <span class="context-event-type">Major Event</span>
-          </div>
+      <div class="context-card">
+        <h3 class="context-title">Characters in Chapter</h3>
+        <div class="context-char-list">
+          @for (char of chapter.characters; track char.name) {
+            <div class="context-char">
+              <div class="context-char-avatar" [ngClass]="char.color">{{ char.initials }}</div>
+              <div class="context-char-info">
+                <span class="context-char-name">{{ char.name }}</span>
+                <span class="context-char-role">{{ char.role }}</span>
+              </div>
+              <button class="context-remove" type="button" (click)="removeCharacter(char.name)">✕</button>
+            </div>
+          }
+          @if (chapter.characters.length === 0) {
+            <span class="context-empty">No characters linked</span>
+          }
         </div>
-        <div class="context-event">
-          <span class="context-event-dot minor"></span>
-          <div class="context-event-info">
-            <span class="context-event-name">Arin Meets Sera</span>
-            <span class="context-event-type">Minor Event</span>
-          </div>
+        <button class="btn-context" type="button" (click)="openAddCharacterModal()">+ Add Character</button>
+      </div>
+
+      <div class="context-card">
+        <h3 class="context-title">Linked Events</h3>
+        <div class="context-event-list">
+          @for (event of chapter.linkedEvents; track event.name) {
+            <div class="context-event">
+              <span class="context-event-dot" [ngClass]="event.impact"></span>
+              <div class="context-event-info">
+                <span class="context-event-name">{{ event.name }}</span>
+                <span class="context-event-type">
+                  @if (event.impact === 'major') { Major Event }
+                  @if (event.impact === 'minor') { Minor Event }
+                </span>
+              </div>
+              <button class="context-remove" type="button" (click)="removeEvent(event.name)">✕</button>
+            </div>
+          }
+          @if (chapter.linkedEvents.length === 0) {
+            <span class="context-empty">No events linked</span>
+          }
+        </div>
+        <button class="btn-context" type="button" (click)="openAddEventModal()">+ Link Event</button>
+      </div>
+
+      <div class="context-card">
+        <h3 class="context-title">Chapter Notes</h3>
+        <textarea
+          class="context-notes"
+          rows="4"
+          [(ngModel)]="chapterNotes"
+          placeholder="Add notes for this chapter..."></textarea>
+        <button class="btn-context" type="button" (click)="saveNotes()">Save Notes</button>
+      </div>
+
+      <div class="context-card tip">
+        <span class="tip-icon">💡</span>
+        <div class="tip-content">
+          <span class="tip-title">Writing Tip</span>
+          <p class="tip-desc">Use sensory details to immerse the reader in new environments.</p>
         </div>
       </div>
-      <button class="btn-context">+ Link Event</button>
-    </div>
-
-    <div class="context-card">
-      <h3 class="context-title">Chapter Notes</h3>
-      <textarea class="context-notes" rows="4" placeholder="Add notes for this chapter...">Introduce Sera as mysterious but trustworthy. Show Arin's vulnerability. Foreshadow the healing magic connection.</textarea>
-      <button class="btn-context">Save Notes</button>
-    </div>
-
-    <div class="context-card tip">
-      <span class="tip-icon">💡</span>
-      <div class="tip-content">
-        <span class="tip-title">Writing Tip</span>
-        <p class="tip-desc">Use sensory details to immerse the reader in new environments.</p>
+    } @else {
+      <div class="context-card">
+        <p class="context-empty">Select a chapter to see its context.</p>
       </div>
-    </div>
+    }
+
   </div>
 
 </div>
+
+<!-- ========== PREVIEW MODAL ========== -->
+@if (isPreviewOpen) {
+  <div class="modal-overlay" (click)="closePreview()">
+    <div class="modal-content preview-modal" (click)="$event.stopPropagation()">
+
+      <div class="modal-header">
+        <h2 class="modal-title">Preview: {{ selectedChapter()?.title }}</h2>
+        <button class="modal-close" type="button" (click)="closePreview()">✕</button>
+      </div>
+
+      <div class="modal-body preview-body">
+        <div class="preview-meta">
+          <span class="meta-pill">📖 {{ selectedChapter()?.story }}</span>
+          <span class="meta-pill">⏰ {{ selectedChapter()?.act }}</span>
+          <span class="meta-pill">📝 {{ getWordCount(editorContent) }} words</span>
+        </div>
+
+        <h1 class="preview-title">{{ selectedChapter()?.title }}</h1>
+        <div class="preview-content">{{ editorContent }}</div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-cancel" type="button" (click)="closePreview()">Close</button>
+      </div>
+
+    </div>
+  </div>
+}
+
+<!-- ========== ADD CHARACTER MODAL ========== -->
+@if (isCharacterModalOpen) {
+  <div class="modal-overlay" (click)="closeCharacterModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+
+      <div class="modal-header">
+        <h2 class="modal-title">Add Character</h2>
+        <button class="modal-close" type="button" (click)="closeCharacterModal()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Character Name</label>
+          <input
+            class="form-input"
+            type="text"
+            [(ngModel)]="newCharacterName"
+            placeholder="e.g. Arin Blackwood" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Role</label>
+          <select class="form-select" [(ngModel)]="newCharacterRole">
+            @for (role of characterRoles; track role) {
+              <option [value]="role">{{ role }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Avatar Color</label>
+          <select class="form-select" [(ngModel)]="newCharacterColor">
+            <option value="">Default (Purple)</option>
+            <option value="pink">Pink</option>
+            <option value="purple">Purple</option>
+            <option value="teal">Teal</option>
+            <option value="orange">Orange</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-cancel" type="button" (click)="closeCharacterModal()">Cancel</button>
+        <button class="btn-submit" type="button" (click)="addCharacterToChapter()">Add Character</button>
+      </div>
+
+    </div>
+  </div>
+}
+
+<!-- ========== LINK EVENT MODAL ========== -->
+@if (isEventModalOpen) {
+  <div class="modal-overlay" (click)="closeEventModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+
+      <div class="modal-header">
+        <h2 class="modal-title">Link Event</h2>
+        <button class="modal-close" type="button" (click)="closeEventModal()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Event Name</label>
+          <input
+            class="form-input"
+            type="text"
+            [(ngModel)]="newEventName"
+            placeholder="e.g. The Fall of Blackwood Keep" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Impact</label>
+          <select class="form-select" [(ngModel)]="newEventImpact">
+            <option value="major">Major Event</option>
+            <option value="minor">Minor Event</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-cancel" type="button" (click)="closeEventModal()">Cancel</button>
+        <button class="btn-submit" type="button" (click)="addEventToChapter()">Link Event</button>
+      </div>
+
+    </div>
+  </div>
+}

@@ -3,28 +3,28 @@
   <div class="stat-card">
     <div class="stat-icon blue">📅</div>
     <div class="stat-info">
-      <span class="stat-number">42</span>
+      <span class="stat-number">{{ events().length }}</span>
       <span class="stat-label">Total Events</span>
     </div>
   </div>
   <div class="stat-card">
     <div class="stat-icon green">⚔️</div>
     <div class="stat-info">
-      <span class="stat-number">8</span>
+      <span class="stat-number">{{ events().filter(e => e.type === 'major').length }}</span>
       <span class="stat-label">Major Events</span>
     </div>
   </div>
   <div class="stat-card">
     <div class="stat-icon orange">🔀</div>
     <div class="stat-info">
-      <span class="stat-number">15</span>
+      <span class="stat-number">{{ events().filter(e => e.type === 'twist').length }}</span>
       <span class="stat-label">Plot Twists</span>
     </div>
   </div>
   <div class="stat-card">
     <div class="stat-icon purple">📖</div>
     <div class="stat-info">
-      <span class="stat-number">3</span>
+      <span class="stat-number">{{ acts.length }}</span>
       <span class="stat-label">Story Arcs</span>
     </div>
   </div>
@@ -33,24 +33,28 @@
 <!-- ========== FILTER BAR ========== -->
 <div class="filter-bar">
   <div class="filter-tabs">
-    <button class="filter-tab active">All Events</button>
-    <button class="filter-tab">Major</button>
-    <button class="filter-tab">Minor</button>
-    <button class="filter-tab">Plot Twist</button>
-    <button class="filter-tab">Flashback</button>
+    @for (type of eventTypes; track type) {
+      <button
+        class="filter-tab"
+        [class.active]="activeFilter === type"
+        (click)="filterByType(type)"
+      >
+        {{ type }}
+      </button>
+    }
   </div>
   <div class="filter-actions">
-    <select class="filter-select">
+    <select class="filter-select" (change)="filterByStory($any($event.target).value)">
       <option value="">Story</option>
-      <option value="lost-kingdom">The Lost Kingdom</option>
-      <option value="beyond-stars">Beyond the Stars</option>
-      <option value="mystic">Mystic Academy</option>
+      @for (story of storyOptions; track story.value) {
+        <option [value]="story.label">{{ story.label }}</option>
+      }
     </select>
-    <select class="filter-select">
+    <select class="filter-select" (change)="sortEvents($any($event.target).value)">
       <option value="">Sort by</option>
-      <option value="timeline">Timeline Order</option>
-      <option value="recent">Recently Added</option>
-      <option value="type">By Type</option>
+      @for (option of sortOptions; track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+      }
     </select>
   </div>
 </div>
@@ -61,240 +65,70 @@
 
   <div class="timeline">
 
-    <!-- ARC LABEL -->
-    <div class="arc-label">
-      <span class="arc-badge">Act I — The Beginning</span>
-    </div>
+    @for (act of acts; track act) {
 
-    <!-- EVENT 1 -->
-    <div class="timeline-item">
-      <div class="timeline-marker major"></div>
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <div class="event-type-badge major">Major Event</div>
-          <div class="event-actions">
-            <button class="event-btn">✏️</button>
-            <button class="event-btn">🗑️</button>
-          </div>
+      @if (getEventsByAct(act).length > 0) {
+        <!-- ARC LABEL -->
+        <div class="arc-label">
+          <span class="arc-badge">{{ act }}</span>
         </div>
-        <h3 class="event-title">The Fall of Blackwood Keep</h3>
-        <p class="event-desc">The ancestral fortress of House Blackwood is destroyed in a surprise attack led by Lady Vespera's shadow army. Arin barely escapes with his life.</p>
-        <div class="event-details">
-          <div class="event-detail">
-            <span class="detail-icon">📍</span>
-            <span class="detail-text">Blackwood Keep, Northern Province</span>
-          </div>
-          <div class="event-detail">
-            <span class="detail-icon">⏰</span>
-            <span class="detail-text">Chapter 1 — Day 1</span>
-          </div>
-        </div>
-        <div class="event-characters">
-          <span class="event-char-label">Characters Involved</span>
-          <div class="event-char-list">
-            <div class="event-char" title="Arin Blackwood">AB</div>
-            <div class="event-char purple" title="Lady Vespera">LV</div>
-            <div class="event-char teal" title="Kael Ren">KR</div>
-          </div>
-        </div>
-        <div class="event-tags">
-          <span class="event-tag">Battle</span>
-          <span class="event-tag">Destruction</span>
-          <span class="event-tag">Exile</span>
-        </div>
-        <div class="event-footer">
-          <span class="event-impact high">High Impact</span>
-          <span class="event-date">Created 3 days ago</span>
-        </div>
-      </div>
-    </div>
 
-    <!-- EVENT 2 -->
-    <div class="timeline-item">
-      <div class="timeline-marker minor"></div>
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <div class="event-type-badge minor">Minor Event</div>
-          <div class="event-actions">
-            <button class="event-btn">✏️</button>
-            <button class="event-btn">🗑️</button>
+        @for (event of getEventsByAct(act); track event.id) {
+          <div class="timeline-item">
+            <div class="timeline-marker" [ngClass]="event.type"></div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <div class="event-type-badge" [ngClass]="event.type">{{ event.type | titlecase }} Event</div>
+                <div class="event-actions">
+                  <button class="event-btn" (click)="openEditModal(event)">✏️</button>
+                  <button class="event-btn" (click)="deleteEvent(event.id)">🗑️</button>
+                </div>
+              </div>
+              <h3 class="event-title">{{ event.title }}</h3>
+              <p class="event-desc">{{ event.description }}</p>
+              <div class="event-details">
+                <div class="event-detail">
+                  <span class="detail-icon">📍</span>
+                  <span class="detail-text">{{ event.location }}</span>
+                </div>
+                <div class="event-detail">
+                  <span class="detail-icon">⏰</span>
+                  <span class="detail-text">{{ event.chapter }}</span>
+                </div>
+              </div>
+              <div class="event-characters">
+                <span class="event-char-label">Characters Involved</span>
+                <div class="event-char-list">
+                  @for (char of event.characters; track $index; let i = $index) {
+                    <div
+                      class="event-char"
+                      [ngClass]="event.characterColor[i]"
+                      [title]="event.characterNames[i]"
+                    >
+                      {{ char }}
+                    </div>
+                  }
+                </div>
+              </div>
+              <div class="event-tags">
+                @for (tag of event.tags; track tag) {
+                  <span class="event-tag">{{ tag }}</span>
+                }
+              </div>
+              <div class="event-footer">
+                <span class="event-impact" [ngClass]="event.impact">{{ event.impact | titlecase }} Impact</span>
+                <span class="event-date">Created {{ event.createAt }}</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <h3 class="event-title">Arin Meets Sera in the Wildlands</h3>
-        <p class="event-desc">While wandering through the Ashwood Forest, Arin encounters Sera Ravencroft, a rogue healer who saves him from poisoned wounds.</p>
-        <div class="event-details">
-          <div class="event-detail">
-            <span class="detail-icon">📍</span>
-            <span class="detail-text">Ashwood Forest, Eastern Border</span>
-          </div>
-          <div class="event-detail">
-            <span class="detail-icon">⏰</span>
-            <span class="detail-text">Chapter 3 — Day 12</span>
-          </div>
-        </div>
-        <div class="event-characters">
-          <span class="event-char-label">Characters Involved</span>
-          <div class="event-char-list">
-            <div class="event-char" title="Arin Blackwood">AB</div>
-            <div class="event-char pink" title="Sera Ravencroft">SR</div>
-          </div>
-        </div>
-        <div class="event-tags">
-          <span class="event-tag">Encounter</span>
-          <span class="event-tag">Alliance</span>
-        </div>
-        <div class="event-footer">
-          <span class="event-impact medium">Medium Impact</span>
-          <span class="event-date">Created 2 days ago</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ARC LABEL -->
-    <div class="arc-label">
-      <span class="arc-badge">Act II — The Journey</span>
-    </div>
-
-    <!-- EVENT 3 -->
-    <div class="timeline-item">
-      <div class="timeline-marker twist"></div>
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <div class="event-type-badge twist">Plot Twist</div>
-          <div class="event-actions">
-            <button class="event-btn">✏️</button>
-            <button class="event-btn">🗑️</button>
-          </div>
-        </div>
-        <h3 class="event-title">Kael's Betrayal Revealed</h3>
-        <p class="event-desc">Arin discovers that Kael has been secretly feeding information to Vespera in exchange for his village's safety. The brotherhood is shattered.</p>
-        <div class="event-details">
-          <div class="event-detail">
-            <span class="detail-icon">📍</span>
-            <span class="detail-text">Rebel Camp, Stoneridge Valley</span>
-          </div>
-          <div class="event-detail">
-            <span class="detail-icon">⏰</span>
-            <span class="detail-text">Chapter 8 — Day 45</span>
-          </div>
-        </div>
-        <div class="event-characters">
-          <span class="event-char-label">Characters Involved</span>
-          <div class="event-char-list">
-            <div class="event-char" title="Arin Blackwood">AB</div>
-            <div class="event-char teal" title="Kael Ren">KR</div>
-            <div class="event-char purple" title="Lady Vespera">LV</div>
-          </div>
-        </div>
-        <div class="event-tags">
-          <span class="event-tag">Betrayal</span>
-          <span class="event-tag">Conflict</span>
-          <span class="event-tag">Revelation</span>
-        </div>
-        <div class="event-footer">
-          <span class="event-impact high">High Impact</span>
-          <span class="event-date">Created 1 day ago</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- EVENT 4 -->
-    <div class="timeline-item">
-      <div class="timeline-marker flashback"></div>
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <div class="event-type-badge flashback">Flashback</div>
-          <div class="event-actions">
-            <button class="event-btn">✏️</button>
-            <button class="event-btn">🗑️</button>
-          </div>
-        </div>
-        <h3 class="event-title">The Oath of the Silver Dawn</h3>
-        <p class="event-desc">A flashback to Arin's knighting ceremony where he swore an oath to protect the realm. This oath now drives his quest for redemption.</p>
-        <div class="event-details">
-          <div class="event-detail">
-            <span class="detail-icon">📍</span>
-            <span class="detail-text">Silver Dawn Citadel</span>
-          </div>
-          <div class="event-detail">
-            <span class="detail-icon">⏰</span>
-            <span class="detail-text">Chapter 9 — 10 Years Ago</span>
-          </div>
-        </div>
-        <div class="event-characters">
-          <span class="event-char-label">Characters Involved</span>
-          <div class="event-char-list">
-            <div class="event-char" title="Arin Blackwood">AB</div>
-            <div class="event-char orange" title="Elder Nyx">EN</div>
-          </div>
-        </div>
-        <div class="event-tags">
-          <span class="event-tag">Oath</span>
-          <span class="event-tag">Memory</span>
-          <span class="event-tag">Motivation</span>
-        </div>
-        <div class="event-footer">
-          <span class="event-impact low">Low Impact</span>
-          <span class="event-date">Created 5 hours ago</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ARC LABEL -->
-    <div class="arc-label">
-      <span class="arc-badge">Act III — The Reckoning</span>
-    </div>
-
-    <!-- EVENT 5 -->
-    <div class="timeline-item">
-      <div class="timeline-marker major"></div>
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <div class="event-type-badge major">Major Event</div>
-          <div class="event-actions">
-            <button class="event-btn">✏️</button>
-            <button class="event-btn">🗑️</button>
-          </div>
-        </div>
-        <h3 class="event-title">The Final Siege of Eldarion</h3>
-        <p class="event-desc">Arin leads a united army against Lady Vespera's forces in the climactic battle at the gates of Eldarion. The fate of the realm hangs in the balance.</p>
-        <div class="event-details">
-          <div class="event-detail">
-            <span class="detail-icon">📍</span>
-            <span class="detail-text">Gates of Eldarion, Capital City</span>
-          </div>
-          <div class="event-detail">
-            <span class="detail-icon">⏰</span>
-            <span class="detail-text">Chapter 20 — Day 120</span>
-          </div>
-        </div>
-        <div class="event-characters">
-          <span class="event-char-label">Characters Involved</span>
-          <div class="event-char-list">
-            <div class="event-char" title="Arin Blackwood">AB</div>
-            <div class="event-char purple" title="Lady Vespera">LV</div>
-            <div class="event-char teal" title="Kael Ren">KR</div>
-            <div class="event-char pink" title="Sera Ravencroft">SR</div>
-            <div class="event-char orange" title="Elder Nyx">EN</div>
-          </div>
-        </div>
-        <div class="event-tags">
-          <span class="event-tag">Battle</span>
-          <span class="event-tag">Climax</span>
-          <span class="event-tag">War</span>
-          <span class="event-tag">Resolution</span>
-        </div>
-        <div class="event-footer">
-          <span class="event-impact high">High Impact</span>
-          <span class="event-date">Created just now</span>
-        </div>
-      </div>
-    </div>
+        }
+      }
+    }
 
     <!-- ADD EVENT -->
     <div class="timeline-item">
       <div class="timeline-marker add"></div>
-      <div class="timeline-card add-event-card">
+      <div class="timeline-card add-event-card" (click)="openAddModal()">
         <div class="add-icon">+</div>
         <span class="add-text">Add New Event</span>
         <span class="add-sub">Add a new event to your story timeline</span>
@@ -303,3 +137,94 @@
 
   </div>
 </section>
+
+<!-- ========== EVENT MODAL ========== -->
+@if (isModalOpen) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">{{ isEditing ? 'Edit Event' : 'Add New Event' }}</h2>
+        <button class="modal-close" (click)="closeModal()">✕</button>
+      </div>
+
+      <form [formGroup]="eventForm" (ngSubmit)="onSubmitEvent()">
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label class="form-label">Event Title</label>
+            <input type="text" class="form-input" placeholder="Event title" formControlName="title" />
+            @if (eventForm.get('title')?.touched && eventForm.get('title')?.hasError('required')) {
+              <span class="form-error">Title is required</span>
+            }
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Event Type</label>
+              <select class="form-select" formControlName="type">
+                <option value="">Select Type</option>
+                <option value="major">Major</option>
+                <option value="minor">Minor</option>
+                <option value="twist">Plot Twist</option>
+                <option value="flashback">Flashback</option>
+              </select>
+              @if (eventForm.get('type')?.touched && eventForm.get('type')?.hasError('required')) {
+                <span class="form-error">Type is required</span>
+              }
+            </div>
+            <div class="form-group">
+              <label class="form-label">Impact Level</label>
+              <select class="form-select" formControlName="impact">
+                <option value="">Select Impact</option>
+                @for (level of impactLevels; track level) {
+                  <option [value]="level">{{ level | titlecase }}</option>
+                }
+              </select>
+              @if (eventForm.get('impact')?.touched && eventForm.get('impact')?.hasError('required')) {
+                <span class="form-error">Impact is required</span>
+              }
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" rows="3" placeholder="Describe the event..." formControlName="description"></textarea>
+            @if (eventForm.get('description')?.touched && eventForm.get('description')?.hasError('required')) {
+              <span class="form-error">Description is required</span>
+            }
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Location</label>
+              <input type="text" class="form-input" placeholder="Event location" formControlName="location" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Chapter</label>
+              <input type="text" class="form-input" placeholder="e.g. Chapter 1" formControlName="chapter" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Story Act</label>
+            <select class="form-select" formControlName="act">
+              <option value="">Select Act</option>
+              @for (act of acts; track act) {
+                <option [value]="act">{{ act }}</option>
+              }
+            </select>
+            @if (eventForm.get('act')?.touched && eventForm.get('act')?.hasError('required')) {
+              <span class="form-error">Act is required</span>
+            }
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-outline" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="btn-primary-lg">{{ isEditing ? 'Save Changes' : 'Create Event' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
