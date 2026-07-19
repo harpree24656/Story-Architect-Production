@@ -8,12 +8,17 @@
     <p class="hero-subtitle">Choose the plan that fits your storytelling needs. No hidden fees. Cancel anytime.</p>
 
     <div class="billing-toggle">
-      <span class="toggle-label active-label">Monthly</span>
+      <span class="toggle-label" [class.active-label]="billingCycle === 'monthly'">Monthly</span>
       <div class="toggle-switch-wrap">
-        <input type="checkbox" id="billingToggle" class="toggle-input" />
+        <input
+          type="checkbox"
+          id="billingToggle"
+          class="toggle-input"
+          [checked]="billingCycle === 'yearly'"
+          (change)="toggleBilling($any($event.target).checked)" />
         <label for="billingToggle" class="toggle-track"></label>
       </div>
-      <span class="toggle-label">Yearly</span>
+      <span class="toggle-label" [class.active-label]="billingCycle === 'yearly'">Yearly</span>
       <span class="save-badge">Save 20%</span>
     </div>
   </section>
@@ -22,87 +27,48 @@
   <section class="pricing-section">
     <div class="pricing-grid">
 
-      <!-- FREE -->
-      <div class="pricing-card">
-        <div class="card-header">
-          <span class="plan-icon">✏️</span>
-          <h3 class="plan-name">Free</h3>
-          <p class="plan-desc">For beginners exploring story building</p>
-        </div>
-        <div class="card-price">
-          <span class="price-amount">$0</span>
-          <span class="price-period">/month</span>
-        </div>
-        <button class="btn-plan-outline">Get Started Free</button>
-        <div class="card-divider"></div>
-        <ul class="plan-features">
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Up to 2 stories</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">10 characters per story</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Basic event timeline</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Manual story writer</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Community support</span></li>
-          <li class="feature-item excluded"><span class="feature-cross">✕</span><span class="feature-text">AI suggestions</span></li>
-          <li class="feature-item excluded"><span class="feature-cross">✕</span><span class="feature-text">Story map</span></li>
-          <li class="feature-item excluded"><span class="feature-cross">✕</span><span class="feature-text">Relation mapper</span></li>
-          <li class="feature-item excluded"><span class="feature-cross">✕</span><span class="feature-text">World library</span></li>
-          <li class="feature-item excluded"><span class="feature-cross">✕</span><span class="feature-text">Export to PDF/DOCX</span></li>
-        </ul>
-      </div>
+      @for (plan of plans; track plan.id) {
+        <div class="pricing-card" [class.popular]="plan.popular">
 
-      <!-- PRO -->
-      <div class="pricing-card popular">
-        <div class="popular-badge">Most Popular</div>
-        <div class="card-header">
-          <span class="plan-icon">⚡</span>
-          <h3 class="plan-name">Pro</h3>
-          <p class="plan-desc">For serious writers building rich narratives</p>
-        </div>
-        <div class="card-price">
-          <span class="price-amount">$12</span>
-          <span class="price-period">/month</span>
-        </div>
-        <button class="btn-plan-primary">Start Pro Plan</button>
-        <div class="card-divider"></div>
-        <ul class="plan-features">
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Unlimited stories</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Unlimited characters</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Advanced event timeline</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Manual story writer</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">AI suggestions & tools</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Interactive story map</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Relation mapper</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">World library</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Export to PDF/DOCX</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Priority support</span></li>
-        </ul>
-      </div>
+          @if (plan.popular) {
+            <div class="popular-badge">Most Popular</div>
+          }
 
-      <!-- ENTERPRISE -->
-      <div class="pricing-card">
-        <div class="card-header">
-          <span class="plan-icon">🏢</span>
-          <h3 class="plan-name">Enterprise</h3>
-          <p class="plan-desc">For teams and studios building together</p>
+          <div class="card-header">
+            <span class="plan-icon">{{ plan.icon }}</span>
+            <h3 class="plan-name">{{ plan.name }}</h3>
+            <p class="plan-desc">{{ plan.description }}</p>
+          </div>
+
+          <div class="card-price">
+            <span class="price-amount">${{ getDisplayPrice(plan) }}</span>
+            <span class="price-period">{{ getPeriodLabel() }}</span>
+          </div>
+
+          <button
+            class="btn-plan"
+            [ngClass]="plan.buttonStyle === 'primary' ? 'btn-plan-primary' : 'btn-plan-outline'"
+            type="button"
+            (click)="selectPlan(plan.id)">
+            {{ plan.buttonLabel }}
+          </button>
+
+          <div class="card-divider"></div>
+
+          <ul class="plan-features">
+            @for (feature of plan.features; track feature.text) {
+              <li class="feature-item" [ngClass]="feature.included ? 'included' : 'excluded'">
+                @if (feature.included) {
+                  <span class="feature-check">✓</span>
+                } @else {
+                  <span class="feature-cross">✕</span>
+                }
+                <span class="feature-text">{{ feature.text }}</span>
+              </li>
+            }
+          </ul>
         </div>
-        <div class="card-price">
-          <span class="price-amount">$39</span>
-          <span class="price-period">/month</span>
-        </div>
-        <button class="btn-plan-outline">Contact Sales</button>
-        <div class="card-divider"></div>
-        <ul class="plan-features">
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Everything in Pro</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Team collaboration</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Up to 10 team members</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Shared world libraries</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Advanced AI tools</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Version history</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Custom branding</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">API access</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">Dedicated account manager</span></li>
-          <li class="feature-item included"><span class="feature-check">✓</span><span class="feature-text">24/7 premium support</span></li>
-        </ul>
-      </div>
+      }
 
     </div>
   </section>
@@ -123,66 +89,41 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="feature-col">Stories</td>
-            <td class="plan-col">2</td>
-            <td class="plan-col highlight-col">Unlimited</td>
-            <td class="plan-col">Unlimited</td>
-          </tr>
-          <tr>
-            <td class="feature-col">Characters per Story</td>
-            <td class="plan-col">10</td>
-            <td class="plan-col highlight-col">Unlimited</td>
-            <td class="plan-col">Unlimited</td>
-          </tr>
-          <tr>
-            <td class="feature-col">Event Timeline</td>
-            <td class="plan-col">Basic</td>
-            <td class="plan-col highlight-col">Advanced</td>
-            <td class="plan-col">Advanced</td>
-          </tr>
-          <tr>
-            <td class="feature-col">Story Map</td>
-            <td class="plan-col"><span class="table-cross">✕</span></td>
-            <td class="plan-col highlight-col"><span class="table-check">✓</span></td>
-            <td class="plan-col"><span class="table-check">✓</span></td>
-          </tr>
-          <tr>
-            <td class="feature-col">Relation Mapper</td>
-            <td class="plan-col"><span class="table-cross">✕</span></td>
-            <td class="plan-col highlight-col"><span class="table-check">✓</span></td>
-            <td class="plan-col"><span class="table-check">✓</span></td>
-          </tr>
-          <tr>
-            <td class="feature-col">World Library</td>
-            <td class="plan-col"><span class="table-cross">✕</span></td>
-            <td class="plan-col highlight-col"><span class="table-check">✓</span></td>
-            <td class="plan-col"><span class="table-check">✓</span></td>
-          </tr>
-          <tr>
-            <td class="feature-col">AI Suggestions</td>
-            <td class="plan-col"><span class="table-cross">✕</span></td>
-            <td class="plan-col highlight-col"><span class="table-check">✓</span></td>
-            <td class="plan-col"><span class="table-check">✓</span></td>
-          </tr>
-          <tr>
-            <td class="feature-col">Export PDF/DOCX</td>
-            <td class="plan-col"><span class="table-cross">✕</span></td>
-            <td class="plan-col highlight-col"><span class="table-check">✓</span></td>
-            <td class="plan-col"><span class="table-check">✓</span></td>
-          </tr>
-          <tr>
-            <td class="feature-col">Team Collaboration</td>
-            <td class="plan-col"><span class="table-cross">✕</span></td>
-            <td class="plan-col highlight-col"><span class="table-cross">✕</span></td>
-            <td class="plan-col"><span class="table-check">✓</span></td>
-          </tr>
-          <tr>
-            <td class="feature-col">Support</td>
-            <td class="plan-col">Community</td>
-            <td class="plan-col highlight-col">Priority</td>
-            <td class="plan-col">24/7 Premium</td>
-          </tr>
+          @for (row of comparisonRows; track row.feature) {
+            <tr>
+              <td class="feature-col">{{ row.feature }}</td>
+
+              <td class="plan-col">
+                @if (row.free === true) {
+                  <span class="table-check">✓</span>
+                } @else if (row.free === false) {
+                  <span class="table-cross">✕</span>
+                } @else {
+                  {{ row.free }}
+                }
+              </td>
+
+              <td class="plan-col highlight-col">
+                @if (row.pro === true) {
+                  <span class="table-check">✓</span>
+                } @else if (row.pro === false) {
+                  <span class="table-cross">✕</span>
+                } @else {
+                  {{ row.pro }}
+                }
+              </td>
+
+              <td class="plan-col">
+                @if (row.enterprise === true) {
+                  <span class="table-check">✓</span>
+                } @else if (row.enterprise === false) {
+                  <span class="table-cross">✕</span>
+                } @else {
+                  {{ row.enterprise }}
+                }
+              </td>
+            </tr>
+          }
         </tbody>
       </table>
     </div>
@@ -194,51 +135,19 @@
     <p class="faq-subtitle">Everything you need to know about our pricing.</p>
 
     <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-q-text">Can I switch plans later?</span>
-          <span class="faq-toggle">+</span>
+      @for (faq of faqs; track faq.question; let i = $index) {
+        <div class="faq-item" [class.open]="faq.isOpen">
+          <div class="faq-question" (click)="toggleFaq(i)">
+            <span class="faq-q-text">{{ faq.question }}</span>
+            <span class="faq-toggle">{{ faq.isOpen ? '−' : '+' }}</span>
+          </div>
+          @if (faq.isOpen) {
+            <div class="faq-answer">
+              <p>{{ faq.answer }}</p>
+            </div>
+          }
         </div>
-        <div class="faq-answer">
-          <p>Yes! You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-q-text">Is there a free trial for Pro?</span>
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          <p>Absolutely! Every new user gets a 14-day free trial of the Pro plan. No credit card required.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-q-text">What happens to my data if I downgrade?</span>
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          <p>Your data is never deleted. Pro features become read-only. You can still access and export your content.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-q-text">Do you offer refunds?</span>
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          <p>We offer a full refund within the first 7 days of any paid subscription.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-q-text">Can I use it for commercial projects?</span>
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          <p>Yes! All plans allow commercial use. Your stories belong entirely to you.</p>
-        </div>
-      </div>
+      }
     </div>
   </section>
 
@@ -247,7 +156,7 @@
     <div class="cta-container">
       <h2 class="cta-title">Ready to Build Your Story?</h2>
       <p class="cta-subtitle">Start free. Upgrade when you're ready. No credit card required.</p>
-      <button class="btn-cta">Get Started Free →</button>
+      <button class="btn-cta" type="button" (click)="handleCtaClick()">Get Started Free →</button>
     </div>
   </section>
 
@@ -259,29 +168,16 @@
         <p class="footer-tagline">Build worlds. Craft stories. Leave legacies.</p>
       </div>
       <div class="footer-links">
-        <div class="footer-col">
-          <h4>Product</h4>
-          <ul>
-            <li><a href="#">Features</a></li>
-            <li><a href="/pricing">Pricing</a></li>
-            <li><a href="#">Changelog</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="/about">About</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Terms</a></li>
-          </ul>
-        </div>
+        @for (col of footerColumns; track col.title) {
+          <div class="footer-col">
+            <h4>{{ col.title }}</h4>
+            <ul>
+              @for (link of col.links; track link.label) {
+                <li><a [href]="link.url">{{ link.label }}</a></li>
+              }
+            </ul>
+          </div>
+        }
       </div>
     </div>
     <div class="footer-bottom">
